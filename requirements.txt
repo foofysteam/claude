@@ -1,0 +1,10 @@
+# Core dependencies
+dataclasses-json>=0.6.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Development
+black>=23.0.0
+pylint>=2.17.0
