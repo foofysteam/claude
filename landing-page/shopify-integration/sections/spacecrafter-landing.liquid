@@ -1,0 +1,629 @@
+{{ 'spacecrafter-landing.css' | asset_url | stylesheet_tag }}
+
+<div id="spacecrafter-landing-page">
+  <!-- Hero Section -->
+  <section class="sc-hero">
+    <div class="sc-container">
+      <div class="sc-hero-content">
+        <div class="sc-hero-text">
+          <h1 class="sc-hero-title">
+            {{ section.settings.hero_title }}
+            <span class="sc-gradient-text">{{ section.settings.hero_title_highlight }}</span>
+          </h1>
+          <p class="sc-hero-subtitle">{{ section.settings.hero_subtitle }}</p>
+          <div class="sc-hero-cta">
+            <a href="{{ section.settings.primary_cta_url }}" class="sc-btn-primary">
+              {{ section.settings.primary_cta_text }}
+            </a>
+            <a href="#sc-clients" class="sc-btn-secondary">
+              {{ section.settings.secondary_cta_text }}
+            </a>
+          </div>
+          <div class="sc-hero-stats">
+            {% for block in section.blocks %}
+              {% if block.type == 'stat' %}
+                <div class="sc-stat">
+                  <span class="sc-stat-number">{{ block.settings.stat_number }}</span>
+                  <span class="sc-stat-label">{{ block.settings.stat_label }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="sc-hero-image">
+          {% if section.settings.hero_image %}
+            <img src="{{ section.settings.hero_image | img_url: '1200x900' }}"
+                 alt="{{ section.settings.hero_image.alt | default: 'Coworking space design' }}"
+                 loading="eager">
+          {% else %}
+            <div class="sc-image-placeholder">
+              <span>Add Hero Image</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By Section -->
+  <section class="sc-trusted-by">
+    <div class="sc-container">
+      <p class="sc-trusted-label">{{ section.settings.trusted_by_title }}</p>
+      <div class="sc-client-logos">
+        {% for block in section.blocks %}
+          {% if block.type == 'client_logo' %}
+            <div class="sc-client-logo">
+              {% if block.settings.logo %}
+                <img src="{{ block.settings.logo | img_url: '200x80' }}"
+                     alt="{{ block.settings.client_name }}">
+              {% else %}
+                <div class="sc-logo-placeholder">{{ block.settings.client_name }}</div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="sc-services" class="sc-services">
+    <div class="sc-container">
+      <div class="sc-section-header">
+        <span class="sc-section-label">{{ section.settings.services_label }}</span>
+        <h2 class="sc-section-title">{{ section.settings.services_title }}</h2>
+        <p class="sc-section-subtitle">{{ section.settings.services_subtitle }}</p>
+      </div>
+      <div class="sc-services-grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'service' %}
+            <div class="sc-service-card {% if block.settings.featured %}sc-featured{% endif %}">
+              {% if block.settings.featured %}
+                <div class="sc-featured-badge">Most Popular</div>
+              {% endif %}
+              <div class="sc-service-icon">{{ block.settings.icon }}</div>
+              <h3 class="sc-service-title">{{ block.settings.title }}</h3>
+              <p class="sc-service-description">{{ block.settings.description }}</p>
+              {% if block.settings.features != blank %}
+                <ul class="sc-service-features">
+                  {% assign features = block.settings.features | split: '|' %}
+                  {% for feature in features %}
+                    <li>{{ feature }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="sc-process" class="sc-process">
+    <div class="sc-container">
+      <div class="sc-section-header">
+        <span class="sc-section-label">{{ section.settings.process_label }}</span>
+        <h2 class="sc-section-title">{{ section.settings.process_title }}</h2>
+        <p class="sc-section-subtitle">{{ section.settings.process_subtitle }}</p>
+      </div>
+      <div class="sc-process-timeline">
+        {% for block in section.blocks %}
+          {% if block.type == 'process_step' %}
+            <div class="sc-process-step">
+              <div class="sc-step-number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+              <div class="sc-step-content">
+                <h3 class="sc-step-title">{{ block.settings.title }}</h3>
+                <p class="sc-step-description">{{ block.settings.description }}</p>
+                <span class="sc-step-duration">{{ block.settings.duration }}</span>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Section -->
+  <section id="sc-clients" class="sc-case-studies">
+    <div class="sc-container">
+      <div class="sc-section-header">
+        <span class="sc-section-label">{{ section.settings.case_studies_label }}</span>
+        <h2 class="sc-section-title">{{ section.settings.case_studies_title }}</h2>
+      </div>
+      <div class="sc-case-studies-grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'case_study' %}
+            <div class="sc-case-study">
+              <div class="sc-case-study-image">
+                {% if block.settings.image %}
+                  <img src="{{ block.settings.image | img_url: '1600x1000' }}"
+                       alt="{{ block.settings.client_name }} case study"
+                       loading="lazy">
+                {% else %}
+                  <div class="sc-image-placeholder">
+                    <span>{{ block.settings.client_name }}</span>
+                  </div>
+                {% endif %}
+              </div>
+              <div class="sc-case-study-content">
+                <div class="sc-case-study-client">{{ block.settings.client_name }}</div>
+                <h3 class="sc-case-study-title">{{ block.settings.title }}</h3>
+                <p class="sc-case-study-description">{{ block.settings.description }}</p>
+                <div class="sc-case-study-metrics">
+                  {% if block.settings.metric1_value != blank %}
+                    <div class="sc-metric">
+                      <span class="sc-metric-value">{{ block.settings.metric1_value }}</span>
+                      <span class="sc-metric-label">{{ block.settings.metric1_label }}</span>
+                    </div>
+                  {% endif %}
+                  {% if block.settings.metric2_value != blank %}
+                    <div class="sc-metric">
+                      <span class="sc-metric-value">{{ block.settings.metric2_value }}</span>
+                      <span class="sc-metric-label">{{ block.settings.metric2_label }}</span>
+                    </div>
+                  {% endif %}
+                  {% if block.settings.metric3_value != blank %}
+                    <div class="sc-metric">
+                      <span class="sc-metric-value">{{ block.settings.metric3_value }}</span>
+                      <span class="sc-metric-label">{{ block.settings.metric3_label }}</span>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="sc-testimonials">
+    <div class="sc-container">
+      <div class="sc-section-header">
+        <span class="sc-section-label">{{ section.settings.testimonials_label }}</span>
+        <h2 class="sc-section-title">{{ section.settings.testimonials_title }}</h2>
+      </div>
+      <div class="sc-testimonials-grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'testimonial' %}
+            <div class="sc-testimonial">
+              <div class="sc-testimonial-rating">★★★★★</div>
+              <p class="sc-testimonial-text">{{ block.settings.quote }}</p>
+              <div class="sc-testimonial-author">
+                <div class="sc-author-info">
+                  <div class="sc-author-name">{{ block.settings.author_name }}</div>
+                  <div class="sc-author-title">{{ block.settings.author_title }}</div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="sc-contact" class="sc-cta">
+    <div class="sc-container">
+      <div class="sc-cta-content">
+        <h2 class="sc-cta-title">{{ section.settings.cta_title }}</h2>
+        <p class="sc-cta-subtitle">{{ section.settings.cta_subtitle }}</p>
+
+        {% form 'contact', class: 'sc-cta-form' %}
+          {% if form.posted_successfully? %}
+            <div class="sc-form-success">
+              <strong>Thank you!</strong> We've received your consultation request. Our team will reach out within 24 hours.
+            </div>
+          {% endif %}
+
+          {% if form.errors %}
+            <div class="sc-form-error">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <div class="sc-form-row">
+            <div class="sc-form-group">
+              <input type="text" name="contact[name]" placeholder="Your Name" required>
+            </div>
+            <div class="sc-form-group">
+              <input type="email" name="contact[email]" placeholder="Email Address" required>
+            </div>
+          </div>
+
+          <div class="sc-form-row">
+            <div class="sc-form-group">
+              <input type="text" name="contact[company]" placeholder="Company Name" required>
+            </div>
+            <div class="sc-form-group">
+              <input type="tel" name="contact[phone]" placeholder="Phone Number">
+            </div>
+          </div>
+
+          <div class="sc-form-group">
+            <select name="contact[project-type]" required>
+              <option value="">Select Project Type</option>
+              <option value="new-space">New Space Design</option>
+              <option value="renovation">Space Renovation</option>
+              <option value="refresh">Space Refresh</option>
+              <option value="optimization">Space Optimization</option>
+              <option value="multi-location">Multi-Location Project</option>
+              <option value="consultation">General Consultation</option>
+            </select>
+          </div>
+
+          <div class="sc-form-group">
+            <textarea name="contact[body]" rows="4" placeholder="Tell us about your project..."></textarea>
+          </div>
+
+          <button type="submit" class="sc-btn-primary">{{ section.settings.cta_button_text }}</button>
+          <p class="sc-form-privacy">{{ section.settings.form_privacy_text }}</p>
+        {% endform %}
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="{{ 'spacecrafter-landing.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "SpaceCrafter Landing",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Design Coworking Spaces That"
+    },
+    {
+      "type": "text",
+      "id": "hero_title_highlight",
+      "label": "Hero Title Highlight",
+      "default": "Inspire & Perform"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Transform your workspace into a thriving community hub. We've helped leading coworking operators increase member satisfaction by 40% and optimize space utilization by 35%."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_text",
+      "label": "Primary CTA Text",
+      "default": "Schedule a Consultation"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "Primary CTA URL",
+      "default": "#sc-contact"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "Secondary CTA Text",
+      "default": "View Our Work"
+    },
+    {
+      "type": "header",
+      "content": "Trusted By Section"
+    },
+    {
+      "type": "text",
+      "id": "trusted_by_title",
+      "label": "Trusted By Title",
+      "default": "Trusted by Leading Coworking Operators"
+    },
+    {
+      "type": "header",
+      "content": "Services Section"
+    },
+    {
+      "type": "text",
+      "id": "services_label",
+      "label": "Services Label",
+      "default": "What We Do"
+    },
+    {
+      "type": "text",
+      "id": "services_title",
+      "label": "Services Title",
+      "default": "Comprehensive Space Solutions"
+    },
+    {
+      "type": "textarea",
+      "id": "services_subtitle",
+      "label": "Services Subtitle",
+      "default": "From concept to completion, we handle every aspect of your coworking space design and optimization"
+    },
+    {
+      "type": "header",
+      "content": "Process Section"
+    },
+    {
+      "type": "text",
+      "id": "process_label",
+      "label": "Process Label",
+      "default": "How It Works"
+    },
+    {
+      "type": "text",
+      "id": "process_title",
+      "label": "Process Title",
+      "default": "Our Proven Process"
+    },
+    {
+      "type": "textarea",
+      "id": "process_subtitle",
+      "label": "Process Subtitle",
+      "default": "A streamlined approach that delivers exceptional results in 8-12 weeks"
+    },
+    {
+      "type": "header",
+      "content": "Case Studies Section"
+    },
+    {
+      "type": "text",
+      "id": "case_studies_label",
+      "label": "Case Studies Label",
+      "default": "Success Stories"
+    },
+    {
+      "type": "text",
+      "id": "case_studies_title",
+      "label": "Case Studies Title",
+      "default": "Transformations That Deliver Results"
+    },
+    {
+      "type": "header",
+      "content": "Testimonials Section"
+    },
+    {
+      "type": "text",
+      "id": "testimonials_label",
+      "label": "Testimonials Label",
+      "default": "Client Feedback"
+    },
+    {
+      "type": "text",
+      "id": "testimonials_title",
+      "label": "Testimonials Title",
+      "default": "What Our Partners Say"
+    },
+    {
+      "type": "header",
+      "content": "CTA Section"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Ready to Transform Your Space?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_subtitle",
+      "label": "CTA Subtitle",
+      "default": "Schedule a free 30-minute consultation to discuss your project. We'll provide initial insights and a custom project proposal."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA Button Text",
+      "default": "Get Your Free Consultation"
+    },
+    {
+      "type": "text",
+      "id": "form_privacy_text",
+      "label": "Form Privacy Text",
+      "default": "We respect your privacy. Your information will never be shared."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Hero Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_number",
+          "label": "Number",
+          "default": "50+"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Label",
+          "default": "Spaces Designed"
+        }
+      ]
+    },
+    {
+      "type": "client_logo",
+      "name": "Client Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "text",
+          "id": "client_name",
+          "label": "Client Name",
+          "default": "Client Name"
+        }
+      ]
+    },
+    {
+      "type": "service",
+      "name": "Service Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (Emoji)",
+          "default": "🎨"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Service Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Service description goes here."
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features (separate with |)",
+          "info": "Example: Feature 1|Feature 2|Feature 3",
+          "default": "Feature 1|Feature 2|Feature 3|Feature 4"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured Service",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "process_step",
+      "name": "Process Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Step description goes here."
+        },
+        {
+          "type": "text",
+          "id": "duration",
+          "label": "Duration",
+          "default": "Week 1"
+        }
+      ]
+    },
+    {
+      "type": "case_study",
+      "name": "Case Study",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Case Study Image"
+        },
+        {
+          "type": "text",
+          "id": "client_name",
+          "label": "Client Name",
+          "default": "Client Name"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Project Title",
+          "default": "Project Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Project description and results."
+        },
+        {
+          "type": "text",
+          "id": "metric1_value",
+          "label": "Metric 1 Value",
+          "default": "+30%"
+        },
+        {
+          "type": "text",
+          "id": "metric1_label",
+          "label": "Metric 1 Label",
+          "default": "Capacity"
+        },
+        {
+          "type": "text",
+          "id": "metric2_value",
+          "label": "Metric 2 Value",
+          "default": "4.6/5"
+        },
+        {
+          "type": "text",
+          "id": "metric2_label",
+          "label": "Metric 2 Label",
+          "default": "Satisfaction"
+        },
+        {
+          "type": "text",
+          "id": "metric3_value",
+          "label": "Metric 3 Value",
+          "default": "8 weeks"
+        },
+        {
+          "type": "text",
+          "id": "metric3_label",
+          "label": "Metric 3 Label",
+          "default": "Delivery"
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Customer testimonial goes here."
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "John Doe"
+        },
+        {
+          "type": "text",
+          "id": "author_title",
+          "label": "Author Title",
+          "default": "CEO, Company Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SpaceCrafter Landing",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
