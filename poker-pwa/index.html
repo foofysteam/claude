@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#0b3d2e" />
+  <meta name="description" content="Poker win-probability calculator. Tap to enter your hand and the board." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Poker Odds" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Poker Odds</title>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Poker Odds</h1>
+    <p class="tagline">Tap to enter cards — get your win probability</p>
+  </header>
+
+  <main>
+    <!-- Game selector -->
+    <section class="block">
+      <div class="label">Game</div>
+      <div class="segmented" id="gameSeg" role="tablist">
+        <button class="seg active" data-game="holdem">Hold'em</button>
+        <button class="seg" data-game="pineapple">Pineapple</button>
+        <button class="seg" data-game="omaha">Omaha</button>
+      </div>
+    </section>
+
+    <!-- Opponents -->
+    <section class="block">
+      <div class="label">Opponents</div>
+      <div class="stepper">
+        <button id="oppMinus" class="step-btn" aria-label="Fewer opponents">−</button>
+        <div class="step-val"><span id="oppVal">1</span><small>player<span id="oppPlural">s</span></small></div>
+        <button id="oppPlus" class="step-btn" aria-label="More opponents">+</button>
+      </div>
+    </section>
+
+    <!-- Your hand -->
+    <section class="block">
+      <div class="label">Your hand</div>
+      <div class="card-row" id="handRow"></div>
+    </section>
+
+    <!-- Community cards -->
+    <section class="block">
+      <div class="label">Community cards</div>
+      <div class="community">
+        <div class="street">
+          <div class="street-label">Flop</div>
+          <div class="card-row" id="flopRow"></div>
+        </div>
+        <div class="street">
+          <div class="street-label">Turn</div>
+          <div class="card-row" id="turnRow"></div>
+        </div>
+        <div class="street">
+          <div class="street-label">River</div>
+          <div class="card-row" id="riverRow"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="clearBtn" class="ghost-btn">Clear all</button>
+    </div>
+  </main>
+
+  <!-- Result -->
+  <section class="result" id="result">
+    <div class="result-inner">
+      <div class="equity-big"><span id="equityVal">—</span><span class="pct">%</span></div>
+      <div class="equity-label" id="equityLabel">Enter your hand to begin</div>
+      <div class="breakdown">
+        <div class="bd"><span class="bd-num" id="winVal">—</span><span class="bd-lbl">Win</span></div>
+        <div class="bd"><span class="bd-num" id="tieVal">—</span><span class="bd-lbl">Split</span></div>
+        <div class="bd"><span class="bd-num" id="loseVal">—</span><span class="bd-lbl">Lose</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card picker overlay -->
+  <div class="overlay hidden" id="picker">
+    <div class="sheet">
+      <div class="sheet-head">
+        <div class="sheet-title" id="pickerTitle">Select card</div>
+        <button class="sheet-close" id="pickerClose" aria-label="Close">✕</button>
+      </div>
+      <div class="suit-row" id="suitRow"></div>
+      <div class="rank-grid" id="rankGrid"></div>
+      <button class="remove-card hidden" id="removeCard">Remove this card</button>
+    </div>
+  </div>
+
+  <script src="poker.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
