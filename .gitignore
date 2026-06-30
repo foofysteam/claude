@@ -39,6 +39,10 @@ ENV/
 htmlcov/
 .tox/
 
+# Node / web tooling (test deps only; the PWA itself has no build step)
+node_modules/
+package-lock.json
+
 # OS
 .DS_Store
 Thumbs.db
