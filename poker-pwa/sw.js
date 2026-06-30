@@ -1,10 +1,11 @@
 /* Service worker: cache-first offline shell. */
-var CACHE = 'poker-odds-v1';
+var CACHE = 'kingar-poker-v2';
 var ASSETS = [
   './',
   './index.html',
   './styles.css',
   './app.js',
+  './session.js',
   './poker.js',
   './worker.js',
   './manifest.webmanifest',

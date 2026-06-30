@@ -191,6 +191,30 @@
   document.getElementById('oppMinus').addEventListener('click', function () {
     if (state.opponents > 1) { state.opponents--; onChange(); }
   });
+
+  // Integration with the Session tab: offer to set opponents from table size.
+  var lastTableSize = 0;
+  var fromSessionBtn = document.getElementById('fromSession');
+  function refreshFromSessionBtn() {
+    if (lastTableSize >= 2) {
+      fromSessionBtn.textContent = 'Use table size (' + (lastTableSize - 1) + ' opponents)';
+      fromSessionBtn.classList.remove('hidden');
+    } else {
+      fromSessionBtn.classList.add('hidden');
+    }
+  }
+  fromSessionBtn.addEventListener('click', function () {
+    if (lastTableSize >= 2) {
+      state.opponents = Math.max(1, Math.min(9, lastTableSize - 1));
+      onChange();
+    }
+  });
+  window.KingarOdds = {
+    onSessionUpdate: function (playerCount) {
+      lastTableSize = playerCount | 0;
+      refreshFromSessionBtn();
+    }
+  };
   document.getElementById('clearBtn').addEventListener('click', function () {
     for (var i = 0; i < state.hole.length; i++) state.hole[i] = null;
     for (var j = 0; j < state.board.length; j++) state.board[j] = null;

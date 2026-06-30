@@ -1,7 +1,7 @@
 {
-  "name": "Poker Odds",
-  "short_name": "Poker Odds",
-  "description": "Tap-to-enter poker win-probability calculator for Hold'em, Pineapple and Omaha.",
+  "name": "Kingar's Poker Sessions",
+  "short_name": "Kingar Poker",
+  "description": "Track players and buy-ins for your poker night, with live tap-to-enter win-probability for Hold'em, Pineapple and Omaha.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
