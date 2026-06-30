@@ -1,5 +1,5 @@
 /* Service worker: cache-first offline shell. */
-var CACHE = 'kingar-poker-v2';
+var CACHE = 'kingar-poker-v3';
 var ASSETS = [
   './',
   './index.html',

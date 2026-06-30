@@ -18,11 +18,12 @@
 
   // ---- State ----------------------------------------------------------------
   var nextId = 1;
+  var CURRENCY = '₹';
   var session = {
     name: "Kingar's Poker Session",
     date: '',
-    buyIn: 20,
-    currency: '$',
+    buyIn: 500,
+    currency: CURRENCY,
     players: [] // { id, name, buyIns, cashOut }
   };
 
@@ -37,8 +38,8 @@
       if (s && Array.isArray(s.players)) {
         session.name = s.name || session.name;
         session.date = s.date || todayStr();
-        session.buyIn = s.buyIn > 0 ? s.buyIn : 20;
-        session.currency = s.currency || '$';
+        session.buyIn = s.buyIn > 0 ? s.buyIn : 500;
+        session.currency = CURRENCY; // always rupees
         session.players = s.players.map(function (p) {
           return { id: p.id, name: p.name, buyIns: p.buyIns | 0, cashOut: (p.cashOut == null ? null : +p.cashOut) };
         });
@@ -234,10 +235,10 @@
   sessName.addEventListener('input', function () { session.name = sessName.value; save(); });
 
   document.getElementById('buyinPlus').addEventListener('click', function () {
-    session.buyIn += 5; save(); renderAll();
+    session.buyIn += 100; save(); renderAll();
   });
   document.getElementById('buyinMinus').addEventListener('click', function () {
-    if (session.buyIn > 5) { session.buyIn -= 5; save(); renderAll(); }
+    if (session.buyIn > 100) { session.buyIn -= 100; save(); renderAll(); }
   });
 
   function addPlayer() {
