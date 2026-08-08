@@ -1,0 +1,707 @@
+<!-- SpaceCrafter Studio — Contact Us Page -->
+<!-- Shopify Custom Liquid: paste into a single Custom Liquid section -->
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 1 — HERO + CONTACT INFO                            -->
+<style>
+
+    .shopify-section:has(.sc-ct-hero),
+    .shopify-section:has(.sc-ct-hero) > * {
+      overflow: visible !important;
+      max-width: none !important;
+    }
+
+    .sc-ct-hero {
+      background: var(--color-charcoal, #222224);
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+      padding: 100px 40px 80px;
+    }
+
+    .sc-ct-hero__grid-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(240,238,233,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,238,233,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .sc-ct-hero__accent {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.04;
+      bottom: -200px;
+      right: -150px;
+      pointer-events: none;
+    }
+
+    .sc-ct-hero__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-ct-hero__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .sc-ct-hero__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .sc-ct-hero__label::before,
+    .sc-ct-hero__label::after {
+      content: '';
+      width: 28px;
+      height: 1.5px;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.5;
+    }
+
+    .sc-ct-hero__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 16px;
+    }
+
+    .sc-ct-hero__heading em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-ct-hero__sub {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-taupe, #D7CBC4);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Contact cards grid */
+    .sc-ct-hero__cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .sc-ct-hero__card {
+      background: rgba(240, 238, 233, 0.04);
+      border: 1px solid rgba(215, 203, 196, 0.1);
+      border-radius: 12px;
+      padding: 36px 28px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    .sc-ct-hero__card:hover {
+      border-color: var(--color-coral, #FA9A85);
+      background: rgba(250, 154, 133, 0.06);
+      transform: translateY(-4px);
+    }
+
+    .sc-ct-hero__card-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      background: rgba(250, 154, 133, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sc-ct-hero__card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--color-coral, #FA9A85);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .sc-ct-hero__card-title {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-taupe, #D7CBC4);
+      margin: 0 0 8px;
+      opacity: 0.7;
+    }
+
+    .sc-ct-hero__card-value {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 900px) {
+      .sc-ct-hero { padding: 80px 24px 60px; }
+      .sc-ct-hero__cards { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    }
+
+    @media (max-width: 600px) {
+      .sc-ct-hero { padding: 64px 20px 48px; }
+    }
+
+    .sc-ct-hero *,
+    .sc-ct-hero *::before,
+    .sc-ct-hero *::after { box-sizing: border-box; }
+    .sc-ct-hero h1, .sc-ct-hero h2, .sc-ct-hero p { margin-block-start: 0; margin-block-end: 0; }
+  
+
+    .shopify-section:has(.sc-ct-form),
+    .shopify-section:has(.sc-ct-form) > * {
+      overflow: visible !important;
+      max-width: none !important;
+    }
+
+    .sc-ct-form {
+      background: var(--color-cream, #F0EEE9);
+      padding: 100px 40px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-ct-form__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Left: Form */
+    .sc-ct-form__left {
+    }
+
+    .sc-ct-form__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-ct-form__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 32px;
+    }
+
+    .sc-ct-form__group {
+      margin-bottom: 20px;
+    }
+
+    .sc-ct-form__field-label {
+      display: block;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--color-charcoal, #222224);
+      margin-bottom: 8px;
+    }
+
+    .sc-ct-form__input,
+    .sc-ct-form__textarea,
+    .sc-ct-form__select {
+      width: 100%;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      color: var(--color-charcoal, #222224);
+      background: #fff;
+      border: 1.5px solid rgba(215, 203, 196, 0.5);
+      border-radius: 8px;
+      padding: 14px 16px;
+      transition: border-color 0.25s ease;
+      outline: none;
+    }
+
+    .sc-ct-form__input:focus,
+    .sc-ct-form__textarea:focus,
+    .sc-ct-form__select:focus {
+      border-color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-ct-form__input::placeholder,
+    .sc-ct-form__textarea::placeholder {
+      color: rgba(34, 34, 36, 0.35);
+    }
+
+    .sc-ct-form__textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .sc-ct-form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .sc-ct-form__submit {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--color-coral, #FA9A85);
+      color: var(--color-charcoal, #222224);
+      border: none;
+      border-radius: 6px;
+      padding: 16px 36px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .sc-ct-form__submit:hover {
+      background: #f88a72;
+      transform: translateY(-2px);
+    }
+
+    .sc-ct-form__submit svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    /* Right: Address + Map */
+    .sc-ct-form__right {
+    }
+
+    .sc-ct-form__info-block {
+      margin-bottom: 32px;
+    }
+
+    .sc-ct-form__info-title {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 12px;
+    }
+
+    .sc-ct-form__info-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(34, 34, 36, 0.75);
+      margin: 0;
+    }
+
+    .sc-ct-form__info-text a {
+      color: var(--color-charcoal, #222224);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .sc-ct-form__map {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(215, 203, 196, 0.3);
+    }
+
+    .sc-ct-form__map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .sc-ct-form__hours {
+      margin-top: 24px;
+    }
+
+    .sc-ct-form__hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      color: rgba(34, 34, 36, 0.7);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(215, 203, 196, 0.2);
+    }
+
+    .sc-ct-form__hours-row:last-child { border-bottom: none; }
+
+    .sc-ct-form__hours-day { font-weight: 500; color: var(--color-charcoal, #222224); }
+
+    @media (max-width: 900px) {
+      .sc-ct-form { padding: 80px 24px; }
+      .sc-ct-form__inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    @media (max-width: 600px) {
+      .sc-ct-form { padding: 64px 20px; }
+      .sc-ct-form__row { grid-template-columns: 1fr; }
+    }
+
+    .sc-ct-form *,
+    .sc-ct-form *::before,
+    .sc-ct-form *::after { box-sizing: border-box; }
+    .sc-ct-form h1, .sc-ct-form h2, .sc-ct-form h3, .sc-ct-form p { margin-block-start: 0; margin-block-end: 0; }
+  
+
+    .shopify-section:has(.sc-ct-services),
+    .shopify-section:has(.sc-ct-services) > * {
+      overflow: visible !important;
+      max-width: none !important;
+    }
+
+    .sc-ct-services {
+      background: var(--color-charcoal, #222224);
+      padding: 80px 40px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-ct-services__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .sc-ct-services__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(22px, 2.5vw, 28px);
+      font-weight: 400;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 32px;
+    }
+
+    .sc-ct-services__grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .sc-ct-services__chip {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-cream, #F0EEE9);
+      text-decoration: none;
+      padding: 12px 24px;
+      border: 1px solid rgba(215, 203, 196, 0.15);
+      border-radius: 40px;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sc-ct-services__chip:hover {
+      border-color: var(--color-coral, #FA9A85);
+      background: rgba(250, 154, 133, 0.08);
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-ct-services__chip svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 600px) {
+      .sc-ct-services { padding: 48px 20px; }
+      .sc-ct-services__chip { font-size: 12px; padding: 10px 18px; }
+    }
+
+    .sc-ct-services *,
+    .sc-ct-services *::before,
+    .sc-ct-services *::after { box-sizing: border-box; }
+    .sc-ct-services h1, .sc-ct-services h2, .sc-ct-services p { margin-block-start: 0; margin-block-end: 0; }
+  
+
+  .sc-ct-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .sc-ct-reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+</style>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-ct-hero">
+
+  <div class="sc-ct-hero__grid-bg" role="presentation"></div>
+  <div class="sc-ct-hero__accent" role="presentation"></div>
+
+  <div class="sc-ct-hero__inner">
+    <div class="sc-ct-hero__header sc-ct-reveal">
+      <div class="sc-ct-hero__label">Contact Us</div>
+      <h1 class="sc-ct-hero__heading">Let's Build Your Brand <em>Environment.</em></h1>
+      <p class="sc-ct-hero__sub">Whether you need a single sign or a complete spatial transformation — reach out and let's start a conversation.</p>
+    </div>
+
+    <div class="sc-ct-hero__cards sc-ct-reveal">
+      <a href="mailto:sales@spacecrafter.studio" class="sc-ct-hero__card">
+        <div class="sc-ct-hero__card-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="sc-ct-hero__card-title">Email Us</div>
+        <p class="sc-ct-hero__card-value">sales@spacecrafter.studio</p>
+      </a>
+
+      <a href="tel:+919886846670" class="sc-ct-hero__card">
+        <div class="sc-ct-hero__card-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="sc-ct-hero__card-title">Call Us</div>
+        <p class="sc-ct-hero__card-value">+91 98868 46670</p>
+      </a>
+
+      <a href="https://wa.me/919886846670" target="_blank" rel="noopener noreferrer" class="sc-ct-hero__card">
+        <div class="sc-ct-hero__card-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <div class="sc-ct-hero__card-title">WhatsApp</div>
+        <p class="sc-ct-hero__card-value">Chat With Us</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 2 — CONTACT FORM + MAP / ADDRESS                   -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-ct-form">
+
+  <div class="sc-ct-form__inner">
+    <!-- Left: Contact Form -->
+    <div class="sc-ct-form__left sc-ct-reveal">
+      <div class="sc-ct-form__label">Send Us a Message</div>
+      <h2 class="sc-ct-form__heading">Tell Us About Your Project</h2>
+
+      <form action="/contact#contact_form" method="post" class="sc-ct-form__fields">
+        <input type="hidden" name="form_type" value="contact">
+        <input type="hidden" name="utf8" value="✓">
+
+        <div class="sc-ct-form__row">
+          <div class="sc-ct-form__group">
+            <label class="sc-ct-form__field-label" for="sc-ct-name">Full Name</label>
+            <input type="text" id="sc-ct-name" name="contact[name]" class="sc-ct-form__input" placeholder="Your name" required>
+          </div>
+          <div class="sc-ct-form__group">
+            <label class="sc-ct-form__field-label" for="sc-ct-company">Company / Organisation</label>
+            <input type="text" id="sc-ct-company" name="contact[company]" class="sc-ct-form__input" placeholder="Company name">
+          </div>
+        </div>
+
+        <div class="sc-ct-form__row">
+          <div class="sc-ct-form__group">
+            <label class="sc-ct-form__field-label" for="sc-ct-email">Email Address</label>
+            <input type="email" id="sc-ct-email" name="contact[email]" class="sc-ct-form__input" placeholder="you@company.com" required>
+          </div>
+          <div class="sc-ct-form__group">
+            <label class="sc-ct-form__field-label" for="sc-ct-phone">Phone Number</label>
+            <input type="tel" id="sc-ct-phone" name="contact[phone]" class="sc-ct-form__input" placeholder="+91 XXXXX XXXXX">
+          </div>
+        </div>
+
+        <div class="sc-ct-form__group">
+          <label class="sc-ct-form__field-label" for="sc-ct-service">Service Interested In</label>
+          <select id="sc-ct-service" name="contact[service]" class="sc-ct-form__select">
+            <option value="" disabled selected>Select a service</option>
+            <option value="Signages">External &amp; Internal Signages</option>
+            <option value="Wayfinding">Wayfinding Systems</option>
+            <option value="Murals">Murals &amp; Custom Art</option>
+            <option value="Wall Graphics">Wall Graphics &amp; Painting</option>
+            <option value="LED Walls">LED Walls &amp; Panels</option>
+            <option value="Pylons">Pylon Signs &amp; Towers</option>
+            <option value="Frames">Frames &amp; Timeline Displays</option>
+            <option value="Complete Branding">Complete Brand Environment</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="sc-ct-form__group">
+          <label class="sc-ct-form__field-label" for="sc-ct-message">Project Details</label>
+          <textarea id="sc-ct-message" name="contact[body]" class="sc-ct-form__textarea" placeholder="Tell us about your space, industry, requirements, and timeline..." required></textarea>
+        </div>
+
+        <button type="submit" class="sc-ct-form__submit">
+          Send Message
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Right: Address, Map, Hours -->
+    <div class="sc-ct-form__right sc-ct-reveal">
+      <div class="sc-ct-form__info-block">
+        <div class="sc-ct-form__info-title">Visit Our Studio</div>
+        <p class="sc-ct-form__info-text">
+          <strong>Kingar Signs Private Limited (Aarkay Signs)</strong><br>
+          Kalkere Main Road, Palm Peak Layout<br>
+          Horamavu, The Sign Factory<br>
+          Bengaluru, Karnataka 560043
+        </p>
+      </div>
+
+      <div class="sc-ct-form__info-block">
+        <div class="sc-ct-form__info-title">Reach Us</div>
+        <p class="sc-ct-form__info-text">
+          Email: <a href="mailto:sales@spacecrafter.studio">sales@spacecrafter.studio</a><br>
+          Phone: <a href="tel:+919886846670">+91 98868 46670</a><br>
+          WhatsApp: <a href="https://wa.me/919886846670" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+        </p>
+      </div>
+
+      <!-- Google Maps embed -->
+      <div class="sc-ct-form__map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.2!2d77.65!3d13.03!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sHoramavu%2C+Bengaluru!5e0!3m2!1sen!2sin!4v1700000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="SpaceCrafter Studio Location">
+        </iframe>
+        <!-- NOTE: Replace the iframe src with your exact Google Maps embed URL for accurate pin placement -->
+      </div>
+
+      <div class="sc-ct-form__hours">
+        <div class="sc-ct-form__info-title" style="margin-bottom: 12px;">Business Hours</div>
+        <div class="sc-ct-form__hours-row">
+          <span class="sc-ct-form__hours-day">Monday – Friday</span>
+          <span>9:00 AM – 6:30 PM</span>
+        </div>
+        <div class="sc-ct-form__hours-row">
+          <span class="sc-ct-form__hours-day">Saturday</span>
+          <span>9:00 AM – 4:00 PM</span>
+        </div>
+        <div class="sc-ct-form__hours-row">
+          <span class="sc-ct-form__hours-day">Sunday</span>
+          <span>Closed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 3 — QUICK SERVICE LINKS                            -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-ct-services">
+
+  <div class="sc-ct-services__inner sc-ct-reveal">
+    <h2 class="sc-ct-services__heading">Explore Our Services</h2>
+    <div class="sc-ct-services__grid">
+      <a href="/pages/external-signage" class="sc-ct-services__chip">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+        Signages
+      </a>
+      <a href="/pages/multilevel-wayfinding" class="sc-ct-services__chip">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
+        Wayfinding
+      </a>
+      <a href="/pages/murals" class="sc-ct-services__chip">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Murals
+      </a>
+      <a href="/pages/wall-graphics" class="sc-ct-services__chip">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Wall Graphics
+      </a>
+      <a href="/pages/spacecrafter-services" class="sc-ct-services__chip">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        LED Walls
+      </a>
+      <a href="/pages/spacecrafter-services" class="sc-ct-services__chip">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/><line x1="4" y1="22" x2="20" y2="22"/></svg>
+        Pylons
+      </a>
+      <a href="/pages/spacecrafter-services" class="sc-ct-services__chip">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+        Frames &amp; Timelines
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- GLOBAL REVEAL ANIMATION                                     -->
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<script>
+  (function() {
+    var els = document.querySelectorAll('.sc-ct-reveal');
+    if (!els.length) return;
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('sc-ct-reveal--visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function(el) { obs.observe(el); });
+  })();
+</script>

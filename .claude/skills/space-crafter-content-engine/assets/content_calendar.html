@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Crafter Studio — Content Calendar</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#1a1a1a;padding:2rem}
+.cal{max-width:820px;margin:0 auto}
+.top-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:12px}
+.top-row h1{font-size:18px;font-weight:500}
+.top-row p{font-size:13px;color:#666;margin-top:3px}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
+.stat{background:#f5f5f3;border-radius:8px;padding:.85rem 1rem}
+.stat-label{font-size:12px;color:#666;margin-bottom:4px}
+.stat-val{font-size:22px;font-weight:500}
+.add-btn{padding:9px 18px;font-size:13px;font-weight:500;background:#534AB7;color:#EEEDFE;border:none;border-radius:8px;cursor:pointer;white-space:nowrap}
+.add-btn:hover{background:#3C3489}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.ftag{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #ddd;background:#f5f5f3;color:#666;cursor:pointer;transition:all .1s}
+.ftag.on{background:#534AB7;color:#EEEDFE;border-color:#534AB7}
+.month-header{font-size:13px;font-weight:500;color:#666;padding:8px 0 6px;border-bottom:0.5px solid #e8e8e8;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+.post-row{display:grid;grid-template-columns:90px 1fr auto;gap:12px;align-items:start;padding:10px 0;border-bottom:0.5px solid #f0f0f0}
+.post-date{font-size:12px;color:#888;padding-top:2px}
+.post-title{font-size:14px;font-weight:500;line-height:1.4;margin-bottom:4px}
+.post-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+.ptag{font-size:11px;padding:2px 7px;border-radius:20px;border:0.5px solid #ddd;color:#666;background:#f5f5f3}
+.ptag.ig{background:#EEEDFE;color:#534AB7;border-color:#AFA9EC}
+.ptag.li{background:#E6F1FB;color:#0C447C;border-color:#85B7EB}
+.ptag.fb{background:#E6F1FB;color:#185FA5;border-color:#B5D4F4}
+.ptag.tw{background:#E1F5EE;color:#085041;border-color:#5DCAA5}
+.ptag.ad{background:#FAEEDA;color:#633806;border-color:#EF9F27}
+.bucket-tag{font-size:11px;padding:2px 7px;border-radius:20px;background:#f5f5f3;color:#666;border:0.5px solid #ddd}
+.del-btn{font-size:12px;padding:4px 10px;border:0.5px solid #ddd;border-radius:8px;background:#fff;color:#888;cursor:pointer}
+.del-btn:hover{background:#fff0f0;color:#c00;border-color:#fcc}
+.empty{text-align:center;padding:3rem 1rem;color:#888;font-size:13px;border:0.5px dashed #ddd;border-radius:12px}
+.modal-wrap{display:none;min-height:500px;background:rgba(0,0,0,0.35);border-radius:12px;align-items:center;justify-content:center;padding:1rem;margin-bottom:1rem}
+.modal-wrap.open{display:flex}
+.modal{background:#fff;border:0.5px solid #ccc;border-radius:12px;padding:1.5rem;width:100%;max-width:480px}
+.modal h2{font-size:15px;font-weight:500;margin-bottom:1.25rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:12px;color:#666;margin-bottom:5px}
+.field input,.field textarea,.field select{width:100%;font-size:13px;padding:8px 10px;border:0.5px solid #ccc;border-radius:8px;background:#fff;color:#1a1a1a;font-family:inherit}
+.field textarea{min-height:70px;resize:vertical}
+.plat-checks{display:flex;gap:8px;flex-wrap:wrap}
+.plat-check{display:flex;align-items:center;gap:5px;font-size:12px;color:#666;cursor:pointer}
+.modal-actions{display:flex;gap:8px;margin-top:1.25rem}
+.save-btn{padding:9px 20px;font-size:13px;font-weight:500;background:#534AB7;color:#EEEDFE;border:none;border-radius:8px;cursor:pointer;flex:1}
+.save-btn:hover{background:#3C3489}
+.cancel-btn{padding:9px 16px;font-size:13px;border:0.5px solid #ccc;border-radius:8px;background:#fff;color:#1a1a1a;cursor:pointer}
+.export-btn{padding:7px 14px;font-size:12px;border:0.5px solid #ccc;border-radius:8px;background:#fff;color:#666;cursor:pointer}
+.export-btn:hover{background:#f5f5f3}
+@media(max-width:600px){
+  .stats-row{grid-template-columns:1fr 1fr}
+  .post-row{grid-template-columns:70px 1fr auto}
+}
+</style>
+</head>
+<body>
+<div class="cal">
+  <div class="top-row">
+    <div>
+      <h1>Content calendar</h1>
+      <p>Space Crafter Studio — posted content tracker</p>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+      <button class="add-btn" onclick="openModal()">+ Log a post</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-label">Total posts</div><div class="stat-val" id="statTotal">0</div></div>
+    <div class="stat"><div class="stat-label">This month</div><div class="stat-val" id="statMonth">0</div></div>
+    <div class="stat"><div class="stat-label">Platforms active</div><div class="stat-val" id="statPlats">0</div></div>
+    <div class="stat"><div class="stat-label">Content buckets</div><div class="stat-val" id="statBuckets">0</div></div>
+  </div>
+
+  <div class="filters">
+    <span class="ftag on" onclick="setFilter(this,'all')">All platforms</span>
+    <span class="ftag" onclick="setFilter(this,'Instagram')">Instagram</span>
+    <span class="ftag" onclick="setFilter(this,'LinkedIn')">LinkedIn</span>
+    <span class="ftag" onclick="setFilter(this,'Facebook')">Facebook</span>
+    <span class="ftag" onclick="setFilter(this,'X / Twitter')">X / Twitter</span>
+    <span class="ftag" onclick="setFilter(this,'Ad copy')">Ads</span>
+  </div>
+
+  <div class="modal-wrap" id="modalWrap">
+    <div class="modal">
+      <h2 id="modalTitle">Log a posted piece</h2>
+      <div class="field">
+        <label>Post title / topic</label>
+        <input type="text" id="fTitle" placeholder="e.g. Reception wall branding — what the space says before you do">
+      </div>
+      <div class="field">
+        <label>Date posted</label>
+        <input type="date" id="fDate">
+      </div>
+      <div class="field">
+        <label>Platforms posted to</label>
+        <div class="plat-checks">
+          <label class="plat-check"><input type="checkbox" value="Instagram"> Instagram</label>
+          <label class="plat-check"><input type="checkbox" value="LinkedIn"> LinkedIn</label>
+          <label class="plat-check"><input type="checkbox" value="Facebook"> Facebook</label>
+          <label class="plat-check"><input type="checkbox" value="X / Twitter"> X / Twitter</label>
+          <label class="plat-check"><input type="checkbox" value="Ad copy"> Ad copy</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Content bucket</label>
+        <select id="fBucket">
+          <option value="">Select bucket</option>
+          <option>Spatial storytelling</option>
+          <option>Signage intelligence</option>
+          <option>Experiential branding</option>
+          <option>Material craft</option>
+          <option>Transformation stories</option>
+          <option>Behind the scenes</option>
+          <option>Project showcases</option>
+          <option>Design thinking</option>
+          <option>Client outcomes</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Notes (optional)</label>
+        <textarea id="fNotes" placeholder="e.g. Performed well, got 3 DMs. Inspired by Architectural Digest trend scan."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+        <button class="save-btn" onclick="savePost()">Save to calendar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="calBody"></div>
+</div>
+
+<script>
+const STORAGE_KEY = 'scs-calendar-v1';
+let posts = [];
+let activeFilter = 'all';
+let editingId = null;
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    posts = raw ? JSON.parse(raw) : [];
+  } catch(e) { posts = []; }
+  render();
+}
+
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(posts)); } catch(e) {}
+}
+
+function openModal(id) {
+  editingId = id || null;
+  const wrap = document.getElementById('modalWrap');
+  wrap.classList.add('open');
+  const today = new Date().toISOString().split('T')[0];
+  if (id) {
+    const p = posts.find(x=>x.id===id);
+    document.getElementById('fTitle').value = p.title;
+    document.getElementById('fDate').value = p.date;
+    document.getElementById('fBucket').value = p.bucket;
+    document.getElementById('fNotes').value = p.notes||'';
+    document.querySelectorAll('.plat-checks input').forEach(cb => { cb.checked = p.platforms.includes(cb.value); });
+    document.getElementById('modalTitle').textContent = 'Edit post';
+  } else {
+    document.getElementById('fTitle').value = '';
+    document.getElementById('fDate').value = today;
+    document.getElementById('fBucket').value = '';
+    document.getElementById('fNotes').value = '';
+    document.querySelectorAll('.plat-checks input').forEach(cb => cb.checked = false);
+    document.getElementById('modalTitle').textContent = 'Log a posted piece';
+  }
+}
+
+function closeModal() {
+  document.getElementById('modalWrap').classList.remove('open');
+  editingId = null;
+}
+
+function savePost() {
+  const title = document.getElementById('fTitle').value.trim();
+  const date = document.getElementById('fDate').value;
+  const bucket = document.getElementById('fBucket').value;
+  const platforms = [...document.querySelectorAll('.plat-checks input:checked')].map(c=>c.value);
+  const notes = document.getElementById('fNotes').value.trim();
+  if (!title || !date || platforms.length === 0) { alert('Please fill in title, date, and at least one platform.'); return; }
+  if (editingId) {
+    const idx = posts.findIndex(x=>x.id===editingId);
+    posts[idx] = {...posts[idx], title, date, bucket, platforms, notes};
+  } else {
+    posts.push({ id: Date.now().toString(), title, date, bucket, platforms, notes });
+  }
+  posts.sort((a,b)=>b.date.localeCompare(a.date));
+  save();
+  closeModal();
+  render();
+}
+
+function deletePost(id) {
+  posts = posts.filter(p=>p.id!==id);
+  save();
+  render();
+}
+
+function setFilter(el, val) {
+  activeFilter = val;
+  document.querySelectorAll('.ftag').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  render();
+}
+
+function platClass(p) {
+  if (p==='Instagram') return 'ig';
+  if (p==='LinkedIn') return 'li';
+  if (p==='Facebook') return 'fb';
+  if (p==='X / Twitter') return 'tw';
+  if (p==='Ad copy') return 'ad';
+  return '';
+}
+
+function render() {
+  const filtered = activeFilter==='all' ? posts : posts.filter(p=>p.platforms.includes(activeFilter));
+  const now = new Date();
+  const thisMonth = now.toISOString().slice(0,7);
+
+  document.getElementById('statTotal').textContent = posts.length;
+  document.getElementById('statMonth').textContent = posts.filter(p=>p.date.startsWith(thisMonth)).length;
+  const allPlats = new Set(posts.flatMap(p=>p.platforms));
+  document.getElementById('statPlats').textContent = allPlats.size;
+  const allBuckets = new Set(posts.map(p=>p.bucket).filter(Boolean));
+  document.getElementById('statBuckets').textContent = allBuckets.size;
+
+  const body = document.getElementById('calBody');
+  if (filtered.length === 0) {
+    body.innerHTML = '<div class="empty">No posts logged yet. Hit "Log a post" to start tracking your content history.</div>';
+    return;
+  }
+
+  const grouped = {};
+  filtered.forEach(p => {
+    const d = new Date(p.date + 'T00:00:00');
+    const key = d.toLocaleString('default',{month:'long',year:'numeric'});
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(p);
+  });
+
+  body.innerHTML = Object.entries(grouped).map(([month, items]) => `
+    <div class="month-header">${month}</div>
+    ${items.map(p => `
+      <div class="post-row">
+        <div class="post-date">${new Date(p.date+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</div>
+        <div>
+          <div class="post-title">${p.title}</div>
+          <div class="post-meta">
+            ${p.platforms.map(pl=>`<span class="ptag ${platClass(pl)}">${pl}</span>`).join('')}
+            ${p.bucket ? `<span class="bucket-tag">${p.bucket}</span>` : ''}
+          </div>
+          ${p.notes ? `<div style="font-size:12px;color:#888;margin-top:5px;line-height:1.5">${p.notes}</div>` : ''}
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end">
+          <button class="del-btn" onclick="openModal('${p.id}')">Edit</button>
+          <button class="del-btn" onclick="deletePost('${p.id}')">Remove</button>
+        </div>
+      </div>
+    `).join('')}
+    <div style="margin-bottom:1.25rem"></div>
+  `).join('');
+}
+
+function exportCSV() {
+  if (posts.length === 0) { alert('No posts to export yet.'); return; }
+  const rows = [['Date','Title','Platforms','Bucket','Notes']];
+  posts.forEach(p => rows.push([p.date, '"'+p.title+'"', p.platforms.join('; '), p.bucket, '"'+(p.notes||'').replace(/"/g,'""')+'"']));
+  const csv = rows.map(r=>r.join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'space-crafter-content-calendar.csv';
+  a.click();
+}
+
+load();
+</script>
+</body>
+</html>

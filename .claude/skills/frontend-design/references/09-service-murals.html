@@ -1,0 +1,2365 @@
+<!-- SpaceCrafter Murals & Custom Art Landing Page -->
+<!-- Service page for spacecrafter.studio -->
+<style>
+
+    .shopify-section:has(.sc-sp-mural-hero),
+    .shopify-section:has(.sc-sp-mural-hero) > * {
+      overflow: visible !important;
+      max-width: none !important;
+    }
+
+    .sc-sp-mural-hero {
+      background: var(--color-charcoal, #222224);
+      position: relative;
+      overflow: hidden;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-sp-mural-hero__blueprint {
+      position: absolute;
+      inset: 0;
+      opacity: 0.06;
+      background-image: url('IMAGE_URL_HERO');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(1.8) contrast(0.7);
+    }
+
+    .sc-sp-mural-hero__accent {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.06;
+      top: -100px;
+      right: -100px;
+      pointer-events: none;
+    }
+
+    .sc-sp-mural-hero__inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 140px 40px 120px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sc-sp-mural-hero__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sc-sp-mural-hero__label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--color-coral, #FA9A85);
+    }
+
+    .sc-sp-mural-hero__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .sc-sp-mural-hero__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-sp-mural-hero__subtitle {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--color-taupe, #D7CBC4);
+      max-width: 480px;
+      margin: 0 0 48px;
+    }
+
+    .sc-sp-mural-hero__actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .sc-sp-mural-hero__btn-primary {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--color-coral, #FA9A85);
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sc-sp-mural-hero__btn-primary:hover {
+      background: var(--color-coral-hover, #f8836b);
+      transform: translateY(-1px);
+    }
+
+    .sc-sp-mural-hero__btn-outline {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      color: var(--color-cream, #F0EEE9);
+      padding: 15px 32px;
+      border-radius: 4px;
+      border: 1.5px solid rgba(240, 238, 233, 0.25);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .sc-sp-mural-hero__btn-outline:hover {
+      border-color: var(--color-cream, #F0EEE9);
+      background: rgba(240, 238, 233, 0.06);
+    }
+
+    .sc-sp-mural-hero__visual {
+      position: relative;
+    }
+
+    .sc-sp-mural-hero__image {
+      width: 100%;
+      border-radius: 12px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border: 1px solid rgba(215, 203, 196, 0.12);
+    }
+
+    .sc-sp-mural-hero__badges {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .sc-sp-mural-hero__badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 13px;
+      color: var(--color-taupe, #D7CBC4);
+      letter-spacing: 0.04em;
+    }
+
+    .sc-sp-mural-hero__badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-sp-mural-hero__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 120px 24px 80px;
+      }
+      .sc-sp-mural-hero__visual { order: -1; }
+      .sc-sp-mural-hero { min-height: auto; }
+    }
+
+    @media (max-width: 600px) {
+      .sc-sp-mural-hero__inner { padding: 100px 20px 64px; }
+      .sc-sp-mural-hero__actions { flex-direction: column; align-items: stretch; }
+      .sc-sp-mural-hero__btn-primary,
+      .sc-sp-mural-hero__btn-outline { text-align: center; justify-content: center; }
+      .sc-sp-mural-hero__badges { flex-wrap: wrap; gap: 16px; }
+    }
+
+    .sc-sp-mural-hero *,
+    .sc-sp-mural-hero *::before,
+    .sc-sp-mural-hero *::after {
+      box-sizing: border-box;
+    }
+    .sc-sp-mural-hero h1,
+    .sc-sp-mural-hero h2,
+    .sc-sp-mural-hero p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  
+
+    .sc-sp-mural-pain {
+      background: var(--color-cream, #F0EEE9);
+      padding: 100px 40px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-sp-mural-pain__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sc-sp-mural-pain__header {
+      max-width: 640px;
+      margin-bottom: 56px;
+    }
+
+    .sc-sp-mural-pain__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-sp-mural-pain__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+
+    .sc-sp-mural-pain__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--color-taupe, #D7CBC4);
+      border: 1px solid var(--color-taupe, #D7CBC4);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .sc-sp-mural-pain__card {
+      background: #fff;
+      padding: 36px 28px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .sc-sp-mural-pain__card.sc-sp-mural-pain--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sc-sp-mural-pain__card:nth-child(1) { transition-delay: 0s; }
+    .sc-sp-mural-pain__card:nth-child(2) { transition-delay: 0.12s; }
+    .sc-sp-mural-pain__card:nth-child(3) { transition-delay: 0.24s; }
+    .sc-sp-mural-pain__card:nth-child(4) { transition-delay: 0.36s; }
+
+    .sc-sp-mural-pain__card-illust {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-charcoal, #222224);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .sc-sp-mural-pain__card-illust svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: var(--color-cream, #F0EEE9);
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sc-sp-mural-pain__card-illust svg .sc-coral {
+      stroke: var(--color-coral, #FA9A85);
+    }
+
+    .sc-sp-mural-pain__card-illust svg .sc-taupe {
+      stroke: var(--color-taupe, #D7CBC4);
+      stroke-dasharray: 3 2;
+      stroke-width: 0.8;
+    }
+
+    .sc-sp-mural-pain__card-title {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-charcoal, #222224);
+      margin-bottom: 10px;
+    }
+
+    .sc-sp-mural-pain__card-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      line-height: 1.65;
+      color: #666;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-sp-mural-pain { padding: 80px 24px; }
+      .sc-sp-mural-pain__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .sc-sp-mural-pain { padding: 64px 20px; }
+      .sc-sp-mural-pain__grid { grid-template-columns: 1fr; }
+    }
+
+    .sc-sp-mural-pain *,
+    .sc-sp-mural-pain *::before,
+    .sc-sp-mural-pain *::after {
+      box-sizing: border-box;
+    }
+    .sc-sp-mural-pain h1,
+    .sc-sp-mural-pain h2,
+    .sc-sp-mural-pain p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  
+
+    .shopify-section:has(.sc-sp-mural-diff),
+    .shopify-section:has(.sc-sp-mural-diff) > * {
+      overflow: visible !important;
+      max-width: none !important;
+    }
+
+    .sc-sp-mural-diff {
+      background: var(--color-charcoal, #222224);
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-sp-mural-diff__accent {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.05;
+      bottom: -200px;
+      left: -200px;
+      pointer-events: none;
+    }
+
+    .sc-sp-mural-diff__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sc-sp-mural-diff__stat-block {
+      padding: 48px 32px;
+      border: 1px solid rgba(215, 203, 196, 0.12);
+      border-radius: 12px;
+      background: rgba(240, 238, 233, 0.03);
+      text-align: center;
+    }
+
+    .sc-sp-mural-diff__stat-num {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 80px;
+      font-weight: 300;
+      color: var(--color-cream, #F0EEE9);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .sc-sp-mural-diff__stat-num span {
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-sp-mural-diff__stat-label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 13px;
+      color: var(--color-taupe, #D7CBC4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .sc-sp-mural-diff__content {}
+
+    .sc-sp-mural-diff__quote {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(24px, 2.8vw, 34px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.35;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 28px;
+    }
+
+    .sc-sp-mural-diff__body {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--color-taupe, #D7CBC4);
+      margin: 0;
+      max-width: 540px;
+    }
+
+    @media (max-width: 900px) {
+      .sc-sp-mural-diff { padding: 80px 24px; }
+      .sc-sp-mural-diff__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .sc-sp-mural-diff__stat-block {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+    }
+    @media (max-width: 600px) {
+      .sc-sp-mural-diff { padding: 64px 20px; }
+    }
+
+    .sc-sp-mural-diff *,
+    .sc-sp-mural-diff *::before,
+    .sc-sp-mural-diff *::after {
+      box-sizing: border-box;
+    }
+    .sc-sp-mural-diff h1,
+    .sc-sp-mural-diff h2,
+    .sc-sp-mural-diff p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  
+
+    .sc-sp-mural-process {
+      background: var(--color-cream, #F0EEE9);
+      padding: 100px 40px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-sp-mural-process__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sc-sp-mural-process__header {
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+
+    .sc-sp-mural-process__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-sp-mural-process__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+
+    .sc-sp-mural-process__heading em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-sp-mural-process__grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .sc-sp-mural-process__grid::before {
+      content: '';
+      position: absolute;
+      top: 52px;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: var(--color-taupe, #D7CBC4);
+      z-index: 0;
+    }
+
+    .sc-sp-mural-process__step {
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .sc-sp-mural-process__step.sc-sp-mural-process--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sc-sp-mural-process__step:nth-child(1) { transition-delay: 0s; }
+    .sc-sp-mural-process__step:nth-child(2) { transition-delay: 0.12s; }
+    .sc-sp-mural-process__step:nth-child(3) { transition-delay: 0.24s; }
+    .sc-sp-mural-process__step:nth-child(4) { transition-delay: 0.36s; }
+    .sc-sp-mural-process__step:nth-child(5) { transition-delay: 0.48s; }
+
+    .sc-sp-mural-process__step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--color-charcoal, #222224);
+      color: var(--color-coral, #FA9A85);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+
+    .sc-sp-mural-process__step-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 16px;
+      stroke: var(--color-coral, #FA9A85);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sc-sp-mural-process__step-title {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-charcoal, #222224);
+      margin-bottom: 10px;
+    }
+
+    .sc-sp-mural-process__step-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      line-height: 1.65;
+      color: #777;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-sp-mural-process { padding: 80px 24px; }
+      .sc-sp-mural-process__grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .sc-sp-mural-process__grid::before { display: none; }
+    }
+    @media (max-width: 600px) {
+      .sc-sp-mural-process { padding: 64px 20px; }
+      .sc-sp-mural-process__grid { grid-template-columns: 1fr; gap: 36px; }
+      .sc-sp-mural-process__step { text-align: left; display: flex; gap: 16px; align-items: flex-start; padding: 0; }
+      .sc-sp-mural-process__step-num { flex-shrink: 0; margin-bottom: 0; }
+    }
+
+    .sc-sp-mural-process *,
+    .sc-sp-mural-process *::before,
+    .sc-sp-mural-process *::after {
+      box-sizing: border-box;
+    }
+    .sc-sp-mural-process h1,
+    .sc-sp-mural-process h2,
+    .sc-sp-mural-process p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  
+
+    .shopify-section:has(.sc-sp-mural-solutions),
+    .shopify-section:has(.sc-sp-mural-solutions) > * {
+      overflow: visible !important;
+      max-width: none !important;
+    }
+
+    .sc-sp-mural-solutions {
+      background: var(--color-charcoal, #222224);
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-sp-mural-solutions__accent {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.05;
+      bottom: -150px;
+      right: -150px;
+      pointer-events: none;
+    }
+
+    .sc-sp-mural-solutions__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-sp-mural-solutions__header {
+      max-width: 540px;
+      margin-bottom: 56px;
+    }
+
+    .sc-sp-mural-solutions__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-sp-mural-solutions__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0;
+    }
+
+    .sc-sp-mural-solutions__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .sc-sp-mural-solutions__card {
+      background: rgba(240, 238, 233, 0.04);
+      border: 1px solid rgba(215, 203, 196, 0.1);
+      border-radius: 12px;
+      padding: 32px 24px;
+      transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .sc-sp-mural-solutions__card:hover {
+      border-color: rgba(250, 154, 133, 0.25);
+      transform: translateY(-4px);
+      background: rgba(240, 238, 233, 0.06);
+    }
+
+    .sc-sp-mural-solutions__card-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--color-charcoal, #222224);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      border: 1px solid rgba(215, 203, 196, 0.08);
+    }
+
+    .sc-sp-mural-solutions__card-icon svg {
+      width: 44px;
+      height: 44px;
+      fill: none;
+      stroke: var(--color-cream, #F0EEE9);
+      stroke-width: 1.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sc-sp-mural-solutions__card-title {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--color-cream, #F0EEE9);
+      margin-bottom: 10px;
+    }
+
+    .sc-sp-mural-solutions__card-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--color-taupe, #D7CBC4);
+      margin: 0;
+    }
+
+    /* Second row: 2 cards in first 2 columns */
+    .sc-sp-mural-solutions__grid .sc-sp-mural-solutions__card:nth-child(4) {
+      grid-column: 1 / 2;
+    }
+    .sc-sp-mural-solutions__grid .sc-sp-mural-solutions__card:nth-child(5) {
+      grid-column: 2 / 3;
+    }
+
+    @media (max-width: 900px) {
+      .sc-sp-mural-solutions { padding: 80px 24px; }
+      .sc-sp-mural-solutions__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .sc-sp-mural-solutions__grid .sc-sp-mural-solutions__card:nth-child(4),
+      .sc-sp-mural-solutions__grid .sc-sp-mural-solutions__card:nth-child(5) {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .sc-sp-mural-solutions { padding: 64px 20px; }
+      .sc-sp-mural-solutions__grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    .sc-sp-mural-solutions *,
+    .sc-sp-mural-solutions *::before,
+    .sc-sp-mural-solutions *::after {
+      box-sizing: border-box;
+    }
+    .sc-sp-mural-solutions h1,
+    .sc-sp-mural-solutions h2,
+    .sc-sp-mural-solutions p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  
+
+    .shopify-section:has(.sc-sp-mural-whyus),
+    .shopify-section:has(.sc-sp-mural-whyus) > * {
+      overflow: visible !important;
+      max-width: none !important;
+    }
+
+    .sc-sp-mural-whyus {
+      background: var(--color-charcoal, #222224);
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-sp-mural-whyus__accent {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.05;
+      top: -150px;
+      right: -150px;
+      pointer-events: none;
+    }
+
+    .sc-sp-mural-whyus__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-sp-mural-whyus__header {
+      max-width: 540px;
+      margin-bottom: 56px;
+    }
+
+    .sc-sp-mural-whyus__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-sp-mural-whyus__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0;
+    }
+
+    .sc-sp-mural-whyus__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(215, 203, 196, 0.1);
+      border: 1px solid rgba(215, 203, 196, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .sc-sp-mural-whyus__item {
+      background: var(--color-charcoal, #222224);
+      padding: 36px 28px;
+      transition: background 0.3s ease;
+    }
+
+    .sc-sp-mural-whyus__item:hover {
+      background: rgba(240, 238, 233, 0.04);
+    }
+
+    .sc-sp-mural-whyus__item-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 20px;
+    }
+
+    .sc-sp-mural-whyus__item-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: var(--color-coral, #FA9A85);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sc-sp-mural-whyus__item-title {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-cream, #F0EEE9);
+      margin-bottom: 10px;
+    }
+
+    .sc-sp-mural-whyus__item-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--color-taupe, #D7CBC4);
+      opacity: 0.8;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-sp-mural-whyus { padding: 80px 24px; }
+      .sc-sp-mural-whyus__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .sc-sp-mural-whyus { padding: 64px 20px; }
+      .sc-sp-mural-whyus__grid { grid-template-columns: 1fr; }
+    }
+
+    .sc-sp-mural-whyus *,
+    .sc-sp-mural-whyus *::before,
+    .sc-sp-mural-whyus *::after {
+      box-sizing: border-box;
+    }
+    .sc-sp-mural-whyus h1,
+    .sc-sp-mural-whyus h2,
+    .sc-sp-mural-whyus p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  
+
+    .shopify-section:has(.sc-sp-mural-testi),
+    .shopify-section:has(.sc-sp-mural-testi) > * {
+      overflow: visible !important;
+      max-width: none !important;
+    }
+
+    .sc-sp-mural-testi {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      background: var(--color-charcoal, #222224);
+      padding: 100px 40px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .sc-sp-mural-testi::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .sc-sp-mural-testi__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-sp-mural-testi__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-sp-mural-testi__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 16px;
+      max-width: 520px;
+    }
+
+    .sc-sp-mural-testi__heading em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-sp-mural-testi__subtext {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      color: var(--color-taupe, #D7CBC4);
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 0 56px;
+    }
+
+    .sc-sp-mural-testi__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .sc-sp-mural-testi__card {
+      background: rgba(240, 238, 233, 0.04);
+      border: 1px solid rgba(215, 203, 196, 0.1);
+      border-radius: 12px;
+      padding: 32px 28px 28px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+      transition: border-color 0.3s ease, background 0.3s ease, opacity 0.4s ease, transform 0.4s ease;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .sc-sp-mural-testi__card.sc-sp-mural-testi--show {
+      display: flex;
+    }
+
+    .sc-sp-mural-testi__card.sc-sp-mural-testi--animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sc-sp-mural-testi__card:hover {
+      border-color: rgba(250, 154, 133, 0.2);
+      background: rgba(240, 238, 233, 0.06);
+    }
+
+    .sc-sp-mural-testi__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 20px;
+    }
+
+    .sc-sp-mural-testi__star {
+      width: 14px;
+      height: 14px;
+      fill: var(--color-coral, #FA9A85);
+      opacity: 0.85;
+    }
+
+    .sc-sp-mural-testi__quote {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 28px;
+      padding: 0;
+      flex-grow: 1;
+    }
+
+    .sc-sp-mural-testi__author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(215, 203, 196, 0.08);
+    }
+
+    .sc-sp-mural-testi__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-taupe, #D7CBC4) 0%, var(--color-cream, #F0EEE9) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-charcoal, #222224);
+      flex-shrink: 0;
+    }
+
+    .sc-sp-mural-testi__name {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-cream, #F0EEE9);
+      letter-spacing: 0.02em;
+    }
+
+    .sc-sp-mural-testi__company {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      color: var(--color-taupe, #D7CBC4);
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    .sc-sp-mural-testi__nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .sc-sp-mural-testi__arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(215, 203, 196, 0.15);
+      background: transparent;
+      color: var(--color-cream, #F0EEE9);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .sc-sp-mural-testi__arrow:hover {
+      border-color: var(--color-coral, #FA9A85);
+      background: rgba(250, 154, 133, 0.08);
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-sp-mural-testi__arrow:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    .sc-sp-mural-testi__arrow:disabled:hover {
+      border-color: rgba(215, 203, 196, 0.15);
+      background: transparent;
+      color: var(--color-cream, #F0EEE9);
+    }
+
+    .sc-sp-mural-testi__arrow svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sc-sp-mural-testi__dots {
+      display: flex;
+      gap: 8px;
+      margin-left: 8px;
+    }
+
+    .sc-sp-mural-testi__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-taupe, #D7CBC4);
+      opacity: 0.25;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sc-sp-mural-testi__dot--active {
+      opacity: 1;
+      background: var(--color-coral, #FA9A85);
+      width: 24px;
+      border-radius: 3px;
+    }
+
+    .sc-sp-mural-testi__counter {
+      margin-left: auto;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      color: var(--color-taupe, #D7CBC4);
+      opacity: 0.6;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .sc-sp-mural-testi__counter span {
+      color: var(--color-cream, #F0EEE9);
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .sc-sp-mural-testi { padding: 80px 24px; }
+      .sc-sp-mural-testi__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .sc-sp-mural-testi { padding: 64px 20px; }
+      .sc-sp-mural-testi__grid { grid-template-columns: 1fr; gap: 16px; }
+      .sc-sp-mural-testi__card { min-height: auto; padding: 28px 24px 24px; }
+      .sc-sp-mural-testi__quote { font-size: 16px; }
+      .sc-sp-mural-testi__nav { gap: 12px; margin-top: 36px; }
+    }
+
+    .sc-sp-mural-testi *,
+    .sc-sp-mural-testi *::before,
+    .sc-sp-mural-testi *::after { box-sizing: border-box; }
+    .sc-sp-mural-testi h1, .sc-sp-mural-testi h2, .sc-sp-mural-testi p {
+      margin-block-start: 0; margin-block-end: 0;
+    }
+  
+
+    .sc-sp-mural-faq {
+      background: var(--color-cream, #F0EEE9);
+      padding: 100px 40px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-sp-mural-faq__inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .sc-sp-mural-faq__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .sc-sp-mural-faq__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 48px;
+      text-align: center;
+    }
+
+    .sc-sp-mural-faq__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sc-sp-mural-faq__item {
+      border-bottom: 1px solid var(--color-taupe, #D7CBC4);
+    }
+
+    .sc-sp-mural-faq__question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-charcoal, #222224);
+      line-height: 1.3;
+      transition: color 0.2s ease;
+    }
+
+    .sc-sp-mural-faq__question:hover {
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-sp-mural-faq__question:focus {
+      outline: 2px solid var(--color-coral, #FA9A85);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    .sc-sp-mural-faq__icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .sc-sp-mural-faq__icon::before,
+    .sc-sp-mural-faq__icon::after {
+      content: '';
+      position: absolute;
+      background: var(--color-charcoal, #222224);
+      transition: transform 0.3s ease;
+    }
+
+    .sc-sp-mural-faq__icon::before {
+      width: 16px;
+      height: 1.5px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .sc-sp-mural-faq__icon::after {
+      width: 1.5px;
+      height: 16px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .sc-sp-mural-faq__item.sc-sp-mural-faq--open .sc-sp-mural-faq__icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .sc-sp-mural-faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+
+    .sc-sp-mural-faq__item.sc-sp-mural-faq--open .sc-sp-mural-faq__answer {
+      max-height: 300px;
+    }
+
+    .sc-sp-mural-faq__answer-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 15px;
+      line-height: 1.75;
+      color: #666;
+      padding-bottom: 24px;
+      max-width: 680px;
+    }
+
+    @media (max-width: 600px) {
+      .sc-sp-mural-faq { padding: 64px 20px; }
+      .sc-sp-mural-faq__question { font-size: 18px; }
+    }
+
+    .sc-sp-mural-faq *,
+    .sc-sp-mural-faq *::before,
+    .sc-sp-mural-faq *::after {
+      box-sizing: border-box;
+    }
+    .sc-sp-mural-faq h1,
+    .sc-sp-mural-faq h2,
+    .sc-sp-mural-faq p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  
+
+    .shopify-section:has(.sc-sp-mural-cta),
+    .shopify-section:has(.sc-sp-mural-cta) > * {
+      overflow: visible !important;
+      max-width: none !important;
+    }
+
+    .sc-sp-mural-cta {
+      background: var(--color-charcoal, #222224);
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-sp-mural-cta__blueprint {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url('IMAGE_URL_HERO');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(1.8) contrast(0.7);
+    }
+
+    .sc-sp-mural-cta__inner {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-sp-mural-cta__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 16px;
+    }
+
+    .sc-sp-mural-cta__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 20px;
+    }
+
+    .sc-sp-mural-cta__heading em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-sp-mural-cta__body {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--color-taupe, #D7CBC4);
+      margin: 0 0 40px;
+      max-width: 600px;
+    }
+
+    .sc-sp-mural-cta__btn-primary {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--color-coral, #FA9A85);
+      color: #fff;
+      padding: 18px 44px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sc-sp-mural-cta__btn-primary:hover {
+      background: var(--color-coral-hover, #f8836b);
+      transform: translateY(-1px);
+    }
+
+    .sc-sp-mural-cta__contact-row {
+      display: flex;
+      gap: 28px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(215, 203, 196, 0.1);
+      flex-wrap: wrap;
+    }
+
+    .sc-sp-mural-cta__contact-item {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      color: var(--color-taupe, #D7CBC4);
+    }
+
+    .sc-sp-mural-cta__contact-item a {
+      color: var(--color-coral, #FA9A85);
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .sc-sp-mural-cta { padding: 80px 24px; }
+    }
+    @media (max-width: 600px) {
+      .sc-sp-mural-cta { padding: 64px 20px; }
+      .sc-sp-mural-cta__btn-primary { width: 100%; text-align: center; justify-content: center; }
+    }
+
+    .sc-sp-mural-cta *,
+    .sc-sp-mural-cta *::before,
+    .sc-sp-mural-cta *::after {
+      box-sizing: border-box;
+    }
+    .sc-sp-mural-cta h1,
+    .sc-sp-mural-cta h2,
+    .sc-sp-mural-cta p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  
+
+  .sc-sp-mural-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .sc-sp-mural-reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+</style>
+
+<!-- Drop each <section> into Shopify Custom Liquid sections -->
+
+<!-- Schema.org: FAQPage + Service structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Murals & Custom Art",
+  "provider": {
+    "@type": "Organization",
+    "name": "SpaceCrafter Studio"
+  },
+  "description": "Hand-painted and digitally printed murals that transform blank walls into brand storytelling canvases — from corporate offices and retail spaces to public art installations and hospitality interiors.",
+  "areaServed": "India"
+}
+</script>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 1 — HERO                                           -->
+<!-- Dark charcoal hero with blueprint background overlay        -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-sp-mural-hero" itemscope itemtype="https://schema.org/Service">
+
+  <div class="sc-sp-mural-hero__blueprint" role="presentation"></div>
+  <div class="sc-sp-mural-hero__accent" role="presentation"></div>
+
+  <div class="sc-sp-mural-hero__inner">
+    <div class="sc-sp-mural-hero__content">
+      <div class="sc-sp-mural-hero__label">Murals &amp; Custom Art</div>
+      <h1 class="sc-sp-mural-hero__title" itemprop="name">
+        Walls That Tell Stories, Spaces That <em>Inspire.</em>
+      </h1>
+      <p class="sc-sp-mural-hero__subtitle" itemprop="description">
+        From corporate lobbies to campus corridors — we design, illustrate, and hand-paint large-format murals that transform blank walls into brand statements, cultural showcases, and immersive experiences.
+      </p>
+      <div class="sc-sp-mural-hero__actions">
+        <a href="/pages/contact-us" class="sc-sp-mural-hero__btn-primary">
+          Start Your Mural Project
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#sc-sp-mural-solutions" class="sc-sp-mural-hero__btn-outline">View Solutions</a>
+      </div>
+    </div>
+
+    <div class="sc-sp-mural-hero__visual">
+      <img class="sc-sp-mural-hero__image"
+           src="IMAGE_URL_HERO"
+           alt="Custom mural and wall art design for corporate and commercial spaces by SpaceCrafter Studio"
+           loading="eager"
+           itemprop="image">
+      <div class="sc-sp-mural-hero__badges">
+        <span class="sc-sp-mural-hero__badge"><span class="sc-sp-mural-hero__badge-dot"></span>1,000+ Murals</span>
+        <span class="sc-sp-mural-hero__badge"><span class="sc-sp-mural-hero__badge-dot"></span>30+ Years</span>
+        <span class="sc-sp-mural-hero__badge"><span class="sc-sp-mural-hero__badge-dot"></span>Pan-India Teams</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 2 — PAIN POINTS                                    -->
+<!-- Problem-awareness section with blueprint illustrations      -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-sp-mural-pain">
+
+  <div class="sc-sp-mural-pain__inner">
+    <div class="sc-sp-mural-pain__header">
+      <div class="sc-sp-mural-pain__label">01 — The Challenge</div>
+      <h2 class="sc-sp-mural-pain__heading">The Cost of Walls That Say Nothing</h2>
+    </div>
+
+    <div class="sc-sp-mural-pain__grid" id="scSpMuralPainGrid">
+      <!-- Card 1: Blank Wall Syndrome -->
+      <div class="sc-sp-mural-pain__card">
+        <div class="sc-sp-mural-pain__card-illust">
+          <!-- Empty wall/frame -->
+          <svg viewBox="0 0 36 36">
+            <rect x="4" y="4" width="28" height="28" rx="2" />
+            <rect x="9" y="9" width="18" height="12" rx="1" />
+            <line class="sc-taupe" x1="13" y1="13" x2="23" y2="13" />
+            <line class="sc-taupe" x1="13" y1="16" x2="20" y2="16" />
+            <line class="sc-coral" x1="14" y1="26" x2="22" y2="26" />
+            <line class="sc-coral" x1="18" y1="24" x2="18" y2="28" />
+          </svg>
+        </div>
+        <div class="sc-sp-mural-pain__card-title">Blank Wall Syndrome</div>
+        <p class="sc-sp-mural-pain__card-text">Kilometres of empty drywall across your facility — wasted real estate that could be reinforcing your brand, culture, and values to every person who walks through.</p>
+      </div>
+      <!-- Card 2: Generic Decor That Fades -->
+      <div class="sc-sp-mural-pain__card">
+        <div class="sc-sp-mural-pain__card-illust">
+          <!-- Fading picture frame -->
+          <svg viewBox="0 0 36 36">
+            <rect x="6" y="4" width="24" height="20" rx="2" />
+            <rect x="10" y="8" width="16" height="12" rx="1" />
+            <line class="sc-taupe" x1="10" y1="10" x2="26" y2="10" />
+            <line class="sc-taupe" x1="10" y1="14" x2="22" y2="14" />
+            <line class="sc-taupe" x1="10" y1="18" x2="18" y2="18" />
+            <path class="sc-coral" d="M12 28 L18 28" stroke-dasharray="3 2" />
+            <path class="sc-coral" d="M22 28 L28 28" stroke-dasharray="3 2" />
+            <circle class="sc-coral" cx="20" cy="28" r="1.5" />
+          </svg>
+        </div>
+        <div class="sc-sp-mural-pain__card-title">Generic Decor That Fades</div>
+        <p class="sc-sp-mural-pain__card-text">Mass-produced canvas prints, stock photography, and off-the-shelf wall stickers that look dated within months and communicate nothing about who you are.</p>
+      </div>
+      <!-- Card 3: Disconnected Brand Expression -->
+      <div class="sc-sp-mural-pain__card">
+        <div class="sc-sp-mural-pain__card-illust">
+          <!-- Broken/fragmented shapes -->
+          <svg viewBox="0 0 36 36">
+            <rect x="2" y="2" width="12" height="10" rx="2" />
+            <rect x="22" y="2" width="12" height="10" rx="2" />
+            <rect x="2" y="24" width="12" height="10" rx="2" />
+            <rect x="22" y="24" width="12" height="10" rx="2" />
+            <line class="sc-coral" x1="14" y1="7" x2="22" y2="7" stroke-dasharray="3 2" />
+            <line class="sc-coral" x1="8" y1="12" x2="8" y2="24" stroke-dasharray="3 2" />
+            <line class="sc-coral" x1="28" y1="12" x2="28" y2="24" stroke-dasharray="3 2" />
+            <line class="sc-coral" x1="14" y1="29" x2="22" y2="29" stroke-dasharray="3 2" />
+            <path class="sc-coral" d="M16 16 L20 16 M18 14 L18 18" />
+          </svg>
+        </div>
+        <div class="sc-sp-mural-pain__card-title">Disconnected Brand Expression</div>
+        <p class="sc-sp-mural-pain__card-text">Your website tells one story, your reception tells another, and your corridors tell nothing — visitors and employees experience fragmented brand messaging at every turn.</p>
+      </div>
+      <!-- Card 4: DIY Disasters -->
+      <div class="sc-sp-mural-pain__card">
+        <div class="sc-sp-mural-pain__card-illust">
+          <!-- Messy paint/drips with question mark -->
+          <svg viewBox="0 0 36 36">
+            <rect x="4" y="4" width="28" height="20" rx="2" />
+            <path d="M8 24 L8 28" stroke-width="1.8" />
+            <path d="M14 24 L14 30" stroke-width="1.8" />
+            <path d="M20 24 L20 26" stroke-width="1.8" />
+            <path d="M26 24 L26 32" stroke-width="1.8" />
+            <path class="sc-coral" d="M14 11 Q14 8 17 8 Q20 8 20 11 Q20 13 17 13" />
+            <circle class="sc-coral" cx="17" cy="16" r="0.8" fill="var(--color-coral, #FA9A85)" />
+            <line class="sc-taupe" x1="8" y1="34" x2="28" y2="34" />
+          </svg>
+        </div>
+        <div class="sc-sp-mural-pain__card-title">DIY Disasters</div>
+        <p class="sc-sp-mural-pain__card-text">Unplanned wall painting by local contractors without design direction — mismatched colours, poor scaling, amateur finishes that hurt your brand more than help it.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var grid = document.getElementById('scSpMuralPainGrid');
+      if (!grid) return;
+      var cards = grid.querySelectorAll('.sc-sp-mural-pain__card');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            cards.forEach(function(card) { card.classList.add('sc-sp-mural-pain--visible'); });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(grid);
+    })();
+  </script>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 3 — DIFFERENTIATOR + STAT                          -->
+<!-- Big stat callout with editorial layout                     -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-sp-mural-diff">
+
+  <div class="sc-sp-mural-diff__accent" role="presentation"></div>
+  <div class="sc-sp-mural-diff__inner">
+    <div class="sc-sp-mural-diff__stat-block">
+      <div class="sc-sp-mural-diff__stat-num">1,000<span>+</span></div>
+      <div class="sc-sp-mural-diff__stat-label">Murals Delivered Across India</div>
+    </div>
+    <div class="sc-sp-mural-diff__content">
+      <p class="sc-sp-mural-diff__quote">A mural isn't decoration — it's architecture's storytelling layer. Every brushstroke carries brand DNA, every wall becomes a canvas that earns attention and builds memory.</p>
+      <p class="sc-sp-mural-diff__body">We don't paint walls. We design immersive brand narratives — from concept sketching and AI-powered visualisation through surface preparation, hand-painting, and protective coating. One team from brief to brushstroke.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 4 — PROCESS (5 steps)                              -->
+<!-- 5-step process with blueprint accent lines                 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-sp-mural-process">
+
+  <div class="sc-sp-mural-process__inner">
+    <div class="sc-sp-mural-process__header">
+      <div class="sc-sp-mural-process__label">02 — Our Process</div>
+      <h2 class="sc-sp-mural-process__heading">From Brief to <em>Brushstroke</em></h2>
+    </div>
+
+    <div class="sc-sp-mural-process__grid" id="scSpMuralProcessGrid">
+      <!-- Step 1: Discovery & Brief -->
+      <div class="sc-sp-mural-process__step">
+        <div class="sc-sp-mural-process__step-num">1</div>
+        <svg class="sc-sp-mural-process__step-icon" viewBox="0 0 36 36">
+          <rect x="8" y="4" width="20" height="28" rx="2"/>
+          <line x1="12" y1="10" x2="24" y2="10"/>
+          <line x1="12" y1="14" x2="20" y2="14"/>
+          <line x1="12" y1="18" x2="22" y2="18"/>
+          <circle cx="12" cy="28" r="6" stroke-dasharray="2 1"/>
+          <line x1="16" y1="32" x2="20" y2="36"/>
+        </svg>
+        <div class="sc-sp-mural-process__step-title">Discovery &amp; Brief</div>
+        <p class="sc-sp-mural-process__step-text">We study your brand, space dimensions, lighting conditions, foot traffic patterns, and the story you want to tell — whether it's brand heritage, company values, or pure artistic expression.</p>
+      </div>
+      <!-- Step 2: Concept & Visualisation -->
+      <div class="sc-sp-mural-process__step">
+        <div class="sc-sp-mural-process__step-num">2</div>
+        <svg class="sc-sp-mural-process__step-icon" viewBox="0 0 36 36">
+          <rect x="4" y="6" width="28" height="20" rx="2"/>
+          <rect x="8" y="10" width="12" height="8" rx="1"/>
+          <circle cx="26" cy="12" r="3"/>
+          <rect x="22" y="18" width="8" height="4" rx="1"/>
+          <path d="M14 28 L18 32 L22 28"/>
+        </svg>
+        <div class="sc-sp-mural-process__step-title">Concept &amp; Visualisation</div>
+        <p class="sc-sp-mural-process__step-text">Our designers create multiple concept options with AI-powered previews showing exactly how the mural will look on your actual wall — including scale, perspective, and lighting effects.</p>
+      </div>
+      <!-- Step 3: Surface Preparation -->
+      <div class="sc-sp-mural-process__step">
+        <div class="sc-sp-mural-process__step-num">3</div>
+        <svg class="sc-sp-mural-process__step-icon" viewBox="0 0 36 36">
+          <rect x="12" y="4" width="12" height="6" rx="1"/>
+          <rect x="14" y="10" width="8" height="18" rx="1"/>
+          <line x1="6" y1="32" x2="30" y2="32"/>
+          <path d="M6 32 L6 22 L12 22"/>
+          <line x1="24" y1="22" x2="30" y2="22"/>
+          <line x1="30" y1="22" x2="30" y2="32"/>
+          <line x1="14" y1="16" x2="22" y2="16" stroke-dasharray="2 1"/>
+        </svg>
+        <div class="sc-sp-mural-process__step-title">Surface Preparation</div>
+        <p class="sc-sp-mural-process__step-text">Professional wall treatment — cleaning, priming, crack repair, and texture preparation to ensure the mural surface is perfect for long-lasting paint adhesion and colour vibrancy.</p>
+      </div>
+      <!-- Step 4: Painting & Execution -->
+      <div class="sc-sp-mural-process__step">
+        <div class="sc-sp-mural-process__step-num">4</div>
+        <svg class="sc-sp-mural-process__step-icon" viewBox="0 0 36 36">
+          <path d="M6 30 L14 10"/>
+          <path d="M14 10 L18 4 L22 8 L16 14"/>
+          <path d="M8 28 Q12 24 16 28"/>
+          <path d="M20 20 Q24 16 28 20" stroke-dasharray="2 1"/>
+          <path d="M24 28 Q28 24 32 28" stroke-dasharray="2 1"/>
+          <line x1="4" y1="34" x2="32" y2="34"/>
+        </svg>
+        <div class="sc-sp-mural-process__step-title">Painting &amp; Execution</div>
+        <p class="sc-sp-mural-process__step-text">Our trained artists hand-paint using high-grade exterior/interior paints with UV protection. Large murals use a combination of projection mapping, stenciling, and freehand techniques.</p>
+      </div>
+      <!-- Step 5: Protection & Handover -->
+      <div class="sc-sp-mural-process__step">
+        <div class="sc-sp-mural-process__step-num">5</div>
+        <svg class="sc-sp-mural-process__step-icon" viewBox="0 0 36 36">
+          <path d="M18 4 L30 10 L30 20 C30 28 18 34 18 34 C18 34 6 28 6 20 L6 10 Z"/>
+          <polyline points="13 18 17 22 25 14"/>
+        </svg>
+        <div class="sc-sp-mural-process__step-title">Protection &amp; Handover</div>
+        <p class="sc-sp-mural-process__step-text">Anti-graffiti and UV-resistant clear coats protect your investment for 8-10 years. We provide care guides, touch-up kits, and maintenance support.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var grid = document.getElementById('scSpMuralProcessGrid');
+      if (!grid) return;
+      var steps = grid.querySelectorAll('.sc-sp-mural-process__step');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            steps.forEach(function(step) { step.classList.add('sc-sp-mural-process--visible'); });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(grid);
+    })();
+  </script>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 5 — SOLUTIONS (SVG Blueprint Icon Cards)           -->
+<!-- 5 mural solutions with SVG icon cards on dark bg           -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-sp-mural-solutions" id="sc-sp-mural-solutions">
+
+  <div class="sc-sp-mural-solutions__accent" role="presentation"></div>
+  <div class="sc-sp-mural-solutions__inner">
+    <div class="sc-sp-mural-solutions__header">
+      <div class="sc-sp-mural-solutions__label">03 — Solutions</div>
+      <h2 class="sc-sp-mural-solutions__heading">Mural Solutions for Every Space</h2>
+    </div>
+
+    <div class="sc-sp-mural-solutions__grid">
+      <!-- Card 1: Brand Story Murals -->
+      <div class="sc-sp-mural-solutions__card">
+        <div class="sc-sp-mural-solutions__card-icon">
+          <!-- Building facade with paintbrush and story elements -->
+          <svg viewBox="0 0 44 44">
+            <rect x="4" y="12" width="24" height="28" rx="2"/>
+            <rect x="8" y="16" width="7" height="6" rx="1"/>
+            <rect x="17" y="16" width="7" height="6" rx="1"/>
+            <rect x="8" y="26" width="7" height="6" rx="1"/>
+            <rect x="17" y="26" width="7" height="6" rx="1"/>
+            <line x1="16" y1="36" x2="16" y2="40"/>
+            <path d="M30 8 L34 4 L38 6 L36 12 L32 14 Z"/>
+            <line x1="32" y1="14" x2="28" y2="22"/>
+            <path d="M4 12 L16 6 L28 12"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-solutions__card-title">Brand Story Murals</div>
+        <p class="sc-sp-mural-solutions__card-text">Large-format narrative murals showcasing your company's journey, values, and vision — perfect for lobbies, cafeterias, and visitor areas.</p>
+      </div>
+
+      <!-- Card 2: Abstract & Artistic Murals -->
+      <div class="sc-sp-mural-solutions__card">
+        <div class="sc-sp-mural-solutions__card-icon">
+          <!-- Geometric shapes, color fields, abstract composition -->
+          <svg viewBox="0 0 44 44">
+            <circle cx="14" cy="14" r="8"/>
+            <rect x="22" y="6" width="16" height="16" rx="2"/>
+            <polygon points="6,28 18,28 12,40"/>
+            <rect x="20" y="26" width="18" height="12" rx="2"/>
+            <line x1="24" y1="30" x2="34" y2="30" stroke-dasharray="3 2"/>
+            <line x1="24" y1="34" x2="30" y2="34" stroke-dasharray="3 2"/>
+            <circle cx="30" cy="14" r="3" stroke-dasharray="2 1"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-solutions__card-title">Abstract &amp; Artistic Murals</div>
+        <p class="sc-sp-mural-solutions__card-text">Contemporary art installations that elevate interior design — geometric patterns, colour fields, and abstract compositions tailored to your space.</p>
+      </div>
+
+      <!-- Card 3: Cultural & Heritage Murals -->
+      <div class="sc-sp-mural-solutions__card">
+        <div class="sc-sp-mural-solutions__card-icon">
+          <!-- Temple/monument outline with artistic swirls -->
+          <svg viewBox="0 0 44 44">
+            <path d="M22 4 L22 10"/>
+            <path d="M18 10 L26 10"/>
+            <rect x="10" y="10" width="24" height="4" rx="1"/>
+            <line x1="14" y1="14" x2="14" y2="34"/>
+            <line x1="22" y1="14" x2="22" y2="34"/>
+            <line x1="30" y1="14" x2="30" y2="34"/>
+            <rect x="8" y="34" width="28" height="4" rx="1"/>
+            <path d="M34 14 Q38 18 36 22 Q34 26 38 30" stroke-dasharray="2 1"/>
+            <path d="M6 18 Q10 22 8 26" stroke-dasharray="2 1"/>
+            <rect x="18" y="24" width="8" height="10" rx="1"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-solutions__card-title">Cultural &amp; Heritage Murals</div>
+        <p class="sc-sp-mural-solutions__card-text">Region-specific artwork celebrating local culture, heritage, and traditions — ideal for hospitality, education, and public spaces.</p>
+      </div>
+
+      <!-- Card 4: Exterior Building Murals -->
+      <div class="sc-sp-mural-solutions__card">
+        <div class="sc-sp-mural-solutions__card-icon">
+          <!-- Building facade with large mural pattern, paint roller -->
+          <svg viewBox="0 0 44 44">
+            <rect x="4" y="8" width="28" height="32" rx="2"/>
+            <rect x="8" y="14" width="20" height="18" rx="1"/>
+            <path d="M10 18 Q14 14 18 18 Q22 22 26 18" stroke-dasharray="3 1"/>
+            <path d="M10 24 Q14 20 18 24 Q22 28 26 24" stroke-dasharray="3 1"/>
+            <rect x="32" y="4" width="8" height="6" rx="1"/>
+            <line x1="36" y1="10" x2="36" y2="28"/>
+            <rect x="34" y="28" width="4" height="8" rx="1"/>
+            <path d="M4 8 L18 2 L32 8"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-solutions__card-title">Exterior Building Murals</div>
+        <p class="sc-sp-mural-solutions__card-text">Weather-resistant outdoor murals for building facades, compound walls, and campus exteriors using industrial-grade paints and protective coatings.</p>
+      </div>
+
+      <!-- Card 5: 3D & Optical Illusion Murals -->
+      <div class="sc-sp-mural-solutions__card">
+        <div class="sc-sp-mural-solutions__card-icon">
+          <!-- Cube/impossible shape optical illusion -->
+          <svg viewBox="0 0 44 44">
+            <path d="M22 4 L38 14 L38 30 L22 40 L6 30 L6 14 Z"/>
+            <line x1="22" y1="4" x2="22" y2="20"/>
+            <line x1="6" y1="14" x2="22" y2="20"/>
+            <line x1="38" y1="14" x2="22" y2="20"/>
+            <path d="M14 9 L14 25 L22 30" stroke-dasharray="2 1"/>
+            <path d="M30 9 L30 25 L22 30" stroke-dasharray="2 1"/>
+            <line x1="6" y1="30" x2="22" y2="20" stroke-dasharray="2 1"/>
+            <circle cx="22" cy="20" r="2"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-solutions__card-title">3D &amp; Optical Illusion Murals</div>
+        <p class="sc-sp-mural-solutions__card-text">Trompe-l'oeil and forced-perspective murals that create depth, dimension, and Instagram-worthy moments for retail and hospitality spaces.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 6 — WHY SPACECRAFTER (3x2 feature grid)           -->
+<!-- Dark charcoal feature grid with coral SVG icons            -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-sp-mural-whyus">
+
+  <div class="sc-sp-mural-whyus__accent" role="presentation"></div>
+  <div class="sc-sp-mural-whyus__inner">
+    <div class="sc-sp-mural-whyus__header">
+      <div class="sc-sp-mural-whyus__label">04 — Why SpaceCrafter</div>
+      <h2 class="sc-sp-mural-whyus__heading">The Advantage of Working With Us</h2>
+    </div>
+
+    <div class="sc-sp-mural-whyus__grid">
+      <!-- 1: In-House Design Team -->
+      <div class="sc-sp-mural-whyus__item">
+        <div class="sc-sp-mural-whyus__item-icon">
+          <!-- Pencil/drafting table -->
+          <svg viewBox="0 0 36 36">
+            <path d="M4 32 L28 32 L32 26 L8 26 Z"/>
+            <line x1="18" y1="26" x2="18" y2="20"/>
+            <path d="M22 4 L26 8 L14 20 L10 20 L10 16 Z"/>
+            <line x1="20" y1="6" x2="24" y2="10"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-whyus__item-title">In-House Design Team</div>
+        <p class="sc-sp-mural-whyus__item-text">Full-time illustrators, graphic designers, and art directors — no freelancer roulette.</p>
+      </div>
+
+      <!-- 2: AI-Powered Previews -->
+      <div class="sc-sp-mural-whyus__item">
+        <div class="sc-sp-mural-whyus__item-icon">
+          <!-- Monitor with AI sparkle -->
+          <svg viewBox="0 0 36 36">
+            <rect x="4" y="4" width="28" height="20" rx="2"/>
+            <line x1="14" y1="24" x2="22" y2="24"/>
+            <line x1="18" y1="24" x2="18" y2="28"/>
+            <line x1="12" y1="28" x2="24" y2="28"/>
+            <path d="M18 10 L19.5 13 L23 13.5 L20.5 16 L21 19.5 L18 18 L15 19.5 L15.5 16 L13 13.5 L16.5 13 Z"/>
+            <circle cx="26" cy="8" r="1.5"/>
+            <line x1="26" y1="6" x2="26" y2="10"/>
+            <line x1="24" y1="8" x2="28" y2="8"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-whyus__item-title">AI-Powered Previews</div>
+        <p class="sc-sp-mural-whyus__item-text">See exactly how your mural will look on your wall before a single drop of paint is mixed.</p>
+      </div>
+
+      <!-- 3: Professional Artist Network -->
+      <div class="sc-sp-mural-whyus__item">
+        <div class="sc-sp-mural-whyus__item-icon">
+          <!-- Connected people/nodes -->
+          <svg viewBox="0 0 36 36">
+            <circle cx="18" cy="8" r="4"/>
+            <circle cx="6" cy="26" r="4"/>
+            <circle cx="30" cy="26" r="4"/>
+            <line x1="18" y1="12" x2="6" y2="22"/>
+            <line x1="18" y1="12" x2="30" y2="22"/>
+            <line x1="10" y1="26" x2="26" y2="26"/>
+            <circle cx="18" cy="8" r="1.5"/>
+            <circle cx="6" cy="26" r="1.5"/>
+            <circle cx="30" cy="26" r="1.5"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-whyus__item-title">Professional Artist Network</div>
+        <p class="sc-sp-mural-whyus__item-text">Trained painters across 50+ cities — consistent quality whether Mumbai or Mangalore.</p>
+      </div>
+
+      <!-- 4: Premium Materials Only -->
+      <div class="sc-sp-mural-whyus__item">
+        <div class="sc-sp-mural-whyus__item-icon">
+          <!-- Paint can with star -->
+          <svg viewBox="0 0 36 36">
+            <rect x="8" y="12" width="20" height="20" rx="2"/>
+            <rect x="6" y="8" width="24" height="4" rx="1"/>
+            <path d="M28 14 L32 10 L34 12 L30 16"/>
+            <polygon points="18,18 19.5,22 24,22.5 20.5,25 21.5,29 18,27 14.5,29 15.5,25 12,22.5 16.5,22" fill="none"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-whyus__item-title">Premium Materials Only</div>
+        <p class="sc-sp-mural-whyus__item-text">Berger, Asian Paints industrial-grade — UV-resistant, washable, rated for 8-10 years.</p>
+      </div>
+
+      <!-- 5: End-to-End Execution -->
+      <div class="sc-sp-mural-whyus__item">
+        <div class="sc-sp-mural-whyus__item-icon">
+          <!-- Circular arrow with checkmark -->
+          <svg viewBox="0 0 36 36">
+            <path d="M18 4 A14 14 0 1 1 6 12"/>
+            <polyline points="4 4 6 12 14 10"/>
+            <polyline points="14 18 18 22 26 14"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-whyus__item-title">End-to-End Execution</div>
+        <p class="sc-sp-mural-whyus__item-text">Design, surface prep, painting, protective coating, and maintenance — one contract.</p>
+      </div>
+
+      <!-- 6: Minimal Disruption -->
+      <div class="sc-sp-mural-whyus__item">
+        <div class="sc-sp-mural-whyus__item-icon">
+          <!-- Clock with moon/night symbol -->
+          <svg viewBox="0 0 36 36">
+            <circle cx="18" cy="20" r="12"/>
+            <line x1="18" y1="14" x2="18" y2="20"/>
+            <line x1="18" y1="20" x2="23" y2="23"/>
+            <path d="M26 4 Q22 8 26 12 Q30 8 26 4 Z"/>
+            <circle cx="10" cy="6" r="1"/>
+            <circle cx="14" cy="4" r="0.8"/>
+          </svg>
+        </div>
+        <div class="sc-sp-mural-whyus__item-title">Minimal Disruption</div>
+        <p class="sc-sp-mural-whyus__item-text">We work nights and weekends around your operations. Most murals completed in 3-7 days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 7 — TESTIMONIALS                                   -->
+<!-- Client stories — responsive carousel                       -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-sp-mural-testi">
+
+  <div class="sc-sp-mural-testi__inner">
+    <div class="sc-sp-mural-testi__label">05 — Client Stories</div>
+    <h2 class="sc-sp-mural-testi__heading">Trusted by Brands That Demand <em>Excellence.</em></h2>
+    <p class="sc-sp-mural-testi__subtext">From corporate headquarters to school campuses, our murals deliver lasting impact and visual storytelling.</p>
+
+    <div class="sc-sp-mural-testi__grid" id="scSpMuralTestiGrid">
+      <!-- Card 1 -->
+      <div class="sc-sp-mural-testi__card" data-testi="0">
+        <div>
+          <div class="sc-sp-mural-testi__stars">
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-sp-mural-testi__quote">"The mural in our headquarters lobby has become a landmark. Every visitor comments on it. SpaceCrafter understood our brand story and translated it into art."</p>
+        </div>
+        <div class="sc-sp-mural-testi__author">
+          <div class="sc-sp-mural-testi__avatar">CE</div>
+          <div><div class="sc-sp-mural-testi__name">CEO</div><div class="sc-sp-mural-testi__company">Tech Company</div></div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="sc-sp-mural-testi__card" data-testi="1">
+        <div>
+          <div class="sc-sp-mural-testi__stars">
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-sp-mural-testi__quote">"We needed 14 murals across our school campus — each classroom with a different theme. They delivered all of them in two weeks during summer break."</p>
+        </div>
+        <div class="sc-sp-mural-testi__author">
+          <div class="sc-sp-mural-testi__avatar">PR</div>
+          <div><div class="sc-sp-mural-testi__name">Principal</div><div class="sc-sp-mural-testi__company">International School</div></div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="sc-sp-mural-testi__card" data-testi="2">
+        <div>
+          <div class="sc-sp-mural-testi__stars">
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-sp-mural-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-sp-mural-testi__quote">"The exterior mural on our factory wall has survived three monsoons and still looks fresh. The quality of paint and coating they use is exceptional."</p>
+        </div>
+        <div class="sc-sp-mural-testi__author">
+          <div class="sc-sp-mural-testi__avatar">OH</div>
+          <div><div class="sc-sp-mural-testi__name">Operations Head</div><div class="sc-sp-mural-testi__company">Manufacturing</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="sc-sp-mural-testi__nav">
+      <button class="sc-sp-mural-testi__arrow" id="scSpMuralTestiPrev" aria-label="Previous testimonials">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="sc-sp-mural-testi__arrow" id="scSpMuralTestiNext" aria-label="Next testimonials">
+        <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+      <div class="sc-sp-mural-testi__dots" id="scSpMuralTestiDots"></div>
+      <div class="sc-sp-mural-testi__counter">
+        <span id="scSpMuralTestiCurrent">1</span> / <span id="scSpMuralTestiTotal">1</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var grid = document.getElementById('scSpMuralTestiGrid');
+      if (!grid) return;
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.sc-sp-mural-testi__card'));
+      var prevBtn = document.getElementById('scSpMuralTestiPrev');
+      var nextBtn = document.getElementById('scSpMuralTestiNext');
+      var dotsWrap = document.getElementById('scSpMuralTestiDots');
+      var curEl = document.getElementById('scSpMuralTestiCurrent');
+      var totEl = document.getElementById('scSpMuralTestiTotal');
+      var total = cards.length;
+      var page = 0;
+      var perPage = 3;
+
+      function getPerPage() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+      }
+
+      function totalPages() {
+        return Math.ceil(total / perPage);
+      }
+
+      function buildDots() {
+        dotsWrap.innerHTML = '';
+        var tp = totalPages();
+        for (var i = 0; i < tp; i++) {
+          var d = document.createElement('button');
+          d.className = 'sc-sp-mural-testi__dot' + (i === page ? ' sc-sp-mural-testi__dot--active' : '');
+          d.setAttribute('aria-label', 'Page ' + (i + 1));
+          d.setAttribute('data-index', i);
+          d.addEventListener('click', (function(idx) {
+            return function() { goTo(idx); };
+          })(i));
+          dotsWrap.appendChild(d);
+        }
+        totEl.textContent = tp;
+      }
+
+      function goTo(idx) {
+        var tp = totalPages();
+        if (idx < 0) idx = 0;
+        if (idx >= tp) idx = tp - 1;
+        page = idx;
+        var start = page * perPage;
+        var end = start + perPage;
+
+        cards.forEach(function(c) {
+          c.classList.remove('sc-sp-mural-testi--show', 'sc-sp-mural-testi--animate');
+        });
+
+        var visible = cards.slice(start, end);
+        visible.forEach(function(c, i) {
+          c.classList.add('sc-sp-mural-testi--show');
+          c.offsetHeight;
+          setTimeout(function() {
+            c.classList.add('sc-sp-mural-testi--animate');
+          }, i * 80);
+        });
+
+        var dots = dotsWrap.querySelectorAll('.sc-sp-mural-testi__dot');
+        dots.forEach(function(d, i) {
+          d.classList.toggle('sc-sp-mural-testi__dot--active', i === page);
+        });
+        curEl.textContent = page + 1;
+        prevBtn.disabled = page === 0;
+        nextBtn.disabled = page >= tp - 1;
+      }
+
+      function init() {
+        var newPP = getPerPage();
+        if (newPP !== perPage) {
+          perPage = newPP;
+          if (page >= totalPages()) page = totalPages() - 1;
+          buildDots();
+        }
+        goTo(page);
+      }
+
+      prevBtn.addEventListener('click', function() { goTo(page - 1); });
+      nextBtn.addEventListener('click', function() { goTo(page + 1); });
+
+      var startX = 0;
+      grid.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+      grid.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) goTo(page + 1);
+          else goTo(page - 1);
+        }
+      }, { passive: true });
+
+      grid.closest('.sc-sp-mural-testi').addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') goTo(page - 1);
+        if (e.key === 'ArrowRight') goTo(page + 1);
+      });
+
+      var resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 150);
+      });
+
+      perPage = getPerPage();
+      buildDots();
+      goTo(0);
+    })();
+  </script>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 8 — FAQ ACCORDION                                  -->
+<!-- SEO-rich structured Q&A with schema markup                 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-sp-mural-faq" itemscope itemtype="https://schema.org/FAQPage">
+
+  <div class="sc-sp-mural-faq__inner">
+    <div class="sc-sp-mural-faq__label">06 — FAQ</div>
+    <h2 class="sc-sp-mural-faq__heading">Mural &amp; Custom Art FAQs</h2>
+
+    <ul class="sc-sp-mural-faq__list">
+      <li class="sc-sp-mural-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-sp-mural-faq__question" aria-expanded="false" itemprop="name">
+          How long does a mural take to complete?
+          <span class="sc-sp-mural-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-sp-mural-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-sp-mural-faq__answer-text" itemprop="text">Most indoor murals are completed in 3-7 days depending on size and complexity. A standard 200 sq ft wall mural typically takes 4-5 days. Large exterior murals may take 10-14 days. We provide exact timelines after the site survey.</p>
+        </div>
+      </li>
+      <li class="sc-sp-mural-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-sp-mural-faq__question" aria-expanded="false" itemprop="name">
+          What surfaces can you paint murals on?
+          <span class="sc-sp-mural-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-sp-mural-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-sp-mural-faq__answer-text" itemprop="text">We paint on plastered walls, concrete, brick, metal, wood, and glass. Each surface requires specific preparation — we handle all of it. For textured or damaged walls, we include surface treatment in our scope.</p>
+        </div>
+      </li>
+      <li class="sc-sp-mural-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-sp-mural-faq__question" aria-expanded="false" itemprop="name">
+          How long will the mural last?
+          <span class="sc-sp-mural-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-sp-mural-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-sp-mural-faq__answer-text" itemprop="text">Indoor murals with our protective coating last 8-10 years with minimal fading. Exterior murals last 5-7 years depending on weather exposure. We use UV-resistant paints and anti-graffiti clear coats for maximum longevity.</p>
+        </div>
+      </li>
+      <li class="sc-sp-mural-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-sp-mural-faq__question" aria-expanded="false" itemprop="name">
+          Can we see a preview before painting?
+          <span class="sc-sp-mural-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-sp-mural-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-sp-mural-faq__answer-text" itemprop="text">Absolutely. We provide high-fidelity AI-powered mockups showing the mural on your actual wall, including lighting and perspective. You approve the final design before any painting begins.</p>
+        </div>
+      </li>
+      <li class="sc-sp-mural-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-sp-mural-faq__question" aria-expanded="false" itemprop="name">
+          What if we want to change the mural later?
+          <span class="sc-sp-mural-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-sp-mural-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-sp-mural-faq__answer-text" itemprop="text">Walls can be repainted. We offer refreshing and redesign services. If you want a completely new mural, we can paint over the existing one with proper preparation — no need to strip the wall.</p>
+        </div>
+      </li>
+      <li class="sc-sp-mural-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-sp-mural-faq__question" aria-expanded="false" itemprop="name">
+          Do you handle permissions for exterior murals?
+          <span class="sc-sp-mural-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-sp-mural-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-sp-mural-faq__answer-text" itemprop="text">We guide you through the municipal permission process where required. For most commercial properties, permissions aren't needed for murals on your own building walls.</p>
+        </div>
+      </li>
+      <li class="sc-sp-mural-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-sp-mural-faq__question" aria-expanded="false" itemprop="name">
+          What's the cost of a typical mural?
+          <span class="sc-sp-mural-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-sp-mural-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-sp-mural-faq__answer-text" itemprop="text">Pricing depends on size, complexity, surface condition, and indoor/outdoor placement. Simple graphic murals start around &#8377;150-250/sq ft. Detailed illustrative or 3D murals range from &#8377;300-600/sq ft. We provide detailed quotes after the site survey.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    (function() {
+      var items = document.querySelectorAll('.sc-sp-mural-faq__item');
+      items.forEach(function(item) {
+        var btn = item.querySelector('.sc-sp-mural-faq__question');
+        btn.addEventListener('click', function() {
+          var isOpen = item.classList.contains('sc-sp-mural-faq--open');
+          items.forEach(function(i) { i.classList.remove('sc-sp-mural-faq--open'); i.querySelector('.sc-sp-mural-faq__question').setAttribute('aria-expanded', 'false'); });
+          if (!isOpen) {
+            item.classList.add('sc-sp-mural-faq--open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    })();
+  </script>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 9 — CTA (Final Conversion)                         -->
+<!-- Final conversion section with CTA button                   -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-sp-mural-cta">
+
+  <div class="sc-sp-mural-cta__blueprint" role="presentation"></div>
+  <div class="sc-sp-mural-cta__inner">
+    <div class="sc-sp-mural-cta__label">07 — Get Started</div>
+    <h2 class="sc-sp-mural-cta__heading">Ready to Transform <em>Your Walls?</em></h2>
+    <p class="sc-sp-mural-cta__body">Tell us about your space and the story you want to tell — we'll create a custom mural concept with an AI-powered preview on your actual wall.</p>
+
+    <a href="/pages/contact-us" class="sc-sp-mural-cta__btn-primary">
+      Start Your Mural Project
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+
+    <div class="sc-sp-mural-cta__contact-row">
+      <div class="sc-sp-mural-cta__contact-item">Call Us: <a href="tel:+91XXXXXXXXXX">+91 XXXX XXXXX</a></div>
+      <div class="sc-sp-mural-cta__contact-item">Email: <a href="mailto:hello@spacecrafter.studio">hello@spacecrafter.studio</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- GLOBAL: Fade-in-on-scroll reveal animation                 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<script>
+  (function() {
+    var reveals = document.querySelectorAll('.sc-sp-mural-reveal');
+    if (!reveals.length) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('sc-sp-mural-reveal--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function(el) { observer.observe(el); });
+  })();
+</script>

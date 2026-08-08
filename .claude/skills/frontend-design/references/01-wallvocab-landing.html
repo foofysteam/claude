@@ -1,0 +1,2551 @@
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — SEO structured data (JSON-LD)
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "WallVocab — Custom Wall Design Studio",
+  "alternateName": "Wall Vocab",
+  "provider": {
+    "@type": "Organization",
+    "name": "SpaceCrafter Studio",
+    "url": "https://www.spacecrafter.studio",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bangalore",
+      "addressRegion": "Karnataka",
+      "addressCountry": "IN"
+    },
+    "telephone": "+91 98868 46670",
+    "email": "sales@spacecrafter.studio"
+  },
+  "description": "Custom wall design studio in Bangalore. We curate art, frames, finishes, and installation for interesting walls in homes, offices, hotels, and retail spaces.",
+  "areaServed": "India",
+  "serviceType": ["Custom Wall Design", "Art Curation", "Custom Frames", "Wall Finishings", "Wall Installation"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "WallVocab Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Wall Art" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Frames" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wall Finishings & Surfaces" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wall Installation Services" } }
+    ]
+  }
+}
+</script>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — Hero
+     Drop into a Shopify Custom HTML section or page template
+     ============================================================ -->
+<section class="sc-wv-hero">
+  <style>
+    /* Expects these CSS vars from the theme (already defined in theme.css):
+       --color-cream, --color-taupe, --color-charcoal, --color-coral
+       --font-serif, --font-sans
+       If not present, add them to theme.css — see docs/style-guide.html */
+
+    .sc-wv-hero {
+      background: var(--color-charcoal, #222224);
+      color: var(--color-cream, #F0EEE9);
+      padding: 140px 40px 130px;
+      position: relative;
+      overflow: hidden;
+      min-height: 720px;
+      display: flex;
+      align-items: center;
+    }
+    /* ==========================================================
+       HERO BACKDROP IMAGE
+       ----------------------------------------------------------
+       To replace the backdrop, edit the URL inside url('...') below.
+       Two ways to host the image:
+
+       A) Upload to Shopify theme assets (recommended):
+          background-image: url('{{ "wallvocab-hero-backdrop-v3.png" | asset_url }}');
+
+       B) Use a direct CDN/full URL:
+          background-image: url('https://your-cdn.com/path/to/image.png');
+
+       Recommended image: 16:9, minimum 1600x900, blueprint style,
+       composition weighted to the LEFT side (text sits on the right).
+       ========================================================== */
+    .sc-wv-hero__backdrop {
+      position: absolute;
+      inset: 0;
+      background-image: url('{{ "wallvocab-hero-backdrop-v3.png" | asset_url }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Radial vignette so centered text stays readable on top of the backdrop */
+    .sc-wv-hero__veil {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at center, rgba(34,34,36,0.55) 0%, rgba(34,34,36,0.85) 60%, rgba(34,34,36,0.95) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .sc-wv-hero__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .sc-wv-hero__content {
+      max-width: 880px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sc-wv-hero__label {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 32px;
+    }
+    .sc-wv-hero__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 300;
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      margin: 0 0 36px;
+      color: var(--color-cream, #F0EEE9);
+    }
+    .sc-wv-hero__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-hero__sub {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba(240, 238, 233, 0.8);
+      margin: 0 0 44px;
+      max-width: 560px;
+    }
+    .sc-wv-hero__cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sc-wv-btn {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      display: inline-block;
+      border-radius: 4px;
+    }
+    .sc-wv-btn--primary {
+      background: var(--color-coral, #FA9A85);
+      color: #fff;
+      padding: 14px 32px;
+    }
+    .sc-wv-btn--primary:hover {
+      background: var(--color-coral-hover, #f8836b);
+    }
+    .sc-wv-btn--ghost-light {
+      background: transparent;
+      color: var(--color-cream, #F0EEE9);
+      padding: 13px 32px;
+      border: 1.5px solid rgba(240, 238, 233, 0.4);
+    }
+    .sc-wv-btn--ghost-light:hover {
+      border-color: var(--color-coral, #FA9A85);
+      color: var(--color-coral, #FA9A85);
+    }
+    @media (max-width: 1100px) {
+      .sc-wv-hero__backdrop { opacity: 0.4; }
+    }
+    @media (max-width: 700px) {
+      .sc-wv-hero { padding: 110px 24px 90px; min-height: 600px; }
+      .sc-wv-hero__sub { font-size: 15px; margin-bottom: 36px; }
+      .sc-wv-hero__label { margin-bottom: 24px; }
+    }
+  </style>
+
+  <div class="sc-wv-hero__backdrop" aria-label="Custom wall design blueprint by WallVocab" aria-hidden="true"></div>
+  <div class="sc-wv-hero__veil" aria-hidden="true"></div>
+
+  <div class="sc-wv-hero__inner">
+    <div class="sc-wv-hero__content">
+      <p class="sc-wv-hero__label">Wall Vocab — by SpaceCrafter Studio</p>
+      <h1 class="sc-wv-hero__title">
+        The right art.<br>
+        The right frame.<br>
+        On the <em>right wall.</em>
+      </h1>
+      <p class="sc-wv-hero__sub">
+        Custom wall design for homes, offices, and hospitality spaces.
+      </p>
+      <div class="sc-wv-hero__cta">
+        <a href="/pages/contact" class="sc-wv-btn sc-wv-btn--primary">Contact Us</a>
+        <a href="/pages/wall-gallery" class="sc-wv-btn sc-wv-btn--ghost-light">View Our Walls</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — System (Three Decisions)
+     (Sections 01 "Hero" and 02 "The Idea" merged into the single
+     hero above. The System section is now numbered 02.)
+     ============================================================ -->
+<section class="sc-wv-system">
+  <style>
+    .sc-wv-system {
+      background: var(--color-cream, #F0EEE9);
+      padding: 120px 40px;
+      border-top: 1px solid var(--color-taupe, #D7CBC4);
+    }
+    .sc-wv-system__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sc-wv-system__head {
+      max-width: 720px;
+      margin: 0 0 64px;
+    }
+    .sc-wv-system__label {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 28px;
+    }
+    .sc-wv-system__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+    .sc-wv-system__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-system__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .sc-wv-system__card {
+      background: #fff;
+      border: 1px solid var(--color-taupe, #D7CBC4);
+      border-radius: 12px;
+      padding: 40px 32px;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .sc-wv-system__card:hover {
+      border-color: var(--color-coral, #FA9A85);
+      transform: translateY(-2px);
+    }
+    .sc-wv-system__num {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 300;
+      font-size: 32px;
+      color: var(--color-coral, #FA9A85);
+      opacity: 0.5;
+      margin: 0 0 24px;
+      display: block;
+    }
+    .sc-wv-system__cardTitle {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 500;
+      font-size: 26px;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 8px;
+    }
+    .sc-wv-system__cardLead {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 14px;
+      line-height: 1.7;
+      color: #555;
+      margin: 0 0 24px;
+    }
+    .sc-wv-system__optionsLabel {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 14px;
+      padding-top: 18px;
+      border-top: 1px solid var(--color-taupe, #D7CBC4);
+    }
+    .sc-wv-system__options {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px;
+      display: grid;
+      gap: 12px;
+    }
+    .sc-wv-system__option {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 13px;
+      line-height: 1.55;
+      color: #555;
+      padding-left: 22px;
+      position: relative;
+    }
+    .sc-wv-system__option::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-system__option strong {
+      display: block;
+      color: var(--color-charcoal, #222224);
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+    .sc-wv-system__note {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 12px;
+      line-height: 1.55;
+      color: #888;
+      font-style: italic;
+      margin: auto 0 0;
+      padding-top: 16px;
+    }
+    @media (max-width: 900px) {
+      .sc-wv-system__grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .sc-wv-system { padding: 80px 24px; }
+    }
+  </style>
+
+  <div class="sc-wv-system__inner">
+    <div class="sc-wv-system__head">
+      <p class="sc-wv-system__label">02 — The System</p>
+      <h2 class="sc-wv-system__title">
+        Three decisions. <em>One wall.</em>
+      </h2>
+    </div>
+
+    <div class="sc-wv-system__grid">
+      <article class="sc-wv-system__card">
+        <span class="sc-wv-system__num">01</span>
+        <h3 class="sc-wv-system__cardTitle">The Art</h3>
+        <p class="sc-wv-system__cardLead">What the wall says — created with us, or by you.</p>
+
+        <p class="sc-wv-system__optionsLabel">Three Ways To Source</p>
+        <ul class="sc-wv-system__options">
+          <li class="sc-wv-system__option">
+            <strong>In-house artists</strong>
+            Hand-painted and original works by our studio team.
+          </li>
+          <li class="sc-wv-system__option">
+            <strong>Contract designers</strong>
+            Curated illustrators and photographers commissioned for your brief.
+          </li>
+          <li class="sc-wv-system__option">
+            <strong>AI-generated</strong>
+            Generated, refined, and printed to museum standard.
+          </li>
+          <li class="sc-wv-system__option">
+            <strong>Bring your own</strong>
+            Send us your photo, painting, or file and we'll print, frame, and hang it.
+          </li>
+        </ul>
+        <p class="sc-wv-system__note">Pricing varies based on the route you choose.</p>
+      </article>
+
+      <article class="sc-wv-system__card">
+        <span class="sc-wv-system__num">02</span>
+        <h3 class="sc-wv-system__cardTitle">The Frame</h3>
+        <p class="sc-wv-system__cardLead">How it's expressed — off-the-shelf or made for the piece.</p>
+
+        <p class="sc-wv-system__optionsLabel">Two Ways To Frame</p>
+        <ul class="sc-wv-system__options">
+          <li class="sc-wv-system__option">
+            <strong>Off-the-shelf range</strong>
+            Six finishes — black, wood, gold, minimal, backlit LED, lightbox.
+          </li>
+          <li class="sc-wv-system__option">
+            <strong>Custom frames</strong>
+            Built around your artwork — sized, profiled, and finished to match the piece and the room.
+          </li>
+        </ul>
+        <p class="sc-wv-system__note">Every frame fabricated in our 10,000 sq ft Bangalore studio.</p>
+      </article>
+
+      <article class="sc-wv-system__card">
+        <span class="sc-wv-system__num">03</span>
+        <h3 class="sc-wv-system__cardTitle">The Wall</h3>
+        <p class="sc-wv-system__cardLead">Where it lives — the surface, the finish, the install.</p>
+
+        <p class="sc-wv-system__optionsLabel">End-To-End Partnership</p>
+        <ul class="sc-wv-system__options">
+          <li class="sc-wv-system__option">
+            <strong>Surface recommendation</strong>
+            Paint, texture, fluted panels, wallpaper — we suggest what suits the art.
+          </li>
+          <li class="sc-wv-system__option">
+            <strong>Finishing & sourcing</strong>
+            We source the materials, get the wall prepped and finished.
+          </li>
+          <li class="sc-wv-system__option">
+            <strong>Installation</strong>
+            Hung, lit, levelled. You see the wall finished.
+          </li>
+        </ul>
+        <p class="sc-wv-system__note">One partner from blank wall to final piece.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — Gallery (Horizontal Scroll)
+     20-image scrolling showcase. Replace each image src with your own.
+     ============================================================ -->
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — Gallery (Auto-Scroll Collage)
+     5 slides × 4 images each = 20 images total. Auto-advances every 5s.
+     Replace each <img src> with your image filename.
+     ============================================================ -->
+<section class="sc-wv-gallery" id="sc-wv-gallery" aria-label="WallVocab project gallery">
+  <style>
+    .sc-wv-gallery {
+      background: var(--color-cream, #F0EEE9);
+      padding: 120px 40px 130px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sc-wv-gallery__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sc-wv-gallery__head {
+      margin: 0 auto 56px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 32px;
+    }
+    .sc-wv-gallery__label {
+      font-family: var(--font-sans, "DM Sans", sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 20px;
+    }
+    .sc-wv-gallery__title {
+      font-family: var(--font-serif, "Cormorant Garamond", serif);
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+    .sc-wv-gallery__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-gallery__intro {
+      font-family: var(--font-sans, "DM Sans", sans-serif);
+      font-size: 14px;
+      line-height: 1.7;
+      color: #555;
+      max-width: 320px;
+      margin: 0;
+    }
+
+    /* Sample badge banner */
+    .sc-wv-gallery__bannerWrap {
+      margin: 0 0 32px;
+    }
+    .sc-wv-gallery__banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(250, 154, 133, 0.10);
+      border: 1px solid var(--color-coral, #FA9A85);
+      border-radius: 100px;
+      padding: 10px 20px;
+      color: var(--color-coral, #FA9A85);
+      font-family: var(--font-sans, "DM Sans", sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .sc-wv-gallery__banner svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+    /* Stage holds all slides; only one is visible at a time */
+    .sc-wv-gallery__stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--color-taupe, #D7CBC4);
+    }
+    .sc-wv-gallery__slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity 0.9s ease, transform 1.6s ease;
+      pointer-events: none;
+    }
+    .sc-wv-gallery__slide.is-active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    /* Collage layout — first image spans 2 rows, others fill the right side */
+    .sc-wv-gallery__cell {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--color-taupe, #D7CBC4), var(--color-cream, #F0EEE9));
+    }
+    .sc-wv-gallery__cell--hero {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+    }
+    .sc-wv-gallery__cell:nth-child(2) { grid-column: 2 / 3; grid-row: 1 / 2; }
+    .sc-wv-gallery__cell:nth-child(3) { grid-column: 3 / 4; grid-row: 1 / 2; }
+    .sc-wv-gallery__cell:nth-child(4) { grid-column: 2 / 4; grid-row: 2 / 3; }
+
+    .sc-wv-gallery__cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 6s linear;
+    }
+    /* Subtle Ken Burns zoom on the active slide */
+    .sc-wv-gallery__slide.is-active .sc-wv-gallery__cell img {
+      transform: scale(1.06);
+    }
+
+    /* Dot navigation */
+    .sc-wv-gallery__dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .sc-wv-gallery__dot {
+      width: 36px;
+      height: 4px;
+      border-radius: 100px;
+      background: rgba(34, 34, 36, 0.15);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease;
+    }
+    .sc-wv-gallery__dot:hover { background: rgba(34, 34, 36, 0.3); }
+    .sc-wv-gallery__dot.is-active {
+      background: rgba(34, 34, 36, 0.15);
+    }
+    .sc-wv-gallery__dot.is-active::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-coral, #FA9A85);
+      transform-origin: left;
+      animation: sc-wv-gallery-fill var(--sc-wv-gallery-duration, 5s) linear forwards;
+    }
+    @keyframes sc-wv-gallery-fill {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .sc-wv-gallery__counter {
+      font-family: var(--font-sans, "DM Sans", sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(34, 34, 36, 0.5);
+      margin-left: 12px;
+    }
+    .sc-wv-gallery__counter strong {
+      color: var(--color-coral, #FA9A85);
+      font-weight: 600;
+    }
+
+    /* Slide caption */
+    .sc-wv-gallery__slideLabel {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-family: var(--font-sans, "DM Sans", sans-serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(34, 34, 36, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 6px 12px;
+      border-radius: 100px;
+      z-index: 5;
+    }
+
+    /* Closing callout */
+    .sc-wv-gallery__callout {
+      margin: 56px 0 0;
+      padding: 24px 32px;
+      background: var(--color-charcoal, #222224);
+      border-radius: 12px;
+      color: var(--color-cream, #F0EEE9);
+      font-family: var(--font-serif, "Cormorant Garamond", serif);
+      font-style: italic;
+      font-size: 22px;
+      text-align: center;
+    }
+    .sc-wv-gallery__calloutAccent {
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--color-coral, #FA9A85);
+      margin: 12px auto 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .sc-wv-gallery__head {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+      .sc-wv-gallery__intro { max-width: 100%; }
+      .sc-wv-gallery__stage { aspect-ratio: 4 / 3; }
+      .sc-wv-gallery__slide {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+      .sc-wv-gallery__cell--hero {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+      }
+      .sc-wv-gallery__slide .sc-wv-gallery__cell:nth-child(2) {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+      }
+      .sc-wv-gallery__slide .sc-wv-gallery__cell:nth-child(3) {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+      }
+      /* On 4-image slides, hide the 4th cell on mobile so 3 fit cleanly */
+      .sc-wv-gallery__slide .sc-wv-gallery__cell:nth-child(4) {
+        display: none;
+      }
+    }
+    @media (max-width: 600px) {
+      .sc-wv-gallery { padding: 80px 24px 90px; }
+      .sc-wv-gallery__stage { aspect-ratio: 3 / 4; border-radius: 12px; }
+      .sc-wv-gallery__dot { width: 28px; }
+      .sc-wv-gallery__callout { font-size: 18px; padding: 20px 24px; }
+      .sc-wv-gallery__counter { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sc-wv-gallery__slide { transition: opacity 0.4s ease; transform: none !important; }
+      .sc-wv-gallery__slide.is-active .sc-wv-gallery__cell img { transform: none; }
+      .sc-wv-gallery__dot.is-active::before { animation: none; transform: scaleX(1); }
+    }
+  </style>
+
+  <div class="sc-wv-gallery__inner">
+
+    <div class="sc-wv-gallery__head">
+      <div>
+        <p class="sc-wv-gallery__label">03 — Gallery</p>
+        <h2 class="sc-wv-gallery__title">Walls in the <em>wild.</em></h2>
+      </div>
+      <p class="sc-wv-gallery__intro">
+        A glimpse of recent walls — homes, offices, and hospitality spaces. Auto-rotating every five seconds.
+      </p>
+    </div>
+
+    <div class="sc-wv-gallery__bannerWrap">
+      <span class="sc-wv-gallery__banner">
+        <svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 0 L7.4 4.6 L12 6 L7.4 7.4 L6 12 L4.6 7.4 L0 6 L4.6 4.6 Z"/></svg>
+        A glimpse — every wall is custom-designed.
+      </span>
+    </div>
+
+    <div class="sc-wv-gallery__stage" id="sc-wv-gallery-stage" role="region" aria-roledescription="carousel" aria-label="Gallery slideshow">
+      <div class="sc-wv-gallery__slide is-active" data-slide="0" aria-roledescription="slide" aria-label="Slide 1 of 5">
+        <span class="sc-wv-gallery__slideLabel">01 — Homes</span>
+        <!-- Replace src: {{ 'wallvocab-gallery-01.jpg' | asset_url }} → upload as wallvocab-gallery-01.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell sc-wv-gallery__cell--hero">
+          <img src="{{ 'wallvocab-gallery-01.jpg' | asset_url }}" alt="Custom wall design project 01 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-02.jpg' | asset_url }} → upload as wallvocab-gallery-02.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-02.jpg' | asset_url }}" alt="Custom wall design project 02 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-03.jpg' | asset_url }} → upload as wallvocab-gallery-03.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-03.jpg' | asset_url }}" alt="Custom wall design project 03 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-04.jpg' | asset_url }} → upload as wallvocab-gallery-04.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-04.jpg' | asset_url }}" alt="Custom wall design project 04 by WallVocab" loading="lazy">
+        </figure>
+      </div>
+      <div class="sc-wv-gallery__slide" data-slide="1" aria-roledescription="slide" aria-label="Slide 2 of 5">
+        <span class="sc-wv-gallery__slideLabel">02 — Offices</span>
+        <!-- Replace src: {{ 'wallvocab-gallery-05.jpg' | asset_url }} → upload as wallvocab-gallery-05.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell sc-wv-gallery__cell--hero">
+          <img src="{{ 'wallvocab-gallery-05.jpg' | asset_url }}" alt="Custom wall design project 05 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-06.jpg' | asset_url }} → upload as wallvocab-gallery-06.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-06.jpg' | asset_url }}" alt="Custom wall design project 06 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-07.jpg' | asset_url }} → upload as wallvocab-gallery-07.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-07.jpg' | asset_url }}" alt="Custom wall design project 07 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-08.jpg' | asset_url }} → upload as wallvocab-gallery-08.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-08.jpg' | asset_url }}" alt="Custom wall design project 08 by WallVocab" loading="lazy">
+        </figure>
+      </div>
+      <div class="sc-wv-gallery__slide" data-slide="2" aria-roledescription="slide" aria-label="Slide 3 of 5">
+        <span class="sc-wv-gallery__slideLabel">03 — Hospitality</span>
+        <!-- Replace src: {{ 'wallvocab-gallery-09.jpg' | asset_url }} → upload as wallvocab-gallery-09.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell sc-wv-gallery__cell--hero">
+          <img src="{{ 'wallvocab-gallery-09.jpg' | asset_url }}" alt="Custom wall design project 09 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-10.jpg' | asset_url }} → upload as wallvocab-gallery-10.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-10.jpg' | asset_url }}" alt="Custom wall design project 10 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-11.jpg' | asset_url }} → upload as wallvocab-gallery-11.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-11.jpg' | asset_url }}" alt="Custom wall design project 11 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-12.jpg' | asset_url }} → upload as wallvocab-gallery-12.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-12.jpg' | asset_url }}" alt="Custom wall design project 12 by WallVocab" loading="lazy">
+        </figure>
+      </div>
+      <div class="sc-wv-gallery__slide" data-slide="3" aria-roledescription="slide" aria-label="Slide 4 of 5">
+        <span class="sc-wv-gallery__slideLabel">04 — Retail</span>
+        <!-- Replace src: {{ 'wallvocab-gallery-13.jpg' | asset_url }} → upload as wallvocab-gallery-13.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell sc-wv-gallery__cell--hero">
+          <img src="{{ 'wallvocab-gallery-13.jpg' | asset_url }}" alt="Custom wall design project 13 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-14.jpg' | asset_url }} → upload as wallvocab-gallery-14.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-14.jpg' | asset_url }}" alt="Custom wall design project 14 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-15.jpg' | asset_url }} → upload as wallvocab-gallery-15.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-15.jpg' | asset_url }}" alt="Custom wall design project 15 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-16.jpg' | asset_url }} → upload as wallvocab-gallery-16.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-16.jpg' | asset_url }}" alt="Custom wall design project 16 by WallVocab" loading="lazy">
+        </figure>
+      </div>
+      <div class="sc-wv-gallery__slide" data-slide="4" aria-roledescription="slide" aria-label="Slide 5 of 5">
+        <span class="sc-wv-gallery__slideLabel">05 — Brand Walls</span>
+        <!-- Replace src: {{ 'wallvocab-gallery-17.jpg' | asset_url }} → upload as wallvocab-gallery-17.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell sc-wv-gallery__cell--hero">
+          <img src="{{ 'wallvocab-gallery-17.jpg' | asset_url }}" alt="Custom wall design project 17 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-18.jpg' | asset_url }} → upload as wallvocab-gallery-18.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-18.jpg' | asset_url }}" alt="Custom wall design project 18 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-19.jpg' | asset_url }} → upload as wallvocab-gallery-19.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-19.jpg' | asset_url }}" alt="Custom wall design project 19 by WallVocab" loading="lazy">
+        </figure>
+        <!-- Replace src: {{ 'wallvocab-gallery-20.jpg' | asset_url }} → upload as wallvocab-gallery-20.jpg in Shopify assets -->
+        <figure class="sc-wv-gallery__cell">
+          <img src="{{ 'wallvocab-gallery-20.jpg' | asset_url }}" alt="Custom wall design project 20 by WallVocab" loading="lazy">
+        </figure>
+      </div>
+    </div>  <!-- /.sc-wv-gallery__stage -->
+
+    <div class="sc-wv-gallery__dots" role="tablist" aria-label="Gallery slide navigation">
+      <button type="button" class="sc-wv-gallery__dot is-active" data-go="0" role="tab" aria-label="Show slide 1" aria-selected="true"></button>
+      <button type="button" class="sc-wv-gallery__dot" data-go="1" role="tab" aria-label="Show slide 2" aria-selected="false"></button>
+      <button type="button" class="sc-wv-gallery__dot" data-go="2" role="tab" aria-label="Show slide 3" aria-selected="false"></button>
+      <button type="button" class="sc-wv-gallery__dot" data-go="3" role="tab" aria-label="Show slide 4" aria-selected="false"></button>
+      <button type="button" class="sc-wv-gallery__dot" data-go="4" role="tab" aria-label="Show slide 5" aria-selected="false"></button>
+      <span class="sc-wv-gallery__counter"><strong id="sc-wv-gallery-current">01</strong> / 05</span>
+    </div>
+
+    <div class="sc-wv-gallery__callout">
+      These are just twenty walls — every one of yours will be designed from scratch.
+      <span class="sc-wv-gallery__calloutAccent" aria-hidden="true"></span>
+    </div>
+
+  </div>  <!-- /.sc-wv-gallery__inner -->
+
+  <script>
+    (function () {
+      var stage = document.getElementById("sc-wv-gallery-stage");
+      if (!stage) return;
+      var slides = stage.querySelectorAll(".sc-wv-gallery__slide");
+      var dots = document.querySelectorAll(".sc-wv-gallery__dot");
+      var counter = document.getElementById("sc-wv-gallery-current");
+      if (!slides.length || !dots.length) return;
+
+      var current = 0;
+      var DURATION = 5000; // 5s per slide
+      var timer = null;
+      var inView = true;
+
+      // Expose duration to CSS so the dot fill animation matches the timer
+      var section = stage.closest(".sc-wv-gallery");
+      if (section) section.style.setProperty("--sc-wv-gallery-duration", (DURATION / 1000) + "s");
+
+      function goTo(index) {
+        index = ((index % slides.length) + slides.length) % slides.length;
+        slides.forEach(function (s, i) {
+          s.classList.toggle("is-active", i === index);
+        });
+        dots.forEach(function (d, i) {
+          d.classList.toggle("is-active", i === index);
+          d.setAttribute("aria-selected", i === index ? "true" : "false");
+          // Restart the dot fill animation by reflowing the pseudo-element
+          if (i === index) {
+            d.style.animation = "none";
+            d.offsetHeight; /* reflow */
+            d.style.animation = "";
+          }
+        });
+        if (counter) counter.textContent = String(index + 1).padStart(2, "0");
+        current = index;
+      }
+
+      function next() { goTo(current + 1); }
+
+      function startTimer() {
+        stopTimer();
+        if (!inView) return;
+        timer = setInterval(next, DURATION);
+      }
+      function stopTimer() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      // Click dot to jump
+      dots.forEach(function (d) {
+        d.addEventListener("click", function () {
+          var idx = parseInt(d.getAttribute("data-go"), 10) || 0;
+          goTo(idx);
+          startTimer();
+        });
+      });
+
+      // Pause on hover (desktop), pause on touch-and-hold (mobile)
+      stage.addEventListener("mouseenter", stopTimer);
+      stage.addEventListener("mouseleave", startTimer);
+      stage.addEventListener("touchstart", stopTimer, { passive: true });
+      stage.addEventListener("touchend", function () { setTimeout(startTimer, 1500); }, { passive: true });
+
+      // Pause when not in viewport (saves battery on mobile)
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            inView = e.isIntersecting;
+            if (inView) startTimer(); else stopTimer();
+          });
+        }, { threshold: 0.25 });
+        io.observe(stage);
+      } else {
+        startTimer();
+      }
+
+      // Pause when tab is hidden
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) stopTimer();
+        else if (inView) startTimer();
+      });
+
+      // Swipe support on mobile
+      var startX = 0;
+      stage.addEventListener("touchstart", function (e) { startX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener("touchend", function (e) {
+        var endX = (e.changedTouches[0] || {}).clientX || startX;
+        var dx = endX - startX;
+        if (Math.abs(dx) > 50) {
+          if (dx < 0) next(); else goTo(current - 1);
+        }
+      }, { passive: true });
+
+      // Respect reduced motion: still autoplay, but slower (10s) and no zoom
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        DURATION = 10000;
+        if (section) section.style.setProperty("--sc-wv-gallery-duration", (DURATION / 1000) + "s");
+      }
+    })();
+  </script>
+</section>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — Explore Frames
+     ============================================================ -->
+<section class="sc-wv-frames">
+  <style>
+    .sc-wv-frames {
+      background: var(--color-cream, #F0EEE9);
+      padding: 120px 40px;
+      border-top: 1px solid var(--color-taupe, #D7CBC4);
+    }
+    .sc-wv-frames__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sc-wv-frames__head {
+      max-width: 720px;
+      margin: 0 0 56px;
+    }
+    .sc-wv-frames__label {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 28px;
+    }
+    .sc-wv-frames__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 16px;
+    }
+    .sc-wv-frames__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-frames__intro {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 15px;
+      line-height: 1.7;
+      color: #555;
+      max-width: 580px;
+      margin: 0;
+    }
+    .sc-wv-frames__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .sc-wv-frames__card {
+      background: #fff;
+      border: 1px solid var(--color-taupe, #D7CBC4);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .sc-wv-frames__media {
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, #F0EEE9 0%, #D7CBC4 100%);
+      overflow: hidden;
+    }
+    .sc-wv-frames__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sc-wv-frames__body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .sc-wv-frames__tag {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0;
+    }
+    .sc-wv-frames__name {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 500;
+      font-size: 20px;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+    .sc-wv-frames__desc {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 13px;
+      line-height: 1.6;
+      color: #888;
+      margin: 0 0 12px;
+      flex: 1;
+    }
+    .sc-wv-frames__link {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      text-decoration: none;
+      transition: gap 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sc-wv-frames__link:hover { gap: 10px; }
+
+    .sc-wv-frames__badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--color-coral, #FA9A85);
+      padding: 5px 10px;
+      border-radius: 100px;
+      z-index: 2;
+    }
+    .sc-wv-frames__media { position: relative; }
+
+    /* Sample banner pill */
+    .sc-wv-frames__bannerWrap {
+      margin: 0 0 28px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .sc-wv-frames__banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(250, 154, 133, 0.10);
+      border: 1px solid var(--color-coral, #FA9A85);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-frames__banner svg { flex-shrink: 0; }
+
+    /* Callout strip */
+    .sc-wv-frames__callout {
+      margin-top: 48px;
+      padding: 24px 32px;
+      background: var(--color-charcoal, #222224);
+      color: var(--color-cream, #F0EEE9);
+      border-radius: 12px;
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 400;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .sc-wv-frames__calloutAccent {
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--color-coral, #FA9A85);
+      margin: 14px auto 0;
+    }
+
+    @media (max-width: 1000px) {
+      .sc-wv-frames__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .sc-wv-frames__grid { grid-template-columns: 1fr; }
+      .sc-wv-frames { padding: 80px 24px; }
+      .sc-wv-frames__callout { font-size: 18px; padding: 20px 24px; }
+    }
+  </style>
+
+  <div class="sc-wv-frames__inner">
+    <div class="sc-wv-frames__head">
+      <p class="sc-wv-frames__label">04 — Frames</p>
+      <h2 class="sc-wv-frames__title">Explore <em>frames.</em></h2>
+      <p class="sc-wv-frames__intro">
+        Six frame styles — from classic profiles to backlit and edge-lit options that let the artwork glow. Each one changes how the wall feels.
+      </p>
+    </div>
+
+    <div class="sc-wv-frames__bannerWrap">
+      <span class="sc-wv-frames__banner">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0L7.2 4.8L12 6L7.2 7.2L6 12L4.8 7.2L0 6L4.8 4.8L6 0Z" fill="#FA9A85"/></svg>
+        Six examples shown — every frame is customisable.
+      </span>
+    </div>
+
+    <div class="sc-wv-frames__grid">
+      <article class="sc-wv-frames__card">
+        <div class="sc-wv-frames__media">
+          <img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Black_Minimal_Frame.png?v=1777864114" alt="Black metal frame for custom wall art — slim modern profile" loading="lazy">
+        </div>
+        <div class="sc-wv-frames__body">
+          <p class="sc-wv-frames__tag">01 — Frame</p>
+          <h3 class="sc-wv-frames__name">Black Frame</h3>
+          <p class="sc-wv-frames__desc">Clean and modern. Works across most spaces.</p>
+        </div>
+      </article>
+
+      <article class="sc-wv-frames__card">
+        <div class="sc-wv-frames__media">
+          <img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/wooden_frame.png?v=1777864114" alt="Oak wooden frame for custom wall art — warm natural finish" loading="lazy">
+        </div>
+        <div class="sc-wv-frames__body">
+          <p class="sc-wv-frames__tag">02 — Frame</p>
+          <h3 class="sc-wv-frames__name">Wooden Frame</h3>
+          <p class="sc-wv-frames__desc">Warm and natural. Great for homes and softer interiors.</p>
+        </div>
+      </article>
+
+      <article class="sc-wv-frames__card">
+        <div class="sc-wv-frames__media">
+          <img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Golden_Frame.png?v=1777864116" alt="Gold ornate frame for custom wall art — classic gilded profile" loading="lazy">
+        </div>
+        <div class="sc-wv-frames__body">
+          <p class="sc-wv-frames__tag">03 — Frame</p>
+          <h3 class="sc-wv-frames__name">Gold Frame</h3>
+          <p class="sc-wv-frames__desc">Classic and bold. Adds richness to the artwork.</p>
+        </div>
+      </article>
+
+      <article class="sc-wv-frames__card">
+        <div class="sc-wv-frames__media">
+          <img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Black_Minimal_Frame.png?v=1777864114" alt="Minimal thin frame for custom wall art — ultra slim profile" loading="lazy">
+        </div>
+        <div class="sc-wv-frames__body">
+          <p class="sc-wv-frames__tag">04 — Frame</p>
+          <h3 class="sc-wv-frames__name">Minimal Frame</h3>
+          <p class="sc-wv-frames__desc">Thin and subtle. Lets the art stand out.</p>
+        </div>
+      </article>
+
+      <article class="sc-wv-frames__card">
+        <div class="sc-wv-frames__media">
+          <span class="sc-wv-frames__badge">New</span>
+          <img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Backlit_Acrylic_Frame.png?v=1777864115" alt="Backlit LED frame for custom wall art — soft halo light profile" loading="lazy">
+        </div>
+        <div class="sc-wv-frames__body">
+          <p class="sc-wv-frames__tag">05 — Frame</p>
+          <h3 class="sc-wv-frames__name">Backlit LED Frame</h3>
+          <p class="sc-wv-frames__desc">Soft halo glow that floats the artwork off the wall. Perfect for receptions and lounges.</p>
+        </div>
+      </article>
+
+      <article class="sc-wv-frames__card">
+        <div class="sc-wv-frames__media">
+          <span class="sc-wv-frames__badge">New</span>
+          <img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Slim_LED_lightbox_frame.png?v=1777864114" alt="Lightbox edge-lit frame for custom wall art — luminous translucent profile" loading="lazy">
+        </div>
+        <div class="sc-wv-frames__body">
+          <p class="sc-wv-frames__tag">06 — Frame</p>
+          <h3 class="sc-wv-frames__name">Lightbox Frame</h3>
+          <p class="sc-wv-frames__desc">Edge-lit luminous panel that turns the art itself into a glowing surface. Built for impact.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="sc-wv-frames__callout">
+      These are just six finishes — your frame can be any size, profile, or material.
+      <span class="sc-wv-frames__calloutAccent" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — Explore Art
+     ============================================================ -->
+<section class="sc-wv-art">
+  <style>
+    .sc-wv-art {
+      background: var(--color-cream, #F0EEE9);
+      padding: 120px 40px;
+      border-top: 1px solid var(--color-taupe, #D7CBC4);
+    }
+    .sc-wv-art__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sc-wv-art__head {
+      max-width: 720px;
+      margin: 0 0 56px;
+    }
+    .sc-wv-art__label {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 28px;
+    }
+    .sc-wv-art__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 16px;
+    }
+    .sc-wv-art__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-art__intro {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 15px;
+      line-height: 1.7;
+      color: #555;
+      max-width: 580px;
+      margin: 0;
+    }
+    .sc-wv-art__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .sc-wv-art__card {
+      background: #fff;
+      border: 1px solid var(--color-taupe, #D7CBC4);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .sc-wv-art__media {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: linear-gradient(135deg, #F0EEE9 0%, #D7CBC4 100%);
+    }
+    .sc-wv-art__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sc-wv-art__body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .sc-wv-art__tag {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0;
+    }
+    .sc-wv-art__name {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 500;
+      font-size: 20px;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+    .sc-wv-art__desc {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 13px;
+      line-height: 1.6;
+      color: #888;
+      margin: 0 0 12px;
+      flex: 1;
+    }
+    .sc-wv-art__link {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      text-decoration: none;
+      transition: gap 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sc-wv-art__link:hover { gap: 10px; }
+
+    /* ── SLIDER STYLES FOR ART CARDS ── */
+    .sc-wv-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .sc-wv-slider__track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+    .sc-wv-slider__slide {
+      min-width: 100%;
+      height: 100%;
+    }
+    .sc-wv-slider__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .sc-wv-slider__dots {
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      z-index: 3;
+    }
+    .sc-wv-slider__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .sc-wv-slider__dot.active {
+      background: #fff;
+      transform: scale(1.3);
+    }
+    .sc-wv-slider__prev,
+    .sc-wv-slider__next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.35);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .sc-wv-art__media:hover .sc-wv-slider__prev,
+    .sc-wv-art__media:hover .sc-wv-slider__next { opacity: 1; }
+    .sc-wv-slider__prev { left: 6px; }
+    .sc-wv-slider__next { right: 6px; }
+
+    /* Sample banner pill */
+    .sc-wv-art__bannerWrap {
+      margin: 0 0 28px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .sc-wv-art__banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(250, 154, 133, 0.10);
+      border: 1px solid var(--color-coral, #FA9A85);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-art__banner svg { flex-shrink: 0; }
+
+    /* Callout strip */
+    .sc-wv-art__callout {
+      margin-top: 48px;
+      padding: 24px 32px;
+      background: var(--color-charcoal, #222224);
+      color: var(--color-cream, #F0EEE9);
+      border-radius: 12px;
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 400;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .sc-wv-art__calloutAccent {
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--color-coral, #FA9A85);
+      margin: 14px auto 0;
+    }
+
+    @media (max-width: 1000px) {
+      .sc-wv-art__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .sc-wv-art__grid { grid-template-columns: 1fr; }
+      .sc-wv-art { padding: 80px 24px; }
+      .sc-wv-art__callout { font-size: 18px; padding: 20px 24px; }
+    }
+  </style>
+
+  <div class="sc-wv-art__inner">
+    <div class="sc-wv-art__head">
+      <p class="sc-wv-art__label">05 — Art</p>
+      <h2 class="sc-wv-art__title">Explore <em>art.</em></h2>
+      <p class="sc-wv-art__intro">
+        Choose from a range of artworks based on the mood you want to create in your space.
+      </p>
+    </div>
+
+    <div class="sc-wv-art__bannerWrap">
+      <span class="sc-wv-art__banner">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0L7.2 4.8L12 6L7.2 7.2L6 12L4.8 7.2L0 6L4.8 4.8L6 0Z" fill="#FA9A85"/></svg>
+        Four moods shown — every artwork is custom-curated.
+      </span>
+    </div>
+
+    <div class="sc-wv-art__grid">
+
+      <!-- Landscapes slider -->
+      <article class="sc-wv-art__card">
+        <div class="sc-wv-art__media">
+          <div class="sc-wv-slider" id="slider-landscapes">
+            <div class="sc-wv-slider__track">
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Thekkady_Hills_Watercolor.webp?v=1777864717" alt="Landscape custom art print for interior walls — Thekkady Hills watercolor" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Marina_Beach_Sunset_Redo.webp?v=1777864717" alt="Landscape custom art print for interior walls — Marina Beach sunset" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Whispers_of_Poppies.jpg?v=1777864718" alt="Landscape custom art print for interior walls — Whispers of Poppies" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Whispering_Blossoms.jpg?v=1777864718" alt="Landscape custom art print for interior walls — Whispering Blossoms" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/ChatGPT_Image_Apr_23_2026_11_44_29_AM.png?v=1777864734" alt="Landscape custom art print for interior walls — mountain mist" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/ChatGPT_Image_Apr_23_2026_11_45_11_AM.png?v=1777864735" alt="Landscape custom art print for interior walls — hill village" loading="lazy"></div>
+            </div>
+            <button class="sc-wv-slider__prev" aria-label="Previous">&#8249;</button>
+            <button class="sc-wv-slider__next" aria-label="Next">&#8250;</button>
+            <div class="sc-wv-slider__dots"></div>
+          </div>
+        </div>
+        <div class="sc-wv-art__body">
+          <p class="sc-wv-art__tag">01 — Collection</p>
+          <h3 class="sc-wv-art__name">Landscapes</h3>
+          <p class="sc-wv-art__desc">Scenic views that bring depth and calm.</p>
+        </div>
+      </article>
+
+      <!-- Abstract slider -->
+      <article class="sc-wv-art__card">
+        <div class="sc-wv-art__media">
+          <div class="sc-wv-slider" id="slider-abstract">
+            <div class="sc-wv-slider__track">
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Boho_Woman_Abstract.png?v=1777866190" alt="Abstract custom art print for interior walls — Boho Woman" loading="lazy"></div>
+            </div>
+            <div class="sc-wv-slider__dots"></div>
+          </div>
+        </div>
+        <div class="sc-wv-art__body">
+          <p class="sc-wv-art__tag">02 — Collection</p>
+          <h3 class="sc-wv-art__name">Abstract</h3>
+          <p class="sc-wv-art__desc">Bold and expressive pieces that stand out.</p>
+        </div>
+      </article>
+
+      <!-- Animals slider -->
+      <article class="sc-wv-art__card">
+        <div class="sc-wv-art__media">
+          <div class="sc-wv-slider" id="slider-animals">
+            <div class="sc-wv-slider__track">
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/DALL_E_Leopard_Photorealistic.webp?v=1777866097" alt="Animal custom art print for interior walls — photorealistic leopard" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Chic_Sheeps.jpg?v=1777866098" alt="Animal custom art print for interior walls — chic sheep" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Herbs.png?v=1777866099" alt="Animal custom art print for interior walls — herbs and creatures" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Royal.jpg?v=1777866098" alt="Animal custom art print for interior walls — royal portrait" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Gentle_Giant.png?v=1777866099" alt="Animal custom art print for interior walls — gentle giant" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/In_Flight.png?v=1777866100" alt="Animal custom art print for interior walls — in flight" loading="lazy"></div>
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Bow_wow_Friends.png?v=1777866101" alt="Animal custom art print for interior walls — bow wow friends" loading="lazy"></div>
+            </div>
+            <button class="sc-wv-slider__prev" aria-label="Previous">&#8249;</button>
+            <button class="sc-wv-slider__next" aria-label="Next">&#8250;</button>
+            <div class="sc-wv-slider__dots"></div>
+          </div>
+        </div>
+        <div class="sc-wv-art__body">
+          <p class="sc-wv-art__tag">03 — Collection</p>
+          <h3 class="sc-wv-art__name">Animals</h3>
+          <p class="sc-wv-art__desc">Character-driven pieces that add personality.</p>
+        </div>
+      </article>
+
+      <!-- Minimal slider -->
+      <article class="sc-wv-art__card">
+        <div class="sc-wv-art__media">
+          <div class="sc-wv-slider" id="slider-minimal">
+            <div class="sc-wv-slider__track">
+              <div class="sc-wv-slider__slide"><img src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/Solo_Horizon.png?v=1777866229" alt="Minimal custom art print for interior walls — solo horizon" loading="lazy"></div>
+            </div>
+            <div class="sc-wv-slider__dots"></div>
+          </div>
+        </div>
+        <div class="sc-wv-art__body">
+          <p class="sc-wv-art__tag">04 — Collection</p>
+          <h3 class="sc-wv-art__name">Minimal</h3>
+          <p class="sc-wv-art__desc">Simple compositions for clean spaces.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="sc-wv-art__callout">
+      These are just four directions — your art can be commissioned, AI-generated, or yours.
+      <span class="sc-wv-art__calloutAccent" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    document.querySelectorAll('.sc-wv-slider').forEach(function(slider) {
+      var track = slider.querySelector('.sc-wv-slider__track');
+      var slides = slider.querySelectorAll('.sc-wv-slider__slide');
+      var dotsContainer = slider.querySelector('.sc-wv-slider__dots');
+      var prev = slider.querySelector('.sc-wv-slider__prev');
+      var next = slider.querySelector('.sc-wv-slider__next');
+      var current = 0;
+
+      if (slides.length <= 1) {
+        if (prev) prev.style.display = 'none';
+        if (next) next.style.display = 'none';
+      }
+
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'sc-wv-slider__dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+
+      function goTo(n) {
+        current = (n + slides.length) % slides.length;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        slider.querySelectorAll('.sc-wv-slider__dot').forEach(function(d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      if (prev) prev.addEventListener('click', function() { goTo(current - 1); });
+      if (next) next.addEventListener('click', function() { goTo(current + 1); });
+
+      // Auto-advance every 3s
+      if (slides.length > 1) {
+        setInterval(function() { goTo(current + 1); }, 3000);
+      }
+    });
+  })();
+</script>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — Explore Finishings
+     ============================================================ -->
+<section class="sc-wv-finishings">
+  <style>
+    .sc-wv-finishings {
+      background: var(--color-cream, #F0EEE9);
+      padding: 120px 40px;
+      border-top: 1px solid var(--color-taupe, #D7CBC4);
+    }
+    .sc-wv-finishings__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .sc-wv-finishings__head {
+      max-width: 720px;
+      margin: 0 0 56px;
+    }
+    .sc-wv-finishings__label {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 28px;
+    }
+    .sc-wv-finishings__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 16px;
+    }
+    .sc-wv-finishings__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-finishings__intro {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 15px;
+      line-height: 1.7;
+      color: #555;
+      max-width: 620px;
+      margin: 0;
+    }
+    .sc-wv-finishings__grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+    .sc-wv-finishings__card {
+      background: #fff;
+      border: 1px solid var(--color-taupe, #D7CBC4);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .sc-wv-finishings__media {
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, #F0EEE9 0%, #D7CBC4 100%);
+      overflow: hidden;
+    }
+    .sc-wv-finishings__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sc-wv-finishings__body {
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .sc-wv-finishings__tag {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0;
+    }
+    .sc-wv-finishings__name {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 500;
+      font-size: 19px;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+    .sc-wv-finishings__desc {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 13px;
+      line-height: 1.6;
+      color: #888;
+      margin: 0;
+      flex: 1;
+    }
+
+    /* Sample banner pill */
+    .sc-wv-finishings__bannerWrap {
+      margin: 0 0 28px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .sc-wv-finishings__banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(250, 154, 133, 0.10);
+      border: 1px solid var(--color-coral, #FA9A85);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-finishings__banner svg { flex-shrink: 0; }
+
+    /* Callout strip */
+    .sc-wv-finishings__callout {
+      margin-top: 48px;
+      padding: 24px 32px;
+      background: var(--color-charcoal, #222224);
+      color: var(--color-cream, #F0EEE9);
+      border-radius: 12px;
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 400;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .sc-wv-finishings__calloutAccent {
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--color-coral, #FA9A85);
+      margin: 14px auto 0;
+    }
+
+    @media (max-width: 1100px) {
+      .sc-wv-finishings__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .sc-wv-finishings__grid { grid-template-columns: repeat(2, 1fr); }
+      .sc-wv-finishings { padding: 80px 24px; }
+      .sc-wv-finishings__callout { font-size: 18px; padding: 20px 24px; }
+    }
+    @media (max-width: 460px) {
+      .sc-wv-finishings__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="sc-wv-finishings__inner">
+    <div class="sc-wv-finishings__head">
+      <p class="sc-wv-finishings__label">06 — Finishings</p>
+      <h2 class="sc-wv-finishings__title">Explore <em>finishings.</em></h2>
+      <p class="sc-wv-finishings__intro">
+        The wall behind the wall. Paint, texture, panels, and architectural finishes — chosen to make the art and the frames sing.
+      </p>
+    </div>
+
+    <div class="sc-wv-finishings__bannerWrap">
+      <span class="sc-wv-finishings__banner">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0L7.2 4.8L12 6L7.2 7.2L6 12L4.8 7.2L0 6L4.8 4.8L6 0Z" fill="#FA9A85"/></svg>
+        Five examples shown — every finishing is custom-sourced.
+      </span>
+    </div>
+
+    <div class="sc-wv-finishings__grid">
+      <article class="sc-wv-finishings__card">
+        <div class="sc-wv-finishings__media">
+          <img src="{{ 'wallvocab-finish-paint.png' | asset_url }}" alt="Solid paint wall surface for custom wall design — single-tone finish" loading="lazy">
+        </div>
+        <div class="sc-wv-finishings__body">
+          <p class="sc-wv-finishings__tag">01 — Finish</p>
+          <h3 class="sc-wv-finishings__name">Solid Paint</h3>
+          <p class="sc-wv-finishings__desc">Calm, single-tone backdrops in any colour.</p>
+        </div>
+      </article>
+
+      <article class="sc-wv-finishings__card">
+        <div class="sc-wv-finishings__media">
+          <img src="{{ 'wallvocab-finish-limewash.png' | asset_url }}" alt="Limewash texture wall surface for custom wall design — mineral movement" loading="lazy">
+        </div>
+        <div class="sc-wv-finishings__body">
+          <p class="sc-wv-finishings__tag">02 — Finish</p>
+          <h3 class="sc-wv-finishings__name">Limewash Texture</h3>
+          <p class="sc-wv-finishings__desc">Soft, mineral finish with depth and movement.</p>
+        </div>
+      </article>
+
+      <article class="sc-wv-finishings__card">
+        <div class="sc-wv-finishings__media">
+          <img src="{{ 'wallvocab-finish-fluted.png' | asset_url }}" alt="Fluted panels wall surface for custom wall design — vertical wood profiles" loading="lazy">
+        </div>
+        <div class="sc-wv-finishings__body">
+          <p class="sc-wv-finishings__tag">03 — Finish</p>
+          <h3 class="sc-wv-finishings__name">Fluted Panels</h3>
+          <p class="sc-wv-finishings__desc">Vertical wood or MDF profiles for architectural rhythm.</p>
+        </div>
+      </article>
+
+      <article class="sc-wv-finishings__card">
+        <div class="sc-wv-finishings__media">
+          <img src="{{ 'wallvocab-finish-wallpaper.png' | asset_url }}" alt="Wallpaper wall surface for custom wall design — patterned feature wall" loading="lazy">
+        </div>
+        <div class="sc-wv-finishings__body">
+          <p class="sc-wv-finishings__tag">04 — Finish</p>
+          <h3 class="sc-wv-finishings__name">Wallpaper</h3>
+          <p class="sc-wv-finishings__desc">Patterned or plain — botanicals, geometrics, custom prints.</p>
+        </div>
+      </article>
+
+      <article class="sc-wv-finishings__card">
+        <div class="sc-wv-finishings__media">
+          <img src="{{ 'wallvocab-finish-veneer.png' | asset_url }}" alt="Stone and veneer wall surface for custom wall design — marble and wood" loading="lazy">
+        </div>
+        <div class="sc-wv-finishings__body">
+          <p class="sc-wv-finishings__tag">05 — Finish</p>
+          <h3 class="sc-wv-finishings__name">Stone &amp; Veneer</h3>
+          <p class="sc-wv-finishings__desc">Marble, travertine, or wood veneer for premium walls.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="sc-wv-finishings__callout">
+      These are just five surfaces — your wall can have any finish, texture, or material.
+      <span class="sc-wv-finishings__calloutAccent" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — Contact Us (was Mid CTA)
+     ============================================================ -->
+<section class="sc-wv-midcta">
+  <style>
+    .sc-wv-midcta {
+      background: var(--color-cream, #F0EEE9);
+      padding: 120px 40px;
+      text-align: center;
+    }
+    .sc-wv-midcta__inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .sc-wv-midcta__label {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 28px;
+    }
+    .sc-wv-midcta__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.1;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 24px;
+    }
+    .sc-wv-midcta__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-midcta__body {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 15px;
+      line-height: 1.7;
+      color: #555;
+      max-width: 520px;
+      margin: 0 auto 36px;
+    }
+    .sc-wv-midcta__cta {
+      display: inline-flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sc-wv-midcta .sc-wv-btn--primary {
+      background: var(--color-coral, #FA9A85);
+      color: #fff;
+      padding: 14px 32px;
+    }
+    .sc-wv-midcta .sc-wv-btn--outline {
+      background: transparent;
+      color: var(--color-charcoal, #222224);
+      padding: 13px 32px;
+      border: 1.5px solid var(--color-charcoal, #222224);
+    }
+    .sc-wv-midcta .sc-wv-btn--outline:hover {
+      background: var(--color-charcoal, #222224);
+      color: var(--color-cream, #F0EEE9);
+    }
+    @media (max-width: 700px) {
+      .sc-wv-midcta { padding: 80px 24px; }
+    }
+  </style>
+
+  <div class="sc-wv-midcta__inner">
+    <p class="sc-wv-midcta__label">07 — Contact Us</p>
+    <h2 class="sc-wv-midcta__title">
+      Tell us about your <em>wall.</em>
+    </h2>
+    <p class="sc-wv-midcta__body">
+      We work with a limited number of walls each month. Send us a quick note and we'll come back with a curated proposal.
+    </p>
+    <div class="sc-wv-midcta__cta">
+      <a href="/pages/contact" class="sc-wv-btn sc-wv-btn--primary">Contact Us</a>
+      <a href="/pages/wall-gallery" class="sc-wv-btn sc-wv-btn--outline">View Our Walls</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — How It Works (rebuilt, 3 steps)
+     ============================================================ -->
+<section class="sc-wv-process">
+  <style>
+    .sc-wv-process {
+      background: var(--color-charcoal, #222224);
+      color: var(--color-cream, #F0EEE9);
+      padding: 120px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sc-wv-process__decor {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.06;
+      top: -200px;
+      right: -200px;
+      pointer-events: none;
+    }
+    .sc-wv-process__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .sc-wv-process__head {
+      max-width: 760px;
+      margin: 0 0 56px;
+    }
+    .sc-wv-process__metaRow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 0 0 24px;
+    }
+    .sc-wv-process__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(240,238,233,0.25);
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(240,238,233,0.85);
+    }
+    .sc-wv-process__intake {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: rgba(240,238,233,0.7);
+    }
+    .sc-wv-process__intakeDot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      box-shadow: 0 0 0 0 rgba(250,154,133,0.6);
+      animation: sc-wv-process-intakePulse 1.8s ease-out infinite;
+    }
+    @keyframes sc-wv-process-intakePulse {
+      0%   { box-shadow: 0 0 0 0 rgba(250,154,133,0.55); }
+      70%  { box-shadow: 0 0 0 12px rgba(250,154,133,0); }
+      100% { box-shadow: 0 0 0 0 rgba(250,154,133,0); }
+    }
+    .sc-wv-process__label {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 24px;
+    }
+    .sc-wv-process__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0;
+    }
+    .sc-wv-process__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    /* Timeline */
+    .sc-wv-process__timeline {
+      position: relative;
+      margin: 24px 0 48px;
+      height: 32px;
+    }
+    .sc-wv-process__track {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: rgba(240,238,233,0.12);
+      transform: translateY(-50%);
+    }
+    .sc-wv-process__trackFill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background: var(--color-coral, #FA9A85);
+      transition: width 1.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .sc-wv-process.is-visible .sc-wv-process__trackFill {
+      width: 100%;
+    }
+    .sc-wv-process__dots {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 100%;
+    }
+    .sc-wv-process__dotWrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .sc-wv-process__dotWrap:nth-child(2) { justify-content: center; }
+    .sc-wv-process__dotWrap:nth-child(3) { justify-content: flex-end; }
+    .sc-wv-process__dot {
+      position: relative;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--color-charcoal, #222224);
+      border: 2px solid rgba(240,238,233,0.25);
+      transition: transform 0.4s ease, background 0.4s ease, border-color 0.4s ease;
+      z-index: 2;
+    }
+    .sc-wv-process.is-visible .sc-wv-process__dot {
+      background: var(--color-coral, #FA9A85);
+      border-color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-process.is-visible .sc-wv-process__dotWrap:nth-child(1) .sc-wv-process__dot {
+      animation: sc-wv-process-dotPulse 1.6s ease-out 0.2s 1;
+    }
+    .sc-wv-process.is-visible .sc-wv-process__dotWrap:nth-child(2) .sc-wv-process__dot {
+      animation: sc-wv-process-dotPulse 1.6s ease-out 0.6s 1;
+    }
+    .sc-wv-process.is-visible .sc-wv-process__dotWrap:nth-child(3) .sc-wv-process__dot {
+      animation: sc-wv-process-dotPulse 1.6s ease-out 1.0s 1;
+    }
+    @keyframes sc-wv-process-dotPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(250,154,133,0.55); }
+      70%  { box-shadow: 0 0 0 18px rgba(250,154,133,0); }
+      100% { box-shadow: 0 0 0 0 rgba(250,154,133,0); }
+    }
+    /* Active traveling dot */
+    .sc-wv-process__activeDot {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      box-shadow: 0 0 18px rgba(250,154,133,0.8);
+    }
+    .sc-wv-process.is-visible .sc-wv-process__activeDot {
+      animation: sc-wv-process-travel 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+    @keyframes sc-wv-process-travel {
+      0%   { left: 0%;   opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
+    }
+
+    /* Steps grid */
+    .sc-wv-process__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .sc-wv-process__step {
+      padding-top: 8px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .sc-wv-process.is-visible .sc-wv-process__step {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .sc-wv-process.is-visible .sc-wv-process__step:nth-child(1) { transition-delay: 0.15s; }
+    .sc-wv-process.is-visible .sc-wv-process__step:nth-child(2) { transition-delay: 0.40s; }
+    .sc-wv-process.is-visible .sc-wv-process__step:nth-child(3) { transition-delay: 0.65s; }
+
+    .sc-wv-process__day {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(240,238,233,0.22);
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(240,238,233,0.8);
+      margin: 0 0 18px;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .sc-wv-process__num {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 300;
+      font-size: 44px;
+      line-height: 1;
+      color: var(--color-coral, #FA9A85);
+      opacity: 0.85;
+      margin: 0 0 14px;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .sc-wv-process__stepTitle {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 12px;
+    }
+    .sc-wv-process__stepBody {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(240,238,233,0.7);
+      margin: 0;
+      max-width: 320px;
+    }
+
+    /* Hover interactions */
+    .sc-wv-process__step:hover .sc-wv-process__num {
+      transform: translateY(-4px);
+    }
+    .sc-wv-process__step:hover ~ .sc-wv-process__timeline,
+    .sc-wv-process__step:hover .sc-wv-process__day {
+      background: var(--color-coral, #FA9A85);
+      color: var(--color-charcoal, #222224);
+      border-color: var(--color-coral, #FA9A85);
+    }
+    /* Tie hover to the matching dot via :hover on the wrapping cell */
+    .sc-wv-process__cell {
+      display: contents;
+    }
+
+    .sc-wv-process__footnote {
+      margin: 56px 0 0;
+      max-width: 640px;
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(240,238,233,0.55);
+      font-style: italic;
+    }
+
+    @media (max-width: 900px) {
+      .sc-wv-process__grid { grid-template-columns: 1fr; gap: 32px; }
+      .sc-wv-process__timeline { display: none; }
+    }
+    @media (max-width: 600px) {
+      .sc-wv-process { padding: 80px 24px; }
+    }
+  </style>
+
+  <div class="sc-wv-process__decor"></div>
+
+  <div class="sc-wv-process__inner">
+    <div class="sc-wv-process__head">
+      <p class="sc-wv-process__label">08 — How It Works</p>
+      <div class="sc-wv-process__metaRow">
+        <span class="sc-wv-process__pill">Typical timeline — 5 to 15 days</span>
+        <span class="sc-wv-process__intake">
+          <span class="sc-wv-process__intakeDot" aria-hidden="true"></span>
+          Limited intake each month
+        </span>
+      </div>
+      <h2 class="sc-wv-process__title">How it <em>works.</em></h2>
+    </div>
+
+    <div class="sc-wv-process__timeline" aria-hidden="true">
+      <div class="sc-wv-process__track">
+        <div class="sc-wv-process__trackFill"></div>
+      </div>
+      <div class="sc-wv-process__activeDot"></div>
+      <div class="sc-wv-process__dots">
+        <div class="sc-wv-process__dotWrap"><span class="sc-wv-process__dot"></span></div>
+        <div class="sc-wv-process__dotWrap"><span class="sc-wv-process__dot"></span></div>
+        <div class="sc-wv-process__dotWrap"><span class="sc-wv-process__dot"></span></div>
+      </div>
+    </div>
+
+    <div class="sc-wv-process__grid">
+      <div class="sc-wv-process__step">
+        <span class="sc-wv-process__day">Day 1</span>
+        <span class="sc-wv-process__num">01</span>
+        <h3 class="sc-wv-process__stepTitle">Get connected</h3>
+        <p class="sc-wv-process__stepBody">Send us a photo of the wall and tell us what you have in mind. We'll respond within a day.</p>
+      </div>
+      <div class="sc-wv-process__step">
+        <span class="sc-wv-process__day">Day 2–7</span>
+        <span class="sc-wv-process__num">02</span>
+        <h3 class="sc-wv-process__stepTitle">Design together</h3>
+        <p class="sc-wv-process__stepBody">We propose art, frames, finishings, and placement — refining together until the wall feels right.</p>
+      </div>
+      <div class="sc-wv-process__step">
+        <span class="sc-wv-process__day">Day 7–15</span>
+        <span class="sc-wv-process__num">03</span>
+        <h3 class="sc-wv-process__stepTitle">Leave the execution to us</h3>
+        <p class="sc-wv-process__stepBody">We fabricate, finish, and install. You see the wall finished.</p>
+      </div>
+    </div>
+
+    <p class="sc-wv-process__footnote">
+      Most walls land between five and fifteen days. We deliberately limit intake each month so the work stays careful.
+    </p>
+  </div>
+
+  <script>
+    (function() {
+      var section = document.currentScript && document.currentScript.closest('.sc-wv-process');
+      if (!section) {
+        var all = document.querySelectorAll('.sc-wv-process');
+        section = all[all.length - 1];
+      }
+      if (!section) return;
+      if (!('IntersectionObserver' in window)) {
+        section.classList.add('is-visible');
+        return;
+      }
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            section.classList.add('is-visible');
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      io.observe(section);
+    })();
+  </script>
+</section>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — Final CTA Callout
+     ============================================================ -->
+<section class="sc-wv-finalcta">
+  <style>
+    .sc-wv-finalcta {
+      background: var(--color-charcoal, #222224);
+      color: var(--color-cream, #F0EEE9);
+      padding: 120px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .sc-wv-finalcta__decor {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.08;
+      bottom: -350px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .sc-wv-finalcta__inner {
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .sc-wv-finalcta__label {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 28px;
+    }
+    .sc-wv-finalcta__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 300;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 28px;
+    }
+    .sc-wv-finalcta__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-finalcta__body {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(240,238,233,0.75);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .sc-wv-finalcta__cta {
+      display: inline-flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sc-wv-finalcta .sc-wv-btn--primary {
+      background: var(--color-coral, #FA9A85);
+      color: #fff;
+      padding: 14px 32px;
+    }
+    .sc-wv-finalcta .sc-wv-btn--primary:hover {
+      background: var(--color-coral-hover, #f8836b);
+    }
+    .sc-wv-finalcta .sc-wv-btn--ghost-light {
+      background: transparent;
+      color: var(--color-cream, #F0EEE9);
+      padding: 13px 32px;
+      border: 1.5px solid rgba(240, 238, 233, 0.4);
+    }
+    .sc-wv-finalcta .sc-wv-btn--ghost-light:hover {
+      border-color: var(--color-coral, #FA9A85);
+      color: var(--color-coral, #FA9A85);
+    }
+    @media (max-width: 700px) {
+      .sc-wv-finalcta { padding: 80px 24px; }
+    }
+  </style>
+
+  <div class="sc-wv-finalcta__decor"></div>
+
+  <div class="sc-wv-finalcta__inner">
+    <p class="sc-wv-finalcta__label">09 — Begin</p>
+    <h2 class="sc-wv-finalcta__title">
+      Not every wall needs more.<br>
+      It just needs the <em>right choices.</em>
+    </h2>
+    <p class="sc-wv-finalcta__body">
+      Tell us about your space — we'll help you figure out the art, the frame, and how it all comes together.
+    </p>
+    <div class="sc-wv-finalcta__cta">
+      <a href="/pages/contact" class="sc-wv-btn sc-wv-btn--primary">Contact Us →</a>
+      <a href="/pages/wall-gallery" class="sc-wv-btn sc-wv-btn--ghost-light">View Our Walls →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SpaceCrafter Section: Wall Vocab — SEO Editorial Block
+     Walls that get noticed.
+     ============================================================ -->
+<section class="sc-wv-seo" aria-label="Walls that get noticed — about WallVocab">
+  <style>
+    .sc-wv-seo {
+      background: var(--color-cream, #F0EEE9);
+      padding: 100px 40px;
+      border-top: 1px solid var(--color-taupe, #D7CBC4);
+    }
+    .sc-wv-seo__inner {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .sc-wv-seo__label {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 24px;
+    }
+    .sc-wv-seo__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 28px;
+    }
+    .sc-wv-seo__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-wv-seo__body {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 15px;
+      line-height: 1.75;
+      color: #555;
+      margin: 0 0 48px;
+    }
+    .sc-wv-seo__faq {
+      display: grid;
+      gap: 12px;
+    }
+    .sc-wv-seo__item {
+      border-top: 1px solid var(--color-taupe, #D7CBC4);
+      padding: 18px 0 18px;
+    }
+    .sc-wv-seo__item[open] {
+      padding-bottom: 22px;
+    }
+    .sc-wv-seo__summary {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--color-charcoal, #222224);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 0;
+      margin: 0;
+    }
+    .sc-wv-seo__summary::-webkit-details-marker { display: none; }
+    .sc-wv-seo__summary::after {
+      content: "›";
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-size: 28px;
+      color: var(--color-coral, #FA9A85);
+      transition: transform 0.2s ease;
+      display: inline-block;
+      line-height: 1;
+    }
+    .sc-wv-seo__item[open] .sc-wv-seo__summary::after {
+      transform: rotate(90deg);
+    }
+    .sc-wv-seo__answer {
+      font-family: var(--font-sans, 'DM Sans', sans-serif);
+      font-size: 14px;
+      line-height: 1.7;
+      color: #555;
+      margin: 14px 0 0;
+    }
+    @media (max-width: 700px) {
+      .sc-wv-seo { padding: 80px 24px; }
+    }
+  </style>
+
+  <div class="sc-wv-seo__inner">
+    <p class="sc-wv-seo__label">Walls For India</p>
+    <h2 class="sc-wv-seo__title">Walls that get <em>noticed.</em></h2>
+    <p class="sc-wv-seo__body">
+      WallVocab is the custom wall design service from SpaceCrafter Studio in Bangalore. We work with homeowners, architects, interior designers, and brand managers across India who want walls that aren't generic — walls that hold meaning, mood, and craft. From a single bedroom feature wall to entire office floors, every project is custom-curated, custom-fabricated, and custom-installed.
+    </p>
+
+    <div class="sc-wv-seo__faq">
+      <details class="sc-wv-seo__item">
+        <summary class="sc-wv-seo__summary"><h3 style="margin:0;font:inherit;color:inherit;">What kind of walls does WallVocab design?</h3></summary>
+        <p class="sc-wv-seo__answer">Interior walls in homes, offices, hospitality, retail, and clinics. Single accent walls, gallery compositions, brand walls, and full architectural finishes.</p>
+      </details>
+      <details class="sc-wv-seo__item">
+        <summary class="sc-wv-seo__summary"><h3 style="margin:0;font:inherit;color:inherit;">Where is WallVocab based?</h3></summary>
+        <p class="sc-wv-seo__answer">Our studio and 10,000 sq ft fabrication facility is in Bangalore, India. We deliver and install across India.</p>
+      </details>
+      <details class="sc-wv-seo__item">
+        <summary class="sc-wv-seo__summary"><h3 style="margin:0;font:inherit;color:inherit;">How is WallVocab different from buying art online?</h3></summary>
+        <p class="sc-wv-seo__answer">Online stores sell pieces. WallVocab designs the whole wall — the art, the frame, the finish, and the install — so the result fits the room you actually have.</p>
+      </details>
+    </div>
+  </div>
+</section>
