@@ -1,0 +1,583 @@
+<!-- ============================================================
+     SpaceCrafter Section: Collections Landing
+     Drop-in Shopify section. Replaces the current /collections page.
+     - Essentials is the only LIVE collection (clickable)
+     - All others show "Coming Soon" treatment (not clickable)
+     ============================================================ -->
+<section class="sc-cl" id="sc-cl-collections" aria-label="SpaceCrafter Studio collections">
+  <style>
+    /* ================================================================
+       SCOPED CSS — uses theme variables (with fallbacks):
+       --color-cream, --color-taupe, --color-charcoal, --color-coral
+       --font-serif, --font-sans
+       ================================================================ */
+
+    .sc-cl {
+      background: var(--color-cream, #F0EEE9);
+      padding: 120px 40px 130px;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      color: var(--color-charcoal, #222224);
+    }
+    .sc-cl__inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    .sc-cl__head {
+      max-width: 980px;
+      margin: 0 auto 72px;
+      text-align: center;
+    }
+    .sc-cl__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 24px;
+    }
+    .sc-cl__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-weight: 300;
+      font-size: clamp(40px, 5.6vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 28px;
+    }
+    .sc-cl__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-cl__intro {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #555;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* HERO / FEATURED COLLECTION */
+    .sc-cl__featured {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 56px;
+      align-items: center;
+      margin: 0 0 96px;
+      padding: 32px;
+      background: #fff;
+      border: 1px solid var(--color-taupe, #D7CBC4);
+      border-radius: 16px;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+    .sc-cl__featured:hover {
+      border-color: var(--color-coral, #FA9A85);
+      transform: translateY(-3px);
+      box-shadow: 0 24px 48px rgba(34, 34, 36, 0.06);
+    }
+    .sc-cl__featured-media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--color-taupe, #D7CBC4);
+    }
+    .sc-cl__featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .sc-cl__featured:hover .sc-cl__featured-media img {
+      transform: scale(1.04);
+    }
+    .sc-cl__featured-status {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-coral, #FA9A85);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border-radius: 100px;
+      z-index: 2;
+    }
+    .sc-cl__featured-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
+      animation: sc-cl-pulse 2.4s ease-out infinite;
+    }
+    @keyframes sc-cl-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+      80%, 100% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+    }
+    .sc-cl__featured-body { padding: 24px 16px 24px 0; }
+    .sc-cl__featured-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 18px;
+    }
+    .sc-cl__featured-title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-size: clamp(32px, 3.6vw, 44px);
+      line-height: 1.1;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 20px;
+    }
+    .sc-cl__featured-title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-cl__featured-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #555;
+      margin: 0 0 28px;
+    }
+    .sc-cl__featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      transition: gap 0.25s ease;
+    }
+    .sc-cl__featured:hover .sc-cl__featured-cta { gap: 16px; }
+
+    /* SECTION DIVIDER FOR COMING SOON */
+    .sc-cl__upnext {
+      max-width: 720px;
+      margin: 0 auto 56px;
+      text-align: center;
+    }
+    .sc-cl__upnext-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 18px;
+    }
+    .sc-cl__upnext-title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-size: clamp(28px, 3.4vw, 40px);
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 16px;
+    }
+    .sc-cl__upnext-title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-cl__upnext-sub {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #777;
+      margin: 0;
+    }
+
+    /* COMING SOON GRID */
+    .sc-cl__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .sc-cl__card {
+      background: #fff;
+      border: 1px solid var(--color-taupe, #D7CBC4);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: default;
+    }
+    .sc-cl__card-media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--color-taupe, #D7CBC4);
+    }
+    .sc-cl__card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.7) brightness(0.92);
+    }
+    /* Subtle desaturated overlay to make Coming Soon items feel locked */
+    .sc-cl__card-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(34,34,36,0.08) 0%, rgba(34,34,36,0.4) 100%);
+      pointer-events: none;
+    }
+    .sc-cl__card-status {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 34, 36, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--color-cream, #F0EEE9);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 100px;
+      z-index: 2;
+    }
+    .sc-cl__card-status svg {
+      width: 11px;
+      height: 11px;
+      flex-shrink: 0;
+    }
+
+    .sc-cl__card-body {
+      padding: 24px 24px 26px;
+    }
+    .sc-cl__card-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 10px;
+      opacity: 0.85;
+    }
+    .sc-cl__card-title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 1.2;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 8px;
+    }
+    .sc-cl__card-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #777;
+      margin: 0;
+    }
+
+    /* NOTIFY ME ROW */
+    .sc-cl__notify {
+      margin: 88px auto 0;
+      padding: 32px;
+      max-width: 880px;
+      background: var(--color-charcoal, #222224);
+      color: var(--color-cream, #F0EEE9);
+      border-radius: 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .sc-cl__notify::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.06;
+      top: -180px;
+      right: -120px;
+      pointer-events: none;
+    }
+    .sc-cl__notify-inner { position: relative; z-index: 1; }
+    .sc-cl__notify-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin: 0 0 14px;
+    }
+    .sc-cl__notify-title {
+      font-family: var(--font-serif, 'Cormorant Garamond', serif);
+      font-weight: 400;
+      font-size: clamp(24px, 3vw, 32px);
+      line-height: 1.2;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 14px;
+    }
+    .sc-cl__notify-title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+    .sc-cl__notify-sub {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(240, 238, 233, 0.7);
+      margin: 0 0 24px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .sc-cl__notify-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--color-coral, #FA9A85);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 4px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .sc-cl__notify-cta:hover {
+      background: #f8836b;
+      transform: translateY(-1px);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1000px) {
+      .sc-cl__featured {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 24px;
+      }
+      .sc-cl__featured-body { padding: 8px 8px 16px; }
+      .sc-cl__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+    @media (max-width: 600px) {
+      .sc-cl { padding: 80px 24px 90px; }
+      .sc-cl__head { margin-bottom: 56px; }
+      .sc-cl__featured { margin-bottom: 72px; }
+      .sc-cl__grid { grid-template-columns: 1fr; gap: 20px; }
+      .sc-cl__notify { margin-top: 64px; padding: 28px 24px; }
+      .sc-cl__upnext { margin-bottom: 40px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sc-cl__featured-status::before { animation: none; }
+      .sc-cl__featured:hover { transform: none; }
+      .sc-cl__featured:hover .sc-cl__featured-media img { transform: none; }
+    }
+  </style>
+
+  <div class="sc-cl__inner">
+
+    <!-- ===== HEADER ===== -->
+    <header class="sc-cl__head">
+      <p class="sc-cl__label">Collections</p>
+      <h1 class="sc-cl__title">Spatial branding, <em>by category.</em></h1>
+      <p class="sc-cl__intro">
+        Thirty years of signage, environmental graphics, and brand-built environments — organised into seven focused collections. Browse what's live; the rest are rolling out through the year.
+      </p>
+    </header>
+
+    <!-- ===== FEATURED — ESSENTIALS (LIVE) ===== -->
+    <a class="sc-cl__featured" href="/collections/essentials" aria-label="Browse the Essentials collection">
+
+      <div class="sc-cl__featured-media">
+        <span class="sc-cl__featured-status">Available Now</span>
+        <!-- Replace src with your hosted image: upload as coll-essentials.jpg/png to Shopify theme assets -->
+        <img src="{{ 'coll-essentials.png' | asset_url }}" alt="Essentials collection — ready-to-ship signage and nameplates by SpaceCrafter Studio">
+      </div>
+
+      <div class="sc-cl__featured-body">
+        <p class="sc-cl__featured-tag">01 — Live</p>
+        <h2 class="sc-cl__featured-title">The <em>Essentials.</em></h2>
+        <p class="sc-cl__featured-desc">
+          Off-the-shelf signage essentials — nameplates, room signs, door markers, directional plaques, and starter branding kits. Ready to ship, ready to install. Perfect for the small fix-ups every space needs before the bigger build.
+        </p>
+        <span class="sc-cl__featured-cta">
+          Browse Essentials
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- ===== UP NEXT HEADER ===== -->
+    <div class="sc-cl__upnext">
+      <p class="sc-cl__upnext-label">Coming Soon</p>
+      <h2 class="sc-cl__upnext-title">Six more collections, <em>rolling out.</em></h2>
+      <p class="sc-cl__upnext-sub">
+        From corporate lobbies to retail storefronts, hand-painted murals to LED installations — every category we build, packaged into shoppable collections.
+        Each one is already part of our project work today; the e-commerce experience is what's coming.
+      </p>
+    </div>
+
+    <!-- ===== COMING SOON GRID (6 cards) ===== -->
+    <div class="sc-cl__grid">
+
+      <!-- 02 Corporate -->
+      <article class="sc-cl__card">
+        <div class="sc-cl__card-media">
+          <span class="sc-cl__card-status">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Coming Soon
+          </span>
+          <!-- Replace src with hosted image: upload as coll-corporate.jpg/png -->
+          <img src="{{ 'coll-corporate.png' | asset_url }}" alt="Corporate spatial branding — backlit reception logos, boardroom walls, and office environments by SpaceCrafter Studio">
+          <div class="sc-cl__card-veil" aria-hidden="true"></div>
+        </div>
+        <div class="sc-cl__card-body">
+          <p class="sc-cl__card-tag">02 — Corporate</p>
+          <h3 class="sc-cl__card-title">Corporate &amp; Office.</h3>
+          <p class="sc-cl__card-desc">Backlit reception logos, branded boardrooms, recognition walls, frosted glass partitions, and full office spatial branding — the complete environment for serious workplaces.</p>
+        </div>
+      </article>
+
+      <!-- 03 Retail -->
+      <article class="sc-cl__card">
+        <div class="sc-cl__card-media">
+          <span class="sc-cl__card-status">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Coming Soon
+          </span>
+          <!-- Replace src with hosted image: upload as coll-retail.jpg/png -->
+          <img src="{{ 'coll-retail.png' | asset_url }}" alt="Retail spatial branding — storefront signage, channel letters, neon, and lightboxes by SpaceCrafter Studio">
+          <div class="sc-cl__card-veil" aria-hidden="true"></div>
+        </div>
+        <div class="sc-cl__card-body">
+          <p class="sc-cl__card-tag">03 — Retail</p>
+          <h3 class="sc-cl__card-title">Retail &amp; Storefront.</h3>
+          <p class="sc-cl__card-desc">Illuminated facade signage, channel letters, neon, lightboxes, lollipop signs, and in-store branding — the spatial toolkit retailers use to stop traffic and hold attention.</p>
+        </div>
+      </article>
+
+      <!-- 04 Murals -->
+      <article class="sc-cl__card">
+        <div class="sc-cl__card-media">
+          <span class="sc-cl__card-status">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Coming Soon
+          </span>
+          <!-- Replace src with hosted image: upload as coll-murals.jpg/png -->
+          <img src="{{ 'coll-murals.png' | asset_url }}" alt="Mural and wall art commissions — hand-painted and digitally printed by SpaceCrafter Studio">
+          <div class="sc-cl__card-veil" aria-hidden="true"></div>
+        </div>
+        <div class="sc-cl__card-body">
+          <p class="sc-cl__card-tag">04 — Murals</p>
+          <h3 class="sc-cl__card-title">Murals &amp; Wall Art.</h3>
+          <p class="sc-cl__card-desc">Hand-painted and digitally printed murals for hotels, cafes, hospital corridors, school playzones, and brand storytelling walls — commissioned, designed, and installed end-to-end.</p>
+        </div>
+      </article>
+
+      <!-- 05 Wayfinding -->
+      <article class="sc-cl__card">
+        <div class="sc-cl__card-media">
+          <span class="sc-cl__card-status">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Coming Soon
+          </span>
+          <!-- Replace src with hosted image: upload as coll-wayfinding.jpg/png -->
+          <img src="{{ 'coll-wayfinding.png' | asset_url }}" alt="Wayfinding and navigation systems — directional pylons and signage by SpaceCrafter Studio">
+          <div class="sc-cl__card-veil" aria-hidden="true"></div>
+        </div>
+        <div class="sc-cl__card-body">
+          <p class="sc-cl__card-tag">05 — Wayfinding</p>
+          <h3 class="sc-cl__card-title">Wayfinding &amp; Navigation.</h3>
+          <p class="sc-cl__card-desc">Directional pylons, ceiling-hung signs, floor markers, room IDs, and complete navigation systems for hospitals, campuses, malls, hotels, and corporate facilities.</p>
+        </div>
+      </article>
+
+      <!-- 06 LED Panels -->
+      <article class="sc-cl__card">
+        <div class="sc-cl__card-media">
+          <span class="sc-cl__card-status">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Coming Soon
+          </span>
+          <!-- Replace src with hosted image: upload as coll-led.jpg/png -->
+          <img src="{{ 'coll-led.png' | asset_url }}" alt="LED video walls and digital signage — indoor and outdoor installations by SpaceCrafter Studio">
+          <div class="sc-cl__card-veil" aria-hidden="true"></div>
+        </div>
+        <div class="sc-cl__card-body">
+          <p class="sc-cl__card-tag">06 — LED Panels</p>
+          <h3 class="sc-cl__card-title">LED Walls &amp; Digital.</h3>
+          <p class="sc-cl__card-desc">Indoor and outdoor LED video walls, digital standees, interactive kiosks, and managed content delivery — for malls, lobbies, events, and brand activations.</p>
+        </div>
+      </article>
+
+      <!-- 07 Wall Finishings -->
+      <article class="sc-cl__card">
+        <div class="sc-cl__card-media">
+          <span class="sc-cl__card-status">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Coming Soon
+          </span>
+          <!-- Replace src with hosted image: upload as coll-finishings.jpg/png -->
+          <img src="{{ 'coll-finishings.png' | asset_url }}" alt="Architectural wall finishings — fluted panels, ACP cladding, limewash, textured plaster by SpaceCrafter Studio">
+          <div class="sc-cl__card-veil" aria-hidden="true"></div>
+        </div>
+        <div class="sc-cl__card-body">
+          <p class="sc-cl__card-tag">07 — Wall Finishings</p>
+          <h3 class="sc-cl__card-title">Wall Finishings.</h3>
+          <p class="sc-cl__card-desc">Architectural finishes — fluted panels, ACP cladding, limewash, textured plaster, custom wallpaper — sourced, fabricated, and installed for the surfaces that frame everything else.</p>
+        </div>
+      </article>
+
+    </div>  <!-- /.sc-cl__grid -->
+
+    <!-- ===== NOTIFY / CONTACT ===== -->
+    <div class="sc-cl__notify">
+      <div class="sc-cl__notify-inner">
+        <p class="sc-cl__notify-label">Need a project quoted today?</p>
+        <h2 class="sc-cl__notify-title">The collections are coming. <em>The work is already happening.</em></h2>
+        <p class="sc-cl__notify-sub">
+          Every category above is something we design, fabricate, and install today — for clients across India. We're packaging it all into shoppable collections soon. In the meantime, talk to us about your project.
+        </p>
+        <a class="sc-cl__notify-cta" href="/pages/contact" aria-label="Contact SpaceCrafter Studio">
+          Request A Quote
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,2583 @@
+<!-- SpaceCrafter Industry Landing Page Template — v2 -->
+<!-- Demo: Hospitality | Replace content per industry -->
+<!-- Drop each <section> into Shopify Custom HTML sections -->
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 1 — HERO                                           -->
+<!-- Dark charcoal hero with blueprint background overlay        -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-hero" itemscope itemtype="https://schema.org/Service">
+  <style>
+    /* Expects: --color-cream, --color-taupe, --color-charcoal, --color-coral, --font-serif, --font-sans */
+
+    .sc-lp-hero {
+      background: var(--color-charcoal, #222224);
+      position: relative;
+      overflow: hidden;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    /* Blueprint background overlay */
+    .sc-lp-hero__blueprint {
+      position: absolute;
+      inset: 0;
+      opacity: 0.06;
+      background-image: url('https://cdn.shopify.com/s/files/1/0692/0676/9850/files/img-hospitality.jpg?v=1773477978');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(1.8) contrast(0.7);
+    }
+
+    /* Subtle coral accent circle */
+    .sc-lp-hero__accent {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.06;
+      top: -100px;
+      right: -100px;
+      pointer-events: none;
+    }
+
+    .sc-lp-hero__inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 140px 40px 120px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sc-lp-hero__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sc-lp-hero__label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-hero__title {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .sc-lp-hero__title em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-hero__subtitle {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--color-taupe, #D7CBC4);
+      max-width: 480px;
+      margin: 0 0 48px;
+    }
+
+    .sc-lp-hero__actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .sc-lp-hero__btn-primary {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--color-coral, #FA9A85);
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sc-lp-hero__btn-primary:hover {
+      background: var(--color-coral-hover, #f8836b);
+      transform: translateY(-1px);
+    }
+
+    .sc-lp-hero__btn-outline {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      color: var(--color-cream, #F0EEE9);
+      padding: 15px 32px;
+      border-radius: 4px;
+      border: 1.5px solid rgba(240, 238, 233, 0.25);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .sc-lp-hero__btn-outline:hover {
+      border-color: var(--color-cream, #F0EEE9);
+      background: rgba(240, 238, 233, 0.06);
+    }
+
+    /* Right side — featured image */
+    .sc-lp-hero__visual {
+      position: relative;
+    }
+
+    .sc-lp-hero__image {
+      width: 100%;
+      border-radius: 12px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border: 1px solid rgba(215, 203, 196, 0.12);
+    }
+
+    .sc-lp-hero__image-caption {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 13px;
+      color: rgba(215, 203, 196, 0.6);
+      margin-top: 12px;
+      text-align: right;
+    }
+
+    /* Trust badges below hero image */
+    .sc-lp-hero__badges {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .sc-lp-hero__badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 13px;
+      color: var(--color-taupe, #D7CBC4);
+      letter-spacing: 0.04em;
+    }
+
+    .sc-lp-hero__badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-lp-hero__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 120px 24px 80px;
+      }
+      .sc-lp-hero__visual { order: -1; }
+      .sc-lp-hero { min-height: auto; }
+    }
+
+    @media (max-width: 600px) {
+      .sc-lp-hero__inner { padding: 100px 20px 64px; }
+      .sc-lp-hero__actions { flex-direction: column; align-items: stretch; }
+      .sc-lp-hero__btn-primary,
+      .sc-lp-hero__btn-outline { text-align: center; justify-content: center; }
+      .sc-lp-hero__badges { flex-wrap: wrap; gap: 16px; }
+    }
+
+    /* Shopify reset */
+    .sc-lp-hero *,
+    .sc-lp-hero *::before,
+    .sc-lp-hero *::after {
+      box-sizing: border-box;
+    }
+    .sc-lp-hero h1,
+    .sc-lp-hero h2,
+    .sc-lp-hero p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-hero__blueprint" role="presentation"></div>
+  <div class="sc-lp-hero__accent" role="presentation"></div>
+
+  <div class="sc-lp-hero__inner">
+    <div class="sc-lp-hero__content">
+      <div class="sc-lp-hero__label">Hospitality Branding</div>
+      <h1 class="sc-lp-hero__title" itemprop="name">
+        Hospitality Spaces That Welcome, Impress &amp; <em>Build Loyalty.</em>
+      </h1>
+      <p class="sc-lp-hero__subtitle" itemprop="description">
+        We transform hotels, resorts, and restaurants into immersive brand environments — from lobby signage and room wayfinding to LED displays and statement murals that leave lasting impressions.
+      </p>
+      <div class="sc-lp-hero__actions">
+        <a href="/pages/contact-us" class="sc-lp-hero__btn-primary">
+          Get Free Space Audit
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="/pages/spacecrafter-services" class="sc-lp-hero__btn-outline">View Portfolio</a>
+      </div>
+    </div>
+
+    <div class="sc-lp-hero__visual">
+      <!-- Replace with actual project photo for each industry -->
+      <img class="sc-lp-hero__image"
+           src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/hero-hospitality.jpg?v=1773477978"
+           alt="Blueprint floor plan of a luxury hotel lobby with branded signage markers by SpaceCrafter Studio"
+           loading="eager"
+           itemprop="image">
+      <div class="sc-lp-hero__badges">
+        <span class="sc-lp-hero__badge"><span class="sc-lp-hero__badge-dot"></span>300+ Properties</span>
+        <span class="sc-lp-hero__badge"><span class="sc-lp-hero__badge-dot"></span>30+ Years</span>
+        <span class="sc-lp-hero__badge"><span class="sc-lp-hero__badge-dot"></span>ISO Certified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 2 — PAIN POINTS                                    -->
+<!-- Problem-awareness section with animated blueprint illustrations -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-pain">
+  <style>
+    .sc-lp-pain {
+      background: var(--color-cream, #F0EEE9);
+      padding: 100px 40px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-lp-pain__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sc-lp-pain__header {
+      max-width: 640px;
+      margin-bottom: 56px;
+    }
+
+    .sc-lp-pain__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-lp-pain__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+
+    .sc-lp-pain__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--color-taupe, #D7CBC4);
+      border: 1px solid var(--color-taupe, #D7CBC4);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .sc-lp-pain__card {
+      background: #fff;
+      padding: 36px 28px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .sc-lp-pain__card.sc-lp-pain--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sc-lp-pain__card:nth-child(1) { transition-delay: 0s; }
+    .sc-lp-pain__card:nth-child(2) { transition-delay: 0.12s; }
+    .sc-lp-pain__card:nth-child(3) { transition-delay: 0.24s; }
+    .sc-lp-pain__card:nth-child(4) { transition-delay: 0.36s; }
+
+    /* Blueprint illustration area */
+    .sc-lp-pain__card-illust {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-charcoal, #222224);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .sc-lp-pain__card-illust svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: var(--color-cream, #F0EEE9);
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sc-lp-pain__card-illust svg .sc-coral {
+      stroke: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-pain__card-illust svg .sc-taupe {
+      stroke: var(--color-taupe, #D7CBC4);
+      stroke-dasharray: 3 2;
+      stroke-width: 0.8;
+    }
+
+    .sc-lp-pain__card-title {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-charcoal, #222224);
+      margin-bottom: 10px;
+    }
+
+    .sc-lp-pain__card-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      line-height: 1.65;
+      color: #666;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-lp-pain { padding: 80px 24px; }
+      .sc-lp-pain__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .sc-lp-pain { padding: 64px 20px; }
+      .sc-lp-pain__grid { grid-template-columns: 1fr; }
+    }
+
+    /* Shopify reset */
+    .sc-lp-pain *,
+    .sc-lp-pain *::before,
+    .sc-lp-pain *::after {
+      box-sizing: border-box;
+    }
+    .sc-lp-pain h1,
+    .sc-lp-pain h2,
+    .sc-lp-pain p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-pain__inner">
+    <div class="sc-lp-pain__header">
+      <div class="sc-lp-pain__label">01 — The Problem</div>
+      <h2 class="sc-lp-pain__heading">The Hidden Cost of Unbranded Hospitality Spaces</h2>
+    </div>
+
+    <div class="sc-lp-pain__grid" id="scLpPainGrid">
+      <div class="sc-lp-pain__card">
+        <div class="sc-lp-pain__card-illust">
+          <!-- Blueprint: Guest Navigation Chaos — hotel corridor with doors and coral question mark -->
+          <svg viewBox="0 0 36 36">
+            <!-- Corridor walls -->
+            <rect x="2" y="4" width="32" height="28" rx="1" />
+            <!-- Door frames on left wall -->
+            <rect x="2" y="8" width="3" height="6" rx="0.5" />
+            <rect x="2" y="20" width="3" height="6" rx="0.5" />
+            <!-- Door frames on right wall -->
+            <rect x="31" y="8" width="3" height="6" rx="0.5" />
+            <rect x="31" y="20" width="3" height="6" rx="0.5" />
+            <!-- Corridor perspective lines -->
+            <line x1="10" y1="4" x2="10" y2="32" />
+            <line x1="26" y1="4" x2="26" y2="32" />
+            <!-- Taupe dimension lines -->
+            <line class="sc-taupe" x1="12" y1="6" x2="24" y2="6" />
+            <line class="sc-taupe" x1="12" y1="30" x2="24" y2="30" />
+            <!-- Coral question mark -->
+            <path class="sc-coral" d="M16 14 Q16 11 18 11 Q20 11 20 14 Q20 16 18 17" />
+            <circle class="sc-coral" cx="18" cy="20" r="0.8" fill="var(--color-coral, #FA9A85)" />
+          </svg>
+        </div>
+        <div class="sc-lp-pain__card-title">Guest Navigation Chaos</div>
+        <p class="sc-lp-pain__card-text">Confused guests wandering hallways looking for the pool, spa, or restaurant — calling the front desk for directions instead of enjoying their stay.</p>
+      </div>
+      <div class="sc-lp-pain__card">
+        <div class="sc-lp-pain__card-illust">
+          <!-- Blueprint: Forgettable First Impressions — reception desk with empty wall, coral brand markers -->
+          <svg viewBox="0 0 36 36">
+            <!-- Reception desk -->
+            <rect x="4" y="22" width="28" height="10" rx="1" />
+            <line x1="18" y1="22" x2="18" y2="32" />
+            <!-- Empty wall above -->
+            <rect x="6" y="4" width="24" height="14" rx="1" />
+            <!-- Taupe X crosses (empty wall) -->
+            <line class="sc-taupe" x1="8" y1="6" x2="16" y2="16" />
+            <line class="sc-taupe" x1="16" y1="6" x2="8" y2="16" />
+            <line class="sc-taupe" x1="20" y1="6" x2="28" y2="16" />
+            <line class="sc-taupe" x1="28" y1="6" x2="20" y2="16" />
+            <!-- Coral brand markers where identity should be -->
+            <line class="sc-coral" x1="14" y1="9" x2="22" y2="9" />
+            <line class="sc-coral" x1="16" y1="12" x2="20" y2="12" />
+          </svg>
+        </div>
+        <div class="sc-lp-pain__card-title">Forgettable First Impressions</div>
+        <p class="sc-lp-pain__card-text">A generic lobby with no visual identity. Guests check in and check out without remembering your brand — making repeat visits unlikely.</p>
+      </div>
+      <div class="sc-lp-pain__card">
+        <div class="sc-lp-pain__card-illust">
+          <!-- Blueprint: Inconsistent Brand Story — three disconnected room boxes with coral dashed breaks -->
+          <svg viewBox="0 0 36 36">
+            <!-- Three disconnected rooms at different levels -->
+            <rect x="2" y="4" width="8" height="10" rx="1" />
+            <rect x="14" y="12" width="8" height="10" rx="1" />
+            <rect x="26" y="6" width="8" height="10" rx="1" />
+            <!-- Coral dashed breaks between rooms -->
+            <line class="sc-coral" x1="10" y1="9" x2="14" y2="17" stroke-dasharray="2 2" />
+            <line class="sc-coral" x1="22" y1="17" x2="26" y2="11" stroke-dasharray="2 2" />
+            <!-- Base line -->
+            <line x1="2" y1="30" x2="34" y2="30" />
+            <!-- Taupe dimension ticks -->
+            <line class="sc-taupe" x1="6" y1="30" x2="6" y2="33" />
+            <line class="sc-taupe" x1="18" y1="30" x2="18" y2="33" />
+            <line class="sc-taupe" x1="30" y1="30" x2="30" y2="33" />
+          </svg>
+        </div>
+        <div class="sc-lp-pain__card-title">Inconsistent Brand Story</div>
+        <p class="sc-lp-pain__card-text">The restaurant feels premium, the corridors feel dated, the pool area feels like an afterthought — a disjointed experience that erodes brand trust.</p>
+      </div>
+      <div class="sc-lp-pain__card">
+        <div class="sc-lp-pain__card-illust">
+          <!-- Blueprint: Lost Revenue Opportunities — wall with empty frames, coral circle/slash symbol -->
+          <svg viewBox="0 0 36 36">
+            <!-- Wall -->
+            <rect x="2" y="4" width="32" height="24" rx="1" />
+            <!-- Empty frames on wall -->
+            <rect x="5" y="7" width="8" height="6" rx="0.5" />
+            <rect x="15" y="7" width="8" height="6" rx="0.5" />
+            <rect x="25" y="7" width="8" height="6" rx="0.5" />
+            <rect x="10" y="16" width="8" height="6" rx="0.5" />
+            <!-- Coral circle with line through it (missed opportunity) -->
+            <circle class="sc-coral" cx="26" cy="19" r="5" />
+            <line class="sc-coral" x1="22.5" y1="22.5" x2="29.5" y2="15.5" />
+            <!-- Floor line -->
+            <line x1="2" y1="32" x2="34" y2="32" />
+            <line class="sc-taupe" x1="2" y1="28" x2="34" y2="28" />
+          </svg>
+        </div>
+        <div class="sc-lp-pain__card-title">Lost Revenue Opportunities</div>
+        <p class="sc-lp-pain__card-text">Blank walls in hallways, elevators, and common areas — missing chances to upsell spa packages, dining experiences, and local tours.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var grid = document.getElementById('scLpPainGrid');
+      if (!grid) return;
+      var cards = grid.querySelectorAll('.sc-lp-pain__card');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            cards.forEach(function(card) { card.classList.add('sc-lp-pain--visible'); });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(grid);
+    })();
+  </script>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 3 — DIFFERENTIATOR + STAT                          -->
+<!-- Big stat callout with editorial layout                     -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-diff">
+  <style>
+    .sc-lp-diff {
+      background: var(--color-charcoal, #222224);
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-lp-diff__accent {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.05;
+      bottom: -200px;
+      left: -200px;
+      pointer-events: none;
+    }
+
+    .sc-lp-diff__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sc-lp-diff__illust-block {
+      padding: 40px 32px;
+      border: 1px solid rgba(215, 203, 196, 0.12);
+      border-radius: 12px;
+      background: rgba(240, 238, 233, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sc-lp-diff__illust-block svg {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      fill: none;
+      stroke: var(--color-cream, #F0EEE9);
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sc-lp-diff__illust-block svg .sc-coral {
+      stroke: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-diff__illust-block svg .sc-coral-fill {
+      fill: var(--color-coral, #FA9A85);
+      fill-opacity: 0.12;
+      stroke: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-diff__illust-block svg .sc-taupe {
+      stroke: var(--color-taupe, #D7CBC4);
+      stroke-dasharray: 4 3;
+      stroke-width: 0.7;
+    }
+
+    .sc-lp-diff__content {}
+
+    .sc-lp-diff__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 16px;
+    }
+
+    .sc-lp-diff__quote {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(24px, 2.8vw, 34px);
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 28px;
+    }
+
+    .sc-lp-diff__body {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--color-taupe, #D7CBC4);
+      margin: 0;
+      max-width: 540px;
+    }
+
+    @media (max-width: 900px) {
+      .sc-lp-diff { padding: 80px 24px; }
+      .sc-lp-diff__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .sc-lp-diff__stat-block {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+    }
+    @media (max-width: 600px) {
+      .sc-lp-diff { padding: 64px 20px; }
+    }
+
+    /* Shopify reset */
+    .sc-lp-diff *,
+    .sc-lp-diff *::before,
+    .sc-lp-diff *::after {
+      box-sizing: border-box;
+    }
+    .sc-lp-diff h1,
+    .sc-lp-diff h2,
+    .sc-lp-diff p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-diff__accent" role="presentation"></div>
+  <div class="sc-lp-diff__inner">
+    <div class="sc-lp-diff__illust-block">
+      <!-- Blueprint: Hotel building cross-section showing branded touchpoints across lobby, corridors, rooms -->
+      <svg viewBox="0 0 200 180">
+        <!-- Building outline — taller hotel structure -->
+        <rect x="20" y="10" width="160" height="155" rx="3" />
+        <!-- Roof / top line -->
+        <line x1="20" y1="10" x2="100" y2="2" />
+        <line x1="180" y1="10" x2="100" y2="2" />
+        <!-- Floor lines (3 floors) -->
+        <line class="sc-taupe" x1="20" y1="55" x2="180" y2="55" />
+        <line class="sc-taupe" x1="20" y1="100" x2="180" y2="100" />
+        <line class="sc-taupe" x1="20" y1="140" x2="180" y2="140" />
+
+        <!-- Floor 3 (top) — rooms with partitions -->
+        <rect x="28" y="16" width="32" height="32" rx="1" />
+        <rect x="68" y="16" width="28" height="32" rx="1" />
+        <rect x="104" y="16" width="28" height="32" rx="1" />
+        <rect x="140" y="16" width="32" height="32" rx="1" />
+        <!-- Room number signage (coral) -->
+        <rect class="sc-coral-fill" x="30" y="18" width="10" height="5" rx="1" />
+        <rect class="sc-coral-fill" x="70" y="18" width="10" height="5" rx="1" />
+        <rect class="sc-coral-fill" x="106" y="18" width="10" height="5" rx="1" />
+        <rect class="sc-coral-fill" x="142" y="18" width="10" height="5" rx="1" />
+
+        <!-- Floor 2 (middle) — corridor with wayfinding -->
+        <rect x="28" y="60" width="32" height="32" rx="1" />
+        <rect x="68" y="60" width="28" height="32" rx="1" />
+        <rect x="104" y="60" width="28" height="32" rx="1" />
+        <rect x="140" y="60" width="32" height="32" rx="1" />
+        <!-- Corridor wayfinding arrows (coral) -->
+        <line class="sc-coral" x1="60" y1="76" x2="68" y2="76" />
+        <polyline class="sc-coral" points="65,73 68,76 65,79" />
+        <line class="sc-coral" x1="132" y1="76" x2="140" y2="76" />
+        <polyline class="sc-coral" points="137,73 140,76 137,79" />
+
+        <!-- Floor 1 (bottom) — lobby level -->
+        <!-- Restaurant area (left) -->
+        <rect x="28" y="105" width="44" height="30" rx="1" />
+        <!-- Digital menu board (coral filled) -->
+        <rect class="sc-coral-fill" x="34" y="108" width="14" height="10" rx="1" />
+        <!-- Lobby area (center) -->
+        <rect x="80" y="105" width="40" height="30" rx="1" />
+        <!-- Lobby digital display (coral filled) -->
+        <rect class="sc-coral-fill" x="86" y="108" width="28" height="10" rx="1" />
+        <!-- Lounge / bar (right) -->
+        <rect x="128" y="105" width="44" height="30" rx="1" />
+
+        <!-- Lobby entrance at bottom — revolving door -->
+        <rect x="88" y="140" width="24" height="25" rx="1" />
+        <!-- Revolving door lines -->
+        <line x1="100" y1="140" x2="100" y2="165" />
+        <line x1="92" y1="152" x2="108" y2="152" />
+        <!-- Entrance signage (coral) -->
+        <rect class="sc-coral-fill" x="90" y="142" width="20" height="5" rx="1" />
+
+        <!-- Person silhouettes -->
+        <!-- Person in lobby -->
+        <circle cx="95" cy="118" r="2.5" />
+        <line x1="95" y1="120.5" x2="95" y2="128" />
+        <line x1="92" y1="124" x2="98" y2="124" />
+        <!-- Person in corridor -->
+        <circle cx="98" cy="72" r="2.5" />
+        <line x1="98" y1="74.5" x2="98" y2="82" />
+        <line x1="95" y1="78" x2="101" y2="78" />
+        <!-- Person at entrance -->
+        <circle cx="105" cy="148" r="2" />
+        <line x1="105" y1="150" x2="105" y2="156" />
+
+        <!-- Dimension lines (taupe) -->
+        <line class="sc-taupe" x1="12" y1="10" x2="12" y2="165" />
+        <line class="sc-taupe" x1="8" y1="10" x2="16" y2="10" />
+        <line class="sc-taupe" x1="8" y1="165" x2="16" y2="165" />
+        <!-- Horizontal dimension -->
+        <line class="sc-taupe" x1="20" y1="173" x2="180" y2="173" />
+        <line class="sc-taupe" x1="20" y1="170" x2="20" y2="176" />
+        <line class="sc-taupe" x1="180" y1="170" x2="180" y2="176" />
+      </svg>
+    </div>
+    <div class="sc-lp-diff__content">
+      <div class="sc-lp-diff__label">02 — The SpaceCrafter Difference</div>
+      <p class="sc-lp-diff__quote">A hotel isn't just accommodation — it's a brand experience where every lobby wall, corridor sign, and dining space should reinforce luxury, guide effortlessly, and create lasting memories.</p>
+      <p class="sc-lp-diff__body">We're not sign vendors. We're brand environment architects who transform every surface — walls, glass, screens, ceilings — into strategic brand touchpoints. Design-first, AI-enabled, and built to last.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 4 — PROCESS (AI-POWERED)                           -->
+<!-- 4-step process with blueprint accent lines                 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-process">
+  <style>
+    .sc-lp-process {
+      background: var(--color-cream, #F0EEE9);
+      padding: 100px 40px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-lp-process__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sc-lp-process__header {
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+
+    .sc-lp-process__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-lp-process__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+
+    .sc-lp-process__heading em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-process__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    /* Connecting line */
+    .sc-lp-process__grid::before {
+      content: '';
+      position: absolute;
+      top: 52px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: var(--color-taupe, #D7CBC4);
+      z-index: 0;
+    }
+
+    .sc-lp-process__step {
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .sc-lp-process__step.sc-lp-process--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sc-lp-process__step:nth-child(1) { transition-delay: 0s; }
+    .sc-lp-process__step:nth-child(2) { transition-delay: 0.15s; }
+    .sc-lp-process__step:nth-child(3) { transition-delay: 0.3s; }
+    .sc-lp-process__step:nth-child(4) { transition-delay: 0.45s; }
+
+    .sc-lp-process__step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--color-charcoal, #222224);
+      color: var(--color-coral, #FA9A85);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+
+    .sc-lp-process__step-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 16px;
+      stroke: var(--color-coral, #FA9A85);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sc-lp-process__step-title {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-charcoal, #222224);
+      margin-bottom: 10px;
+    }
+
+    .sc-lp-process__step-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      line-height: 1.65;
+      color: #777;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-lp-process { padding: 80px 24px; }
+      .sc-lp-process__grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .sc-lp-process__grid::before { display: none; }
+    }
+    @media (max-width: 600px) {
+      .sc-lp-process { padding: 64px 20px; }
+      .sc-lp-process__grid { grid-template-columns: 1fr; gap: 36px; }
+      .sc-lp-process__step { text-align: left; display: flex; gap: 16px; align-items: flex-start; padding: 0; }
+      .sc-lp-process__step-num { flex-shrink: 0; margin-bottom: 0; }
+    }
+
+    /* Shopify reset */
+    .sc-lp-process *,
+    .sc-lp-process *::before,
+    .sc-lp-process *::after {
+      box-sizing: border-box;
+    }
+    .sc-lp-process h1,
+    .sc-lp-process h2,
+    .sc-lp-process p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-process__inner">
+    <div class="sc-lp-process__header">
+      <div class="sc-lp-process__label">03 — Our Process</div>
+      <h2 class="sc-lp-process__heading">AI-Powered Brand <em>Design Process</em></h2>
+    </div>
+
+    <div class="sc-lp-process__grid" id="scLpProcessGrid">
+      <div class="sc-lp-process__step">
+        <div class="sc-lp-process__step-num">1</div>
+        <svg class="sc-lp-process__step-icon" viewBox="0 0 36 36"><rect x="4" y="4" width="28" height="28" rx="2"/><line x1="4" y1="14" x2="32" y2="14"/><line x1="14" y1="14" x2="14" y2="32"/></svg>
+        <div class="sc-lp-process__step-title">Smart Space Analysis</div>
+        <p class="sc-lp-process__step-text">Our AI analyses floor plans, guest flow patterns, and brand guidelines to create a comprehensive hospitality branding strategy.</p>
+      </div>
+      <div class="sc-lp-process__step">
+        <div class="sc-lp-process__step-num">2</div>
+        <svg class="sc-lp-process__step-icon" viewBox="0 0 36 36"><circle cx="18" cy="18" r="12"/><path d="M18 6 L18 18 L26 22"/></svg>
+        <div class="sc-lp-process__step-title">Predictive Modelling</div>
+        <p class="sc-lp-process__step-text">We simulate guest journeys to identify optimal placement for lobby art, wayfinding, digital displays, and dining experience elements.</p>
+      </div>
+      <div class="sc-lp-process__step">
+        <div class="sc-lp-process__step-num">3</div>
+        <svg class="sc-lp-process__step-icon" viewBox="0 0 36 36"><path d="M8 28 L14 16 L20 22 L28 8"/><circle cx="28" cy="8" r="3"/></svg>
+        <div class="sc-lp-process__step-title">Rapid Visualisation</div>
+        <p class="sc-lp-process__step-text">Upload your property photos — receive AI-generated photorealistic renders showing your complete brand transformation.</p>
+      </div>
+      <div class="sc-lp-process__step">
+        <div class="sc-lp-process__step-num">4</div>
+        <svg class="sc-lp-process__step-icon" viewBox="0 0 36 36"><path d="M6 20 L14 28 L30 8"/></svg>
+        <div class="sc-lp-process__step-title">Precision Execution</div>
+        <p class="sc-lp-process__step-text">ISO-certified manufacturing and zero-downtime installation. We work nights and between check-out windows to avoid guest disruption.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var grid = document.getElementById('scLpProcessGrid');
+      if (!grid) return;
+      var steps = grid.querySelectorAll('.sc-lp-process__step');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            steps.forEach(function(step) { step.classList.add('sc-lp-process--visible'); });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(grid);
+    })();
+  </script>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 5 — SOLUTIONS (Blueprint Service Image Cards)      -->
+<!-- 7 universal services with blueprint illustration cards     -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-solutions">
+  <style>
+    .sc-lp-solutions {
+      background: var(--color-charcoal, #222224);
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-lp-solutions__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-lp-solutions__header {
+      max-width: 540px;
+      margin-bottom: 56px;
+    }
+
+    .sc-lp-solutions__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-lp-solutions__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0;
+    }
+
+    .sc-lp-solutions__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    /* Center the second row (3 items) */
+    .sc-lp-solutions__grid .sc-lp-solutions__card:nth-child(5) {
+      grid-column: 1 / 2;
+    }
+    .sc-lp-solutions__grid .sc-lp-solutions__card:nth-child(6) {
+      grid-column: 2 / 3;
+    }
+    .sc-lp-solutions__grid .sc-lp-solutions__card:nth-child(7) {
+      grid-column: 3 / 4;
+    }
+
+    .sc-lp-solutions__card {
+      background: rgba(240, 238, 233, 0.04);
+      border: 1px solid rgba(215, 203, 196, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .sc-lp-solutions__card:hover {
+      border-color: rgba(215, 203, 196, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .sc-lp-solutions__card-img-wrap {
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+    }
+
+    .sc-lp-solutions__card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block;
+    }
+
+    .sc-lp-solutions__card:hover .sc-lp-solutions__card-img {
+      transform: scale(1.06);
+    }
+
+    .sc-lp-solutions__card-body {
+      padding: 20px 20px 24px;
+    }
+
+    .sc-lp-solutions__card-title {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--color-cream, #F0EEE9);
+      margin-bottom: 8px;
+    }
+
+    .sc-lp-solutions__card-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--color-taupe, #D7CBC4);
+      opacity: 0.8;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-lp-solutions { padding: 80px 24px; }
+      .sc-lp-solutions__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .sc-lp-solutions__grid .sc-lp-solutions__card:nth-child(5),
+      .sc-lp-solutions__grid .sc-lp-solutions__card:nth-child(6),
+      .sc-lp-solutions__grid .sc-lp-solutions__card:nth-child(7) {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .sc-lp-solutions { padding: 64px 20px; }
+      .sc-lp-solutions__grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* Shopify reset */
+    .sc-lp-solutions *,
+    .sc-lp-solutions *::before,
+    .sc-lp-solutions *::after {
+      box-sizing: border-box;
+    }
+    .sc-lp-solutions h1,
+    .sc-lp-solutions h2,
+    .sc-lp-solutions p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-solutions__inner">
+    <div class="sc-lp-solutions__header">
+      <div class="sc-lp-solutions__label">04 — What We Provide</div>
+      <h2 class="sc-lp-solutions__heading">Solutions We Bring to Your Property</h2>
+    </div>
+
+    <div class="sc-lp-solutions__grid">
+      <a href="/pages/multilevel-wayfinding" class="sc-lp-solutions__card">
+        <div class="sc-lp-solutions__card-img-wrap">
+          <img class="sc-lp-solutions__card-img" src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/svc-wayfinding_2db7017a-6912-409c-80e9-b910245d18ab.jpg?v=1773478004" alt="Wayfinding systems blueprint illustration" loading="lazy">
+        </div>
+        <div class="sc-lp-solutions__card-body">
+          <div class="sc-lp-solutions__card-title">Wayfinding</div>
+          <p class="sc-lp-solutions__card-text">Intuitive directional systems that guide guests seamlessly from lobby to room, pool, spa, and dining</p>
+        </div>
+      </a>
+
+      <a href="/pages/external-signage" class="sc-lp-solutions__card">
+        <div class="sc-lp-solutions__card-img-wrap">
+          <img class="sc-lp-solutions__card-img" src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/svc-signages_1baa86bc-df45-4aa0-af24-08c479d0d491.jpg?v=1773478004" alt="Signage solutions blueprint illustration" loading="lazy">
+        </div>
+        <div class="sc-lp-solutions__card-body">
+          <div class="sc-lp-solutions__card-title">Signages</div>
+          <p class="sc-lp-solutions__card-text">From grand entrance identity to room numbers — branded signage that communicates luxury at every touchpoint</p>
+        </div>
+      </a>
+
+      <a href="/pages/murals" class="sc-lp-solutions__card">
+        <div class="sc-lp-solutions__card-img-wrap">
+          <img class="sc-lp-solutions__card-img" src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/svc-mural_00db1e69-6069-4c99-a86c-24b1e7101bd3.jpg?v=1773478003" alt="Murals blueprint illustration" loading="lazy">
+        </div>
+        <div class="sc-lp-solutions__card-body">
+          <div class="sc-lp-solutions__card-title">Murals</div>
+          <p class="sc-lp-solutions__card-text">Statement wall art that transforms blank corridors and dining spaces into immersive brand stories</p>
+        </div>
+      </a>
+
+      <a href="/pages/wall-graphics" class="sc-lp-solutions__card">
+        <div class="sc-lp-solutions__card-img-wrap">
+          <img class="sc-lp-solutions__card-img" src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/svc-wallart_d33c5f7e-86cb-4d5c-a894-8ef82a5f8dd3.jpg?v=1773478003" alt="Wall art blueprint illustration" loading="lazy">
+        </div>
+        <div class="sc-lp-solutions__card-body">
+          <div class="sc-lp-solutions__card-title">Wall Art</div>
+          <p class="sc-lp-solutions__card-text">Curated visual installations that reinforce your property's theme across lobbies and feature walls</p>
+        </div>
+      </a>
+
+      <a href="/pages/spacecrafter-services" class="sc-lp-solutions__card">
+        <div class="sc-lp-solutions__card-img-wrap">
+          <img class="sc-lp-solutions__card-img" src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/svc-frames_d1232c0d-de9a-4095-8e97-f14cb09d23b3.jpg?v=1773478004" alt="Frames blueprint illustration" loading="lazy">
+        </div>
+        <div class="sc-lp-solutions__card-body">
+          <div class="sc-lp-solutions__card-title">Frames</div>
+          <p class="sc-lp-solutions__card-text">Precision-crafted display systems for awards, heritage photos, and branded hospitality content</p>
+        </div>
+      </a>
+
+      <a href="/pages/spacecrafter-services" class="sc-lp-solutions__card">
+        <div class="sc-lp-solutions__card-img-wrap">
+          <img class="sc-lp-solutions__card-img" src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/svc-ledscreen_c60122d2-53f7-406b-a75c-8a03f5b4e7ba.jpg?v=1773478005" alt="LED screens blueprint illustration" loading="lazy">
+        </div>
+        <div class="sc-lp-solutions__card-body">
+          <div class="sc-lp-solutions__card-title">LED Screens</div>
+          <p class="sc-lp-solutions__card-text">Dynamic digital displays for lobby messaging, restaurant menus, event schedules, and promotions</p>
+        </div>
+      </a>
+
+      <a href="/pages/spacecrafter-services" class="sc-lp-solutions__card">
+        <div class="sc-lp-solutions__card-img-wrap">
+          <img class="sc-lp-solutions__card-img" src="https://cdn.shopify.com/s/files/1/0692/0676/9850/files/svc-timeline.jpg?v=1773471077" alt="Digital timeline wall blueprint illustration" loading="lazy">
+        </div>
+        <div class="sc-lp-solutions__card-body">
+          <div class="sc-lp-solutions__card-title">Digital Timeline Wall</div>
+          <p class="sc-lp-solutions__card-text">Interactive heritage walls that showcase your property's story, milestones, and legacy</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 6 — PORTFOLIO GALLERY                              -->
+<!-- Before/after + project photos with lightbox                -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-gallery">
+  <style>
+    .sc-lp-gallery {
+      background: var(--color-cream, #F0EEE9);
+      padding: 100px 40px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-lp-gallery__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sc-lp-gallery__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .sc-lp-gallery__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-lp-gallery__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0;
+    }
+
+    .sc-lp-gallery__link {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-coral, #FA9A85);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: gap 0.2s ease;
+    }
+
+    .sc-lp-gallery__link:hover { gap: 12px; }
+
+    .sc-lp-gallery__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 12px;
+    }
+
+    .sc-lp-gallery__item {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .sc-lp-gallery__item:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .sc-lp-gallery__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sc-lp-gallery__item:hover img {
+      transform: scale(1.04);
+    }
+
+    .sc-lp-gallery__item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(34,34,36,0.6) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .sc-lp-gallery__item:hover .sc-lp-gallery__item-overlay {
+      opacity: 1;
+    }
+
+    .sc-lp-gallery__item-caption {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-cream, #F0EEE9);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s ease;
+    }
+
+    .sc-lp-gallery__item:hover .sc-lp-gallery__item-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .sc-lp-gallery { padding: 80px 24px; }
+      .sc-lp-gallery__grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .sc-lp-gallery__item:first-child { grid-row: auto; }
+      .sc-lp-gallery__item { aspect-ratio: 4 / 3; }
+    }
+    @media (max-width: 600px) {
+      .sc-lp-gallery { padding: 64px 20px; }
+      .sc-lp-gallery__header { flex-direction: column; align-items: flex-start; }
+      .sc-lp-gallery__grid { grid-template-columns: 1fr; }
+    }
+
+    /* Shopify reset */
+    .sc-lp-gallery *,
+    .sc-lp-gallery *::before,
+    .sc-lp-gallery *::after {
+      box-sizing: border-box;
+    }
+    .sc-lp-gallery h1,
+    .sc-lp-gallery h2,
+    .sc-lp-gallery p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-gallery__inner">
+    <div class="sc-lp-gallery__header">
+      <div>
+        <div class="sc-lp-gallery__label">05 — Our Work</div>
+        <h2 class="sc-lp-gallery__heading">Hospitality Transformations</h2>
+      </div>
+      <a href="/pages/spacecrafter-services" class="sc-lp-gallery__link">
+        View Full Portfolio
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="sc-lp-gallery__grid">
+      <!-- Replace with actual project photos per industry -->
+      <div class="sc-lp-gallery__item">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Luxury hotel lobby with branded reception wall" loading="lazy">
+        <div class="sc-lp-gallery__item-overlay"></div>
+        <span class="sc-lp-gallery__item-caption">The Leela — Lobby Branding</span>
+      </div>
+      <div class="sc-lp-gallery__item">
+        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80" alt="Hotel corridor with wayfinding signage" loading="lazy">
+        <div class="sc-lp-gallery__item-overlay"></div>
+        <span class="sc-lp-gallery__item-caption">Taj Hotels — Corridor Wayfinding</span>
+      </div>
+      <div class="sc-lp-gallery__item">
+        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80" alt="Resort exterior with illuminated signage" loading="lazy">
+        <div class="sc-lp-gallery__item-overlay"></div>
+        <span class="sc-lp-gallery__item-caption">Exterior LED Signage</span>
+      </div>
+      <div class="sc-lp-gallery__item">
+        <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=600&q=80" alt="Hotel restaurant with branded wall mural" loading="lazy">
+        <div class="sc-lp-gallery__item-overlay"></div>
+        <span class="sc-lp-gallery__item-caption">Restaurant Mural — Dining Experience</span>
+      </div>
+      <div class="sc-lp-gallery__item">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80" alt="Hotel lobby digital concierge display" loading="lazy">
+        <div class="sc-lp-gallery__item-overlay"></div>
+        <span class="sc-lp-gallery__item-caption">Digital Concierge Display</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 7 — TESTIMONIALS                                   -->
+<!-- Client stories — responsive carousel (flat cards, JS pagination) -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-testi">
+  <style>
+    .sc-lp-testi {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      background: var(--color-charcoal, #222224);
+      padding: 100px 40px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .sc-lp-testi::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .sc-lp-testi__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-lp-testi__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+    }
+
+    .sc-lp-testi__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 16px;
+      max-width: 520px;
+    }
+
+    .sc-lp-testi__heading em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-testi__subtext {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      color: var(--color-taupe, #D7CBC4);
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 0 56px;
+    }
+
+    /* --- Flat card grid (JS shows/hides groups) --- */
+    .sc-lp-testi__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .sc-lp-testi__card {
+      background: rgba(240, 238, 233, 0.04);
+      border: 1px solid rgba(215, 203, 196, 0.1);
+      border-radius: 12px;
+      padding: 32px 28px 28px;
+      display: none;                       /* JS toggles visibility */
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+      transition: border-color 0.3s ease, background 0.3s ease, opacity 0.4s ease, transform 0.4s ease;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .sc-lp-testi__card.sc-lp-testi--show {
+      display: flex;
+    }
+
+    /* Staggered entry */
+    .sc-lp-testi__card.sc-lp-testi--animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sc-lp-testi__card:hover {
+      border-color: rgba(250, 154, 133, 0.2);
+      background: rgba(240, 238, 233, 0.06);
+    }
+
+    .sc-lp-testi__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 20px;
+    }
+
+    .sc-lp-testi__star {
+      width: 14px;
+      height: 14px;
+      fill: var(--color-coral, #FA9A85);
+      opacity: 0.85;
+    }
+
+    .sc-lp-testi__star--empty { opacity: 0.2; }
+
+    .sc-lp-testi__quote {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 28px;
+      padding: 0;
+      flex-grow: 1;
+    }
+
+    .sc-lp-testi__author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(215, 203, 196, 0.08);
+    }
+
+    .sc-lp-testi__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-taupe, #D7CBC4) 0%, var(--color-cream, #F0EEE9) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-charcoal, #222224);
+      flex-shrink: 0;
+    }
+
+    .sc-lp-testi__name {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-cream, #F0EEE9);
+      letter-spacing: 0.02em;
+    }
+
+    .sc-lp-testi__company {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      color: var(--color-taupe, #D7CBC4);
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    /* Navigation */
+    .sc-lp-testi__nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .sc-lp-testi__arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(215, 203, 196, 0.15);
+      background: transparent;
+      color: var(--color-cream, #F0EEE9);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .sc-lp-testi__arrow:hover {
+      border-color: var(--color-coral, #FA9A85);
+      background: rgba(250, 154, 133, 0.08);
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-testi__arrow:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    .sc-lp-testi__arrow:disabled:hover {
+      border-color: rgba(215, 203, 196, 0.15);
+      background: transparent;
+      color: var(--color-cream, #F0EEE9);
+    }
+
+    .sc-lp-testi__arrow svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sc-lp-testi__dots {
+      display: flex;
+      gap: 8px;
+      margin-left: 8px;
+    }
+
+    .sc-lp-testi__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-taupe, #D7CBC4);
+      opacity: 0.25;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sc-lp-testi__dot--active {
+      opacity: 1;
+      background: var(--color-coral, #FA9A85);
+      width: 24px;
+      border-radius: 3px;
+    }
+
+    .sc-lp-testi__counter {
+      margin-left: auto;
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      color: var(--color-taupe, #D7CBC4);
+      opacity: 0.6;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .sc-lp-testi__counter span {
+      color: var(--color-cream, #F0EEE9);
+      font-weight: 600;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
+      .sc-lp-testi { padding: 80px 24px; }
+      .sc-lp-testi__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .sc-lp-testi { padding: 64px 20px; }
+      .sc-lp-testi__grid { grid-template-columns: 1fr; gap: 16px; }
+      .sc-lp-testi__card { min-height: auto; padding: 28px 24px 24px; }
+      .sc-lp-testi__quote { font-size: 16px; }
+      .sc-lp-testi__nav { gap: 12px; margin-top: 36px; }
+    }
+
+    /* Shopify reset */
+    .sc-lp-testi *,
+    .sc-lp-testi *::before,
+    .sc-lp-testi *::after { box-sizing: border-box; }
+    .sc-lp-testi h1, .sc-lp-testi h2, .sc-lp-testi p {
+      margin-block-start: 0; margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-testi__inner">
+    <div class="sc-lp-testi__label">06 — Client Stories</div>
+    <h2 class="sc-lp-testi__heading">Trusted by 9,000+ Brands Across <em>India.</em></h2>
+    <p class="sc-lp-testi__subtext">From hospitals to hotels, our clients trust us to transform their spaces into unforgettable brand experiences.</p>
+
+    <div class="sc-lp-testi__grid" id="scLpTestiGrid">
+      <!-- Card 1 -->
+      <div class="sc-lp-testi__card" data-testi="0">
+        <div>
+          <div class="sc-lp-testi__stars">
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-lp-testi__quote">"Excellent signage work with great attention to detail. The team's professionalism and Mr. Rakesh Kingar's involvement made the outcome truly reflect our brand."</p>
+        </div>
+        <div class="sc-lp-testi__author">
+          <div class="sc-lp-testi__avatar">DG</div>
+          <div><div class="sc-lp-testi__name">Dr. Gurudev</div><div class="sc-lp-testi__company">Smile Station</div></div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="sc-lp-testi__card" data-testi="1">
+        <div>
+          <div class="sc-lp-testi__stars">
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star sc-lp-testi__star--empty" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-lp-testi__quote">"Stunning, cost-effective signage with excellent professionalism and clear communication throughout. Reliable, detail-oriented, and highly recommended — 10/10."</p>
+        </div>
+        <div class="sc-lp-testi__author">
+          <div class="sc-lp-testi__avatar">GA</div>
+          <div><div class="sc-lp-testi__name">Gadipudi Amulya</div><div class="sc-lp-testi__company">CosMediQ</div></div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="sc-lp-testi__card" data-testi="2">
+        <div>
+          <div class="sc-lp-testi__stars">
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-lp-testi__quote">"Loved working with the team for our hotel signage. Professional, excellent finish, and very easy to work with. Highly recommended."</p>
+        </div>
+        <div class="sc-lp-testi__author">
+          <div class="sc-lp-testi__avatar">MD</div>
+          <div><div class="sc-lp-testi__name">Monisha Dhamodaran</div><div class="sc-lp-testi__company">Earth Hotel</div></div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="sc-lp-testi__card" data-testi="3">
+        <div>
+          <div class="sc-lp-testi__stars">
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star sc-lp-testi__star--empty" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-lp-testi__quote">"Fantastic job on our large outdoor logo — from design to installation. The team even traveled long distance for fixing. Highly recommended."</p>
+        </div>
+        <div class="sc-lp-testi__author">
+          <div class="sc-lp-testi__avatar">RK</div>
+          <div><div class="sc-lp-testi__name">Rajesh Kumar Reddy</div><div class="sc-lp-testi__company">Athulith Vistara</div></div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="sc-lp-testi__card" data-testi="4">
+        <div>
+          <div class="sc-lp-testi__stars">
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-lp-testi__quote">"Our Hyderabad office signage was executed flawlessly by a highly skilled and professional team. Exceptional results — strongly recommended for any signage requirements."</p>
+        </div>
+        <div class="sc-lp-testi__author">
+          <div class="sc-lp-testi__avatar">AA</div>
+          <div><div class="sc-lp-testi__name">Anam Ahmed</div><div class="sc-lp-testi__company">Prathiksha Prats</div></div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="sc-lp-testi__card" data-testi="5">
+        <div>
+          <div class="sc-lp-testi__stars">
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-lp-testi__quote">"Outstanding experience from start to finish. Will definitely be ordering again soon!"</p>
+        </div>
+        <div class="sc-lp-testi__author">
+          <div class="sc-lp-testi__avatar">RA</div>
+          <div><div class="sc-lp-testi__name">Robert Anderson</div><div class="sc-lp-testi__company"></div></div>
+        </div>
+      </div>
+      <!-- Card 7 -->
+      <div class="sc-lp-testi__card" data-testi="6">
+        <div>
+          <div class="sc-lp-testi__stars">
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-lp-testi__quote">"Great work by Aarkay Signages and team. They were able to understand our theme and requirements clearly and customised the design based on our need. Kudos to Navdeep for prompt support and coordination."</p>
+        </div>
+        <div class="sc-lp-testi__author">
+          <div class="sc-lp-testi__avatar">HB</div>
+          <div><div class="sc-lp-testi__name">Hithesh Bhat</div><div class="sc-lp-testi__company">Drikveda</div></div>
+        </div>
+      </div>
+      <!-- Card 8 -->
+      <div class="sc-lp-testi__card" data-testi="7">
+        <div>
+          <div class="sc-lp-testi__stars">
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-lp-testi__quote">"The Sign Factory well established with all sophisticated modern equipment will meet all needs for signages."</p>
+        </div>
+        <div class="sc-lp-testi__author">
+          <div class="sc-lp-testi__avatar">MD</div>
+          <div><div class="sc-lp-testi__name">Madhuraju D</div><div class="sc-lp-testi__company">Google Review</div></div>
+        </div>
+      </div>
+      <!-- Card 9 -->
+      <div class="sc-lp-testi__card" data-testi="8">
+        <div>
+          <div class="sc-lp-testi__stars">
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+            <svg class="sc-lp-testi__star" viewBox="0 0 20 20"><polygon points="10,1.5 12.5,7 18.5,7.5 14,11.5 15.5,17.5 10,14 4.5,17.5 6,11.5 1.5,7.5 7.5,7"/></svg>
+          </div>
+          <p class="sc-lp-testi__quote">"Good place for all signage needs. Very good and polite staff."</p>
+        </div>
+        <div class="sc-lp-testi__author">
+          <div class="sc-lp-testi__avatar">EM</div>
+          <div><div class="sc-lp-testi__name">Edward Morris</div><div class="sc-lp-testi__company">Google Review</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="sc-lp-testi__nav">
+      <button class="sc-lp-testi__arrow" id="scLpTestiPrev" aria-label="Previous testimonials">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="sc-lp-testi__arrow" id="scLpTestiNext" aria-label="Next testimonials">
+        <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+      <div class="sc-lp-testi__dots" id="scLpTestiDots"></div>
+      <div class="sc-lp-testi__counter">
+        <span id="scLpTestiCurrent">1</span> / <span id="scLpTestiTotal">3</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var grid = document.getElementById('scLpTestiGrid');
+      if (!grid) return;
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.sc-lp-testi__card'));
+      var prevBtn = document.getElementById('scLpTestiPrev');
+      var nextBtn = document.getElementById('scLpTestiNext');
+      var dotsWrap = document.getElementById('scLpTestiDots');
+      var curEl = document.getElementById('scLpTestiCurrent');
+      var totEl = document.getElementById('scLpTestiTotal');
+      var total = cards.length; // 9
+      var page = 0;
+      var perPage = 3;
+
+      function getPerPage() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+      }
+
+      function totalPages() {
+        return Math.ceil(total / perPage);
+      }
+
+      function buildDots() {
+        dotsWrap.innerHTML = '';
+        var tp = totalPages();
+        for (var i = 0; i < tp; i++) {
+          var d = document.createElement('button');
+          d.className = 'sc-lp-testi__dot' + (i === page ? ' sc-lp-testi__dot--active' : '');
+          d.setAttribute('aria-label', 'Page ' + (i + 1));
+          d.setAttribute('data-index', i);
+          d.addEventListener('click', (function(idx) {
+            return function() { goTo(idx); };
+          })(i));
+          dotsWrap.appendChild(d);
+        }
+        totEl.textContent = tp;
+      }
+
+      function goTo(idx) {
+        var tp = totalPages();
+        if (idx < 0) idx = 0;
+        if (idx >= tp) idx = tp - 1;
+        page = idx;
+        var start = page * perPage;
+        var end = start + perPage;
+
+        // Hide all
+        cards.forEach(function(c) {
+          c.classList.remove('sc-lp-testi--show', 'sc-lp-testi--animate');
+        });
+
+        // Show current page cards
+        var visible = cards.slice(start, end);
+        visible.forEach(function(c, i) {
+          c.classList.add('sc-lp-testi--show');
+          c.offsetHeight; // force reflow
+          setTimeout(function() {
+            c.classList.add('sc-lp-testi--animate');
+          }, i * 80);
+        });
+
+        // Update dots
+        var dots = dotsWrap.querySelectorAll('.sc-lp-testi__dot');
+        dots.forEach(function(d, i) {
+          d.classList.toggle('sc-lp-testi__dot--active', i === page);
+        });
+        curEl.textContent = page + 1;
+        prevBtn.disabled = page === 0;
+        nextBtn.disabled = page >= tp - 1;
+      }
+
+      function init() {
+        var newPP = getPerPage();
+        if (newPP !== perPage) {
+          perPage = newPP;
+          if (page >= totalPages()) page = totalPages() - 1;
+          buildDots();
+        }
+        goTo(page);
+      }
+
+      prevBtn.addEventListener('click', function() { goTo(page - 1); });
+      nextBtn.addEventListener('click', function() { goTo(page + 1); });
+
+      // Touch swipe support
+      var startX = 0;
+      grid.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+      grid.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) goTo(page + 1);
+          else goTo(page - 1);
+        }
+      }, { passive: true });
+
+      // Keyboard
+      grid.closest('.sc-lp-testi').addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') goTo(page - 1);
+        if (e.key === 'ArrowRight') goTo(page + 1);
+      });
+
+      // Responsive recalc
+      var resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 150);
+      });
+
+      // Initial
+      perPage = getPerPage();
+      buildDots();
+      goTo(0);
+    })();
+  </script>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 8 — SOCIAL PROOF / STATS BAR                       -->
+<!-- Trust signals                                              -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-proof">
+  <style>
+    .sc-lp-proof {
+      background: var(--color-charcoal, #222224);
+      padding: 80px 40px;
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-lp-proof__accent {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      opacity: 0.05;
+      top: -150px;
+      right: -100px;
+    }
+
+    .sc-lp-proof__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-lp-proof__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .sc-lp-proof__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid rgba(215, 203, 196, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .sc-lp-proof__stat {
+      text-align: center;
+      padding: 40px 20px;
+      border-right: 1px solid rgba(215, 203, 196, 0.1);
+    }
+
+    .sc-lp-proof__stat:last-child {
+      border-right: none;
+    }
+
+    .sc-lp-proof__stat-num {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--color-cream, #F0EEE9);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .sc-lp-proof__stat-num span {
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-proof__stat-label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 13px;
+      color: var(--color-taupe, #D7CBC4);
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 900px) {
+      .sc-lp-proof { padding: 64px 24px; }
+      .sc-lp-proof__stats { grid-template-columns: repeat(2, 1fr); }
+      .sc-lp-proof__stat { border-bottom: 1px solid rgba(215, 203, 196, 0.1); }
+      .sc-lp-proof__stat:nth-child(2) { border-right: none; }
+    }
+    @media (max-width: 600px) {
+      .sc-lp-proof { padding: 48px 20px; }
+      .sc-lp-proof__stat-num { font-size: 36px; }
+    }
+
+    /* Shopify reset */
+    .sc-lp-proof *,
+    .sc-lp-proof *::before,
+    .sc-lp-proof *::after {
+      box-sizing: border-box;
+    }
+    .sc-lp-proof h1,
+    .sc-lp-proof h2,
+    .sc-lp-proof p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-proof__accent" role="presentation"></div>
+  <div class="sc-lp-proof__inner">
+    <div class="sc-lp-proof__label">07 — Why SpaceCrafter</div>
+
+    <div class="sc-lp-proof__stats">
+      <div class="sc-lp-proof__stat">
+        <div class="sc-lp-proof__stat-num">300<span>+</span></div>
+        <div class="sc-lp-proof__stat-label">Hospitality Properties</div>
+      </div>
+      <div class="sc-lp-proof__stat">
+        <div class="sc-lp-proof__stat-num">30<span>+</span></div>
+        <div class="sc-lp-proof__stat-label">Years of Experience</div>
+      </div>
+      <div class="sc-lp-proof__stat">
+        <div class="sc-lp-proof__stat-num">ISO</div>
+        <div class="sc-lp-proof__stat-label">Certified Manufacturing</div>
+      </div>
+      <div class="sc-lp-proof__stat">
+        <div class="sc-lp-proof__stat-num">100<span>%</span></div>
+        <div class="sc-lp-proof__stat-label">On-Time Delivery</div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 8 — FAQ ACCORDION                                  -->
+<!-- SEO-rich structured Q&A with schema markup                 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-faq" itemscope itemtype="https://schema.org/FAQPage">
+  <style>
+    .sc-lp-faq {
+      background: var(--color-cream, #F0EEE9);
+      padding: 100px 40px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    .sc-lp-faq__inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .sc-lp-faq__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .sc-lp-faq__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--color-charcoal, #222224);
+      margin: 0 0 48px;
+      text-align: center;
+    }
+
+    .sc-lp-faq__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sc-lp-faq__item {
+      border-bottom: 1px solid var(--color-taupe, #D7CBC4);
+    }
+
+    .sc-lp-faq__question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-charcoal, #222224);
+      line-height: 1.3;
+      transition: color 0.2s ease;
+    }
+
+    .sc-lp-faq__question:hover {
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-faq__question:focus {
+      outline: 2px solid var(--color-coral, #FA9A85);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    .sc-lp-faq__icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .sc-lp-faq__icon::before,
+    .sc-lp-faq__icon::after {
+      content: '';
+      position: absolute;
+      background: var(--color-charcoal, #222224);
+      transition: transform 0.3s ease;
+    }
+
+    .sc-lp-faq__icon::before {
+      width: 16px;
+      height: 1.5px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .sc-lp-faq__icon::after {
+      width: 1.5px;
+      height: 16px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .sc-lp-faq__item.sc-lp-faq--open .sc-lp-faq__icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .sc-lp-faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+
+    .sc-lp-faq__item.sc-lp-faq--open .sc-lp-faq__answer {
+      max-height: 300px;
+    }
+
+    .sc-lp-faq__answer-text {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 15px;
+      line-height: 1.75;
+      color: #666;
+      padding-bottom: 24px;
+      max-width: 680px;
+    }
+
+    @media (max-width: 600px) {
+      .sc-lp-faq { padding: 64px 20px; }
+      .sc-lp-faq__question { font-size: 18px; }
+    }
+
+    /* Shopify reset */
+    .sc-lp-faq *,
+    .sc-lp-faq *::before,
+    .sc-lp-faq *::after {
+      box-sizing: border-box;
+    }
+    .sc-lp-faq h1,
+    .sc-lp-faq h2,
+    .sc-lp-faq p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-faq__inner">
+    <div class="sc-lp-faq__label">08 — FAQ</div>
+    <h2 class="sc-lp-faq__heading">Hospitality Branding FAQs</h2>
+
+    <ul class="sc-lp-faq__list">
+      <li class="sc-lp-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-lp-faq__question" aria-expanded="false" itemprop="name">
+          What's included in a complete hospitality brand transformation?
+          <span class="sc-lp-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-lp-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-lp-faq__answer-text" itemprop="text">Everything from grand entrance identity to interior murals, corridor wayfinding, restaurant displays, room signage, and pool area branding. We handle the entire process — from AI-powered space analysis and design to ISO-certified manufacturing and zero-disruption installation.</p>
+        </div>
+      </li>
+      <li class="sc-lp-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-lp-faq__question" aria-expanded="false" itemprop="name">
+          How long does a complete hotel brand project take?
+          <span class="sc-lp-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-lp-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-lp-faq__answer-text" itemprop="text">Typically 8–12 weeks depending on property size. We work in phases to minimise disruption to guest experience, and our installation teams operate during low-occupancy periods and between check-out windows.</p>
+        </div>
+      </li>
+      <li class="sc-lp-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-lp-faq__question" aria-expanded="false" itemprop="name">
+          Can you match our hotel's existing design language?
+          <span class="sc-lp-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-lp-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-lp-faq__answer-text" itemprop="text">Absolutely. We begin with a comprehensive brand audit of your property's design language — colours, materials, typography, and guest experience goals. Every element we create is custom-designed to feel like a natural extension of your brand.</p>
+        </div>
+      </li>
+      <li class="sc-lp-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-lp-faq__question" aria-expanded="false" itemprop="name">
+          Do you work with hotel chains and multi-property brands?
+          <span class="sc-lp-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-lp-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-lp-faq__answer-text" itemprop="text">Yes. We've branded multiple properties for hotel groups across India, ensuring brand consistency while respecting each location's unique character. Our AI-powered design system enables scalable, consistent execution.</p>
+        </div>
+      </li>
+      <li class="sc-lp-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-lp-faq__question" aria-expanded="false" itemprop="name">
+          Will installation disrupt guest experience?
+          <span class="sc-lp-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-lp-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-lp-faq__answer-text" itemprop="text">Never. Our installation teams work during nights, low-occupancy periods, and between check-out windows. We plan everything so no guest-facing area is ever under construction during peak hours.</p>
+        </div>
+      </li>
+      <li class="sc-lp-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-lp-faq__question" aria-expanded="false" itemprop="name">
+          What about seasonal updates and promotions?
+          <span class="sc-lp-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-lp-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-lp-faq__answer-text" itemprop="text">We offer AMC plans for brand maintenance. LED screens allow instant content updates for festive seasons, special events, and F&B promotions. Our digital signage CMS lets your team update content remotely.</p>
+        </div>
+      </li>
+      <li class="sc-lp-faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="sc-lp-faq__question" aria-expanded="false" itemprop="name">
+          How much does hospitality branding typically cost?
+          <span class="sc-lp-faq__icon" aria-hidden="true"></span>
+        </button>
+        <div class="sc-lp-faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p class="sc-lp-faq__answer-text" itemprop="text">Projects range based on property size and scope. A single-area refresh (lobby or restaurant) starts around ₹3–5 lakhs. Full property brand transformations range from ₹15 lakhs to ₹1 crore+. We offer a free AI-powered space audit so you can see exactly what's possible within your budget.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    (function() {
+      var items = document.querySelectorAll('.sc-lp-faq__item');
+      items.forEach(function(item) {
+        var btn = item.querySelector('.sc-lp-faq__question');
+        btn.addEventListener('click', function() {
+          var isOpen = item.classList.contains('sc-lp-faq--open');
+          // Close all
+          items.forEach(function(i) { i.classList.remove('sc-lp-faq--open'); i.querySelector('.sc-lp-faq__question').setAttribute('aria-expanded', 'false'); });
+          // Toggle current
+          if (!isOpen) {
+            item.classList.add('sc-lp-faq--open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    })();
+  </script>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECTION 9 — CTA (Simplified — No Form)                     -->
+<!-- Final conversion section with CTA button                   -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section class="sc-lp-cta">
+  <style>
+    .sc-lp-cta {
+      background: var(--color-charcoal, #222224);
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+    }
+
+    /* Blueprint watermark */
+    .sc-lp-cta__blueprint {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url('https://cdn.shopify.com/s/files/1/0692/0676/9850/files/img-hospitality.jpg?v=1773477978');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(1.8) contrast(0.7);
+    }
+
+    .sc-lp-cta__inner {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-lp-cta__label {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-coral, #FA9A85);
+      margin-bottom: 16px;
+    }
+
+    .sc-lp-cta__heading {
+      font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--color-cream, #F0EEE9);
+      margin: 0 0 20px;
+    }
+
+    .sc-lp-cta__heading em {
+      font-style: italic;
+      color: var(--color-coral, #FA9A85);
+    }
+
+    .sc-lp-cta__body {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--color-taupe, #D7CBC4);
+      margin: 0 0 32px;
+      max-width: 600px;
+    }
+
+    .sc-lp-cta__benefits {
+      list-style: none;
+      margin: 0 0 40px;
+      padding: 0;
+    }
+
+    .sc-lp-cta__benefits li {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 14px;
+      color: var(--color-taupe, #D7CBC4);
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sc-lp-cta__benefits li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-coral, #FA9A85);
+      flex-shrink: 0;
+    }
+
+    .sc-lp-cta__btn-primary {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--color-coral, #FA9A85);
+      color: #fff;
+      padding: 18px 44px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sc-lp-cta__btn-primary:hover {
+      background: var(--color-coral-hover, #f8836b);
+      transform: translateY(-1px);
+    }
+
+    .sc-lp-cta__contact-row {
+      display: flex;
+      gap: 28px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(215, 203, 196, 0.1);
+      flex-wrap: wrap;
+    }
+
+    .sc-lp-cta__contact-item {
+      font-family: var(--font-sans, 'DM Sans', system-ui, sans-serif);
+      font-size: 12px;
+      color: var(--color-taupe, #D7CBC4);
+    }
+
+    .sc-lp-cta__contact-item a {
+      color: var(--color-coral, #FA9A85);
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .sc-lp-cta { padding: 80px 24px; }
+    }
+    @media (max-width: 600px) {
+      .sc-lp-cta { padding: 64px 20px; }
+      .sc-lp-cta__btn-primary { width: 100%; text-align: center; justify-content: center; }
+    }
+
+    /* Shopify reset */
+    .sc-lp-cta *,
+    .sc-lp-cta *::before,
+    .sc-lp-cta *::after {
+      box-sizing: border-box;
+    }
+    .sc-lp-cta h1,
+    .sc-lp-cta h2,
+    .sc-lp-cta p {
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+  </style>
+
+  <div class="sc-lp-cta__blueprint" role="presentation"></div>
+  <div class="sc-lp-cta__inner">
+    <div class="sc-lp-cta__label">09 — Get Started</div>
+    <h2 class="sc-lp-cta__heading">Ready to Transform Your Property Into an Unforgettable <em>Brand Experience?</em></h2>
+    <p class="sc-lp-cta__body">Get a free AI-powered brand environment audit. We'll analyse your property and show you how to transform every touchpoint — from entrance to suite — into a cohesive luxury brand experience.</p>
+    <ul class="sc-lp-cta__benefits">
+      <li>Free AI-powered space visualisation</li>
+      <li>Photorealistic renders before any work begins</li>
+      <li>Zero-disruption installation guarantee</li>
+      <li>ISO-certified manufacturing</li>
+      <li>AMC plans for ongoing maintenance</li>
+    </ul>
+    <a href="/pages/contact-us" class="sc-lp-cta__btn-primary">
+      Get Free Space Audit
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <div class="sc-lp-cta__contact-row">
+      <div class="sc-lp-cta__contact-item">
+        Call: <a href="tel:+918884448950">+91 88844 48950</a>
+      </div>
+      <div class="sc-lp-cta__contact-item">
+        Email: <a href="mailto:sales@spacecrafter.studio">sales@spacecrafter.studio</a>
+      </div>
+    </div>
+  </div>
+</section>

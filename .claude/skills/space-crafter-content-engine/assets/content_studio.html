@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Crafter Studio — Content Intelligence</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#1a1a1a;padding:2rem}
+.studio{max-width:780px;margin:0 auto}
+.header{margin-bottom:1.5rem}
+.header h1{font-size:18px;font-weight:500}
+.header p{font-size:13px;color:#666;margin-top:4px}
+.sources-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
+.source-tag{font-size:12px;padding:4px 10px;border-radius:20px;border:0.5px solid #ccc;color:#666;background:#f5f5f3}
+.source-tag.active{background:#3C3489;color:#EEEDFE;border-color:#3C3489}
+.scan-btn{display:flex;align-items:center;gap:8px;padding:10px 20px;font-size:14px;font-weight:500;background:#fff;border:0.5px solid #ccc;border-radius:8px;cursor:pointer;color:#1a1a1a;width:100%;justify-content:center;transition:background .15s;margin-bottom:1.5rem}
+.scan-btn:hover{background:#f5f5f3}
+.scan-btn:disabled{opacity:0.5;cursor:not-allowed}
+.status-bar{font-size:12px;color:#666;margin-bottom:1rem;min-height:18px;display:flex;align-items:center;gap:6px}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#1D9E75;flex-shrink:0}
+.status-dot.loading{background:#EF9F27;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.ideas-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+.idea-card{background:#fff;border:0.5px solid #e0e0e0;border-radius:12px;padding:1rem 1.25rem;cursor:pointer;transition:border-color .15s}
+.idea-card:hover{border-color:#aaa}
+.idea-card.selected{border:1.5px solid #534AB7;background:#EEEDFE}
+.idea-header{display:flex;align-items:flex-start;gap:10px}
+.idea-num{font-size:11px;font-weight:500;color:#534AB7;background:#EEEDFE;border-radius:4px;padding:2px 7px;flex-shrink:0;margin-top:2px}
+.idea-card.selected .idea-num{background:#534AB7;color:#EEEDFE}
+.idea-title{font-size:14px;font-weight:500;line-height:1.4}
+.idea-body{font-size:13px;color:#555;margin-top:6px;padding-left:34px;line-height:1.6}
+.idea-meta{display:flex;gap:6px;margin-top:8px;padding-left:34px;flex-wrap:wrap}
+.idea-tag{font-size:11px;padding:2px 8px;border-radius:20px;background:#f5f5f3;color:#666;border:0.5px solid #e0e0e0}
+.generate-btn{display:flex;align-items:center;gap:8px;padding:11px 24px;font-size:14px;font-weight:500;background:#534AB7;color:#EEEDFE;border:none;border-radius:8px;cursor:pointer;width:100%;justify-content:center;transition:background .15s}
+.generate-btn:hover{background:#3C3489}
+.generate-btn:disabled{opacity:0.4;cursor:not-allowed}
+.output-section{margin-top:1.5rem}
+.output-section h2{font-size:15px;font-weight:500;margin-bottom:1rem}
+.platform-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:1rem}
+.ptab{font-size:12px;padding:5px 12px;border-radius:20px;border:0.5px solid #e0e0e0;background:#f5f5f3;color:#666;cursor:pointer;transition:all .1s}
+.ptab.active{background:#534AB7;color:#EEEDFE;border-color:#534AB7}
+.copy-block{background:#f5f5f3;border-radius:12px;padding:1.25rem;border:0.5px solid #e0e0e0}
+.copy-label{font-size:11px;font-weight:500;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.copy-text{font-size:14px;color:#1a1a1a;line-height:1.7;white-space:pre-wrap}
+.copy-divider{border:none;border-top:0.5px solid #e0e0e0;margin:1rem 0}
+.copy-actions{display:flex;gap:8px;margin-top:1rem}
+.copy-btn{font-size:12px;padding:6px 14px;border:0.5px solid #ccc;border-radius:8px;background:#fff;color:#1a1a1a;cursor:pointer}
+.copy-btn:hover{background:#f5f5f3}
+.empty-state{text-align:center;padding:3rem 1rem;color:#888;font-size:13px;border:0.5px dashed #ddd;border-radius:12px}
+.loading-ideas{display:flex;flex-direction:column;gap:10px}
+.skeleton{background:#f5f5f3;border-radius:12px;height:90px;animation:shimmer 1.5s infinite;border:0.5px solid #e0e0e0}
+@keyframes shimmer{0%,100%{opacity:1}50%{opacity:0.4}}
+.divider{border:none;border-top:0.5px solid #e8e8e8;margin:1.5rem 0}
+.api-notice{background:#FAEEDA;border:0.5px solid #EF9F27;border-radius:8px;padding:1rem;font-size:13px;color:#633806;margin-bottom:1.5rem;line-height:1.6}
+.api-notice strong{font-weight:500}
+.key-row{display:flex;gap:8px;margin-top:8px}
+.key-row input{flex:1;font-size:13px;padding:7px 10px;border:0.5px solid #ccc;border-radius:8px;font-family:monospace}
+.key-row button{padding:7px 14px;font-size:13px;background:#534AB7;color:#EEEDFE;border:none;border-radius:8px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="studio">
+  <div class="header">
+    <h1>Space Crafter Studio — Content Intelligence</h1>
+    <p>Scans live trends across design, signage, and spatial branding — then generates platform-ready copy.</p>
+  </div>
+
+  <div class="api-notice" id="apiNotice">
+    <strong>API key required.</strong> This tool calls the Anthropic API directly. Enter your API key below to enable live trend scanning and copy generation. Your key is stored in this browser session only and never sent anywhere except Anthropic's servers.
+    <div class="key-row">
+      <input type="password" id="apiKeyInput" placeholder="sk-ant-...">
+      <button onclick="saveKey()">Save key</button>
+    </div>
+  </div>
+
+  <div class="sources-row">
+    <span class="source-tag active">Architectural Digest</span>
+    <span class="source-tag active">Veedu</span>
+    <span class="source-tag active">Asian Paints YouTube</span>
+    <span class="source-tag active">signage trends</span>
+    <span class="source-tag active">environmental branding</span>
+    <span class="source-tag active">spatial storytelling</span>
+  </div>
+
+  <button class="scan-btn" id="scanBtn" onclick="startScan()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1"/>
+      <path d="M8 4v4l2.5 2.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+    </svg>
+    Scan trends and generate 5 ideas
+  </button>
+
+  <div class="status-bar" id="statusBar"></div>
+  <div id="ideasContainer"></div>
+
+  <div id="generateRow" style="display:none;">
+    <hr class="divider">
+    <button class="generate-btn" id="generateBtn" onclick="generateCopy()">
+      Generate copy for all platforms →
+    </button>
+  </div>
+
+  <div id="outputSection"></div>
+</div>
+
+<script>
+const PLATFORMS = ['Instagram','LinkedIn','Facebook','X / Twitter','Ad copy'];
+let selectedIdea = null;
+let currentIdeas = [];
+let generatedContent = {};
+let activePlatform = 'Instagram';
+let apiKey = '';
+
+const SYSTEM_PROMPT = `You are the content intelligence engine for Space Crafter Studio — a spatial branding and experiential design studio.
+
+VOICE RULES (non-negotiable):
+- Premium but human. Strategic, not fluffy. Design-led and visually intelligent.
+- Specific over generic. Minimal yet expressive. Confident and insight-led.
+- Never use: elevate, stunning, innovative, world-class, transform your space, one-stop solution.
+- No em dashes. No hype. No robotic jargon piles.
+- Observation → insight → design takeaway is the preferred structure.
+
+Space Crafter Studio works across: 3D lit letters, reverse-lit signs, edge-lit signs, fabric light boxes, backlit boards, frost films, wall graphics, environmental branding, reception branding, wayfinding, façade signage, and experiential design.`;
+
+function saveKey() {
+  const val = document.getElementById('apiKeyInput').value.trim();
+  if (!val.startsWith('sk-ant-')) { alert('Please enter a valid Anthropic API key (starts with sk-ant-).'); return; }
+  apiKey = val;
+  document.getElementById('apiNotice').style.display = 'none';
+  setStatus('API key saved. Ready to scan.', false);
+}
+
+async function callClaude(userPrompt, maxTokens = 1500) {
+  if (!apiKey) { alert('Please enter your Anthropic API key first.'); throw new Error('No API key'); }
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+      "anthropic-dangerous-direct-browser-access": "true"
+    },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: maxTokens,
+      system: SYSTEM_PROMPT,
+      tools: [{ type: "web_search_20250305", name: "web_search" }],
+      messages: [{ role: "user", content: userPrompt }]
+    })
+  });
+  const data = await response.json();
+  if (data.error) throw new Error(data.error.message);
+  return data.content.filter(b => b.type === "text").map(b => b.text).join("\n");
+}
+
+function setStatus(msg, loading = false) {
+  const bar = document.getElementById('statusBar');
+  if (!msg) { bar.innerHTML = ''; return; }
+  bar.innerHTML = `<span class="status-dot ${loading ? 'loading' : ''}"></span>${msg}`;
+}
+
+function showSkeletons() {
+  document.getElementById('ideasContainer').innerHTML = '<div class="loading-ideas">' + Array(5).fill('<div class="skeleton"></div>').join('') + '</div>';
+}
+
+async function startScan() {
+  if (!apiKey) { alert('Please enter your Anthropic API key first.'); return; }
+  const btn = document.getElementById('scanBtn');
+  btn.disabled = true;
+  selectedIdea = null;
+  currentIdeas = [];
+  generatedContent = {};
+  document.getElementById('generateRow').style.display = 'none';
+  document.getElementById('outputSection').innerHTML = '';
+  showSkeletons();
+
+  const steps = [
+    "Scanning Architectural Digest for spatial design trends…",
+    "Reading Veedu and Asian Paints content…",
+    "Researching signage and environmental branding trends…",
+    "Identifying best content angles for Space Crafter Studio…"
+  ];
+  for (const step of steps) {
+    setStatus(step, true);
+    await new Promise(r => setTimeout(r, 900));
+  }
+  setStatus("Generating 5 content ideas…", true);
+
+  const prompt = `Search the web for current trends in: signage design, environmental branding, spatial storytelling, reception design, office branding, and experiential design. Also check what's trending in interior design and workplace design publications.
+
+Based on what you find, generate exactly 5 brilliant content ideas for Space Crafter Studio's social media. Each idea should be rooted in a real current trend or observation.
+
+Respond ONLY with a JSON array. No preamble. No markdown fences. Raw JSON only.
+
+Format:
+[
+  {
+    "title": "Short punchy idea title (max 8 words)",
+    "angle": "One sentence on the content angle and why it's timely",
+    "bucket": "Content bucket name",
+    "platform": "Best platform for this",
+    "trend": "The specific trend it taps into"
+  }
+]`;
+
+  try {
+    const raw = await callClaude(prompt, 1200);
+    const jsonMatch = raw.match(/\[[\s\S]*\]/);
+    if (!jsonMatch) throw new Error("No JSON found");
+    currentIdeas = JSON.parse(jsonMatch[0]);
+    renderIdeas();
+    setStatus("5 ideas ready. Select one to generate copy.", false);
+  } catch(e) {
+    setStatus("Something went wrong. Try again.", false);
+    document.getElementById('ideasContainer').innerHTML = '<div class="empty-state">Could not load ideas. Check your API key and try again.</div>';
+  }
+  btn.disabled = false;
+}
+
+function renderIdeas() {
+  document.getElementById('ideasContainer').innerHTML = '<div class="ideas-grid">' + currentIdeas.map((idea, i) => `
+    <div class="idea-card" id="card-${i}" onclick="selectIdea(${i})">
+      <div class="idea-header">
+        <span class="idea-num">0${i+1}</span>
+        <span class="idea-title">${idea.title}</span>
+      </div>
+      <div class="idea-body">${idea.angle}</div>
+      <div class="idea-meta">
+        <span class="idea-tag">${idea.bucket}</span>
+        <span class="idea-tag">${idea.platform}</span>
+        <span class="idea-tag">${idea.trend}</span>
+      </div>
+    </div>
+  `).join('') + '</div>';
+}
+
+function selectIdea(i) {
+  selectedIdea = i;
+  document.querySelectorAll('.idea-card').forEach((c, idx) => c.classList.toggle('selected', idx === i));
+  document.getElementById('generateRow').style.display = 'block';
+  document.getElementById('outputSection').innerHTML = '';
+  generatedContent = {};
+}
+
+async function generateCopy() {
+  if (selectedIdea === null) return;
+  const idea = currentIdeas[selectedIdea];
+  const btn = document.getElementById('generateBtn');
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+  setStatus("Writing copy for all platforms…", true);
+
+  const prompt = `Write post copy for Space Crafter Studio for this content idea:
+
+Title: ${idea.title}
+Angle: ${idea.angle}
+Content bucket: ${idea.bucket}
+Trend: ${idea.trend}
+
+Generate copy for all 5 platforms. Use Space Crafter Studio's voice: premium but human, design-led, specific, strategic. Never generic. No em dashes.
+
+Respond ONLY with raw JSON. No preamble. No markdown fences.
+
+{
+  "Instagram": {
+    "post": "Carousel post body / caption (sharp, punchy, carousel-friendly, 3-5 lines)",
+    "caption": "Caption with 3-5 relevant hashtags"
+  },
+  "LinkedIn": {
+    "post": "Thought-leadership post (150-220 words, structured, insight-led, no question openers)",
+    "caption": ""
+  },
+  "Facebook": {
+    "post": "Accessible, friendly version (slightly more descriptive than Instagram)",
+    "caption": ""
+  },
+  "X / Twitter": {
+    "post": "One sharp observation-led tweet, under 240 chars",
+    "caption": ""
+  },
+  "Ad copy": {
+    "post": "Hook + business benefit + natural CTA",
+    "caption": ""
+  }
+}`;
+
+  try {
+    const raw = await callClaude(prompt, 2000);
+    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error("No JSON");
+    generatedContent = JSON.parse(jsonMatch[0]);
+    renderOutput(idea);
+    setStatus("Copy ready. Select a platform to view and copy.", false);
+  } catch(e) {
+    setStatus("Copy generation failed. Try again.", false);
+  }
+  btn.disabled = false;
+  btn.textContent = 'Regenerate copy →';
+}
+
+function renderOutput(idea) {
+  activePlatform = 'Instagram';
+  document.getElementById('outputSection').innerHTML = `
+    <hr class="divider">
+    <div class="output-section">
+      <h2>${idea.title}</h2>
+      <div class="platform-tabs">
+        ${PLATFORMS.map(p => `<span class="ptab ${p === activePlatform ? 'active' : ''}" onclick="switchPlatform('${p}')">${p}</span>`).join('')}
+      </div>
+      <div id="copyArea"></div>
+    </div>
+  `;
+  renderCopyArea();
+}
+
+function switchPlatform(p) {
+  activePlatform = p;
+  document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t.textContent === p));
+  renderCopyArea();
+}
+
+function renderCopyArea() {
+  const data = generatedContent[activePlatform];
+  if (!data) return;
+  const hasCaption = data.caption && data.caption.length > 0;
+  document.getElementById('copyArea').innerHTML = `
+    <div class="copy-block">
+      <div class="copy-label">Post copy</div>
+      <div class="copy-text" id="postText">${data.post}</div>
+      ${hasCaption ? `<hr class="copy-divider"><div class="copy-label">Caption</div><div class="copy-text" id="captionText">${data.caption}</div>` : ''}
+      <div class="copy-actions">
+        <button class="copy-btn" onclick="copyText('postText')">Copy post</button>
+        ${hasCaption ? '<button class="copy-btn" onclick="copyText(\'captionText\')">Copy caption</button>' : ''}
+      </div>
+    </div>
+  `;
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    document.querySelectorAll('.copy-btn').forEach(b => {
+      if (b.textContent.startsWith('Copy')) {
+        const orig = b.textContent;
+        b.textContent = 'Copied!';
+        setTimeout(() => b.textContent = orig, 1500);
+      }
+    });
+  });
+}
+</script>
+</body>
+</html>
